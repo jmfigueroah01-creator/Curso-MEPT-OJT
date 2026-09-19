@@ -4,8 +4,11 @@
 
 const DOMINIO_INSTITUCIONAL = "@afac.gob.mx";
 
-// URL del flujo de Power Automate (trigger HTTP) para registrar
-// correo + evento + fecha. Vacío = no se envía nada, solo local.
+// URLs de los dos flujos de Power Automate para el código de acceso.
+const URL_ENVIAR_CODIGO = "";
+const URL_VALIDAR_CODIGO = "";
+
+// URL del flujo que registra progreso (correo + evento + fecha).
 const WEBHOOK_URL = "";
 
 // Link a tu Microsoft Form oficial de evaluación.
@@ -39,8 +42,11 @@ const MODULOS = {
 
 
 /* ============================================================
-   ACCESO POR CORREO INSTITUCIONAL
+   ACCESO — PASO 1: PEDIR CORREO Y ENVIAR CÓDIGO
    ============================================================ */
+
+let correoPendiente = "";
+let cooldownReenviar = false;
 
 function obtenerCorreo() {
     return localStorage.getItem("correoUsuario");
@@ -51,34 +57,166 @@ function validarCorreoInstitucional(correo) {
         correo.trim().toLowerCase().endsWith(DOMINIO_INSTITUCIONAL.toLowerCase());
 }
 
-function iniciarAcceso() {
+function mostrarPasoModal(id) {
+    document.querySelectorAll(".paso-modal").forEach(p => p.classList.remove("activo"));
+    document.getElementById(id).classList.add("activo");
+}
+
+function solicitarCodigo() {
     const input = document.getElementById("inputCorreo");
     const error = document.getElementById("errorCorreo");
     const correo = input.value.trim().toLowerCase();
 
     if (!validarCorreoInstitucional(correo)) {
-        error.textContent =
-            "Ingresa tu correo institucional (" + DOMINIO_INSTITUCIONAL + ").";
+        error.textContent = "Ingresa tu correo institucional (" + DOMINIO_INSTITUCIONAL + ").";
         error.style.display = "block";
         return;
     }
 
-    localStorage.setItem("correoUsuario", correo);
     error.style.display = "none";
+    correoPendiente = correo;
 
-    mostrarApp();
-    registrarEvento("acceso", null);
+    const boton = document.getElementById("btnEnviarCodigo");
+    boton.disabled = true;
+    boton.textContent = "Enviando...";
+
+    enviarCodigoAlServidor(correo)
+        .then(() => {
+            boton.disabled = false;
+            boton.textContent = "Enviar código";
+            document.getElementById("correoParaCodigo").textContent = correo;
+            document.getElementById("inputCodigo").value = "";
+            mostrarPasoModal("pasoCodigo");
+            iniciarCooldownReenvio();
+        })
+        .catch(() => {
+            boton.disabled = false;
+            boton.textContent = "Enviar código";
+            error.textContent = "No se pudo enviar el código. Intenta de nuevo en unos segundos.";
+            error.style.display = "block";
+        });
 }
+
+function enviarCodigoAlServidor(correo) {
+    if (!URL_ENVIAR_CODIGO) {
+        return Promise.reject(new Error("URL_ENVIAR_CODIGO no configurada"));
+    }
+
+    return fetch(URL_ENVIAR_CODIGO, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ correo: correo })
+    }).then(resp => {
+        if (!resp.ok) throw new Error("El servidor no pudo enviar el código");
+    });
+}
+
+function reenviarCodigo() {
+    if (cooldownReenviar) return;
+
+    enviarCodigoAlServidor(correoPendiente)
+        .then(() => iniciarCooldownReenvio())
+        .catch(() => {
+            const error = document.getElementById("errorCodigo");
+            error.textContent = "No se pudo reenviar el código. Intenta de nuevo.";
+            error.style.display = "block";
+        });
+}
+
+function iniciarCooldownReenvio() {
+    cooldownReenviar = true;
+    const link = document.getElementById("linkReenviar");
+    let segundos = 60;
+    link.textContent = "Reenviar código (" + segundos + "s)";
+
+    const intervalo = setInterval(() => {
+        segundos--;
+        if (segundos <= 0) {
+            clearInterval(intervalo);
+            cooldownReenviar = false;
+            link.textContent = "Reenviar código";
+        } else {
+            link.textContent = "Reenviar código (" + segundos + "s)";
+        }
+    }, 1000);
+}
+
+function volverACorreo() {
+    document.getElementById("errorCodigo").style.display = "none";
+    mostrarPasoModal("pasoCorreo");
+}
+
+
+/* ============================================================
+   ACCESO — PASO 2: CONFIRMAR CÓDIGO
+   ============================================================ */
+
+function confirmarCodigo() {
+    const input = document.getElementById("inputCodigo");
+    const error = document.getElementById("errorCodigo");
+    const codigo = input.value.trim();
+
+    if (!/^\d{6}$/.test(codigo)) {
+        error.textContent = "Ingresa los 6 dígitos del código.";
+        error.style.display = "block";
+        return;
+    }
+
+    const boton = document.getElementById("btnConfirmarCodigo");
+    boton.disabled = true;
+    boton.textContent = "Verificando...";
+
+    validarCodigoEnServidor(correoPendiente, codigo)
+        .then(valido => {
+            boton.disabled = false;
+            boton.textContent = "Confirmar";
+
+            if (!valido) {
+                error.textContent = "Código incorrecto o vencido. Solicita uno nuevo.";
+                error.style.display = "block";
+                return;
+            }
+
+            localStorage.setItem("correoUsuario", correoPendiente);
+            error.style.display = "none";
+            mostrarApp();
+            registrarEvento("acceso", null);
+        })
+        .catch(() => {
+            boton.disabled = false;
+            boton.textContent = "Confirmar";
+            error.textContent = "No se pudo verificar el código. Intenta de nuevo.";
+            error.style.display = "block";
+        });
+}
+
+function validarCodigoEnServidor(correo, codigo) {
+    if (!URL_VALIDAR_CODIGO) {
+        return Promise.reject(new Error("URL_VALIDAR_CODIGO no configurada"));
+    }
+
+    return fetch(URL_VALIDAR_CODIGO, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ correo: correo, codigo: codigo })
+    })
+        .then(resp => resp.json())
+        .then(data => data && data.valido === true);
+}
+
+
+/* ============================================================
+   MOSTRAR APP Y CERRAR SESIÓN
+   ============================================================ */
 
 function mostrarApp() {
     document.getElementById("modalAcceso").style.display = "none";
     document.getElementById("appCurso").style.display = "";
 
     const correoMostrado = document.getElementById("correoMostrado");
-    if (correoMostrado) {
-        correoMostrado.textContent = obtenerCorreo() || "";
-    }
+    if (correoMostrado) correoMostrado.textContent = obtenerCorreo() || "";
 
+    cargarProgreso();
     renderRuta();
     actualizarProgreso();
 }
@@ -91,6 +229,7 @@ function verificarAccesoAlCargar() {
     } else {
         document.getElementById("modalAcceso").style.display = "flex";
         document.getElementById("appCurso").style.display = "none";
+        mostrarPasoModal("pasoCorreo");
     }
 }
 
@@ -103,28 +242,22 @@ function cerrarSesion() {
 
 
 /* ============================================================
-   REGISTRO DE EVENTOS (opcional, hacia Power Automate)
+   REGISTRO DE EVENTOS (Power Automate)
    ============================================================ */
 
 function registrarEvento(tipo, numeroModulo) {
-    if (!WEBHOOK_URL) {
-        return;
-    }
-
-    const correo = obtenerCorreo();
+    if (!WEBHOOK_URL) return;
 
     fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            correo: correo,
+            correo: obtenerCorreo(),
             tipo: tipo,
             modulo: numeroModulo,
             fecha: new Date().toISOString()
         })
-    }).catch(function (error) {
-        console.warn("No se pudo registrar el evento en el servidor:", error);
-    });
+    }).catch(error => console.warn("No se pudo registrar el evento:", error));
 }
 
 
@@ -282,9 +415,6 @@ function irAEvaluacionOficial() {
     }
 
     registrarEvento("inicio_evaluacion_oficial", null);
-
-    // Si tu Form prellena el correo por parámetro, anéxalo aquí:
-    // "?correo=" + encodeURIComponent(obtenerCorreo())
     window.open(LINK_EVALUACION_OFICIAL, "_blank");
 }
 
@@ -388,7 +518,4 @@ function pasoAnterior() {
    ============================================================ */
 
 verificarAccesoAlCargar();
-cargarProgreso();
-renderRuta();
-actualizarProgreso();
 irPaso(1);

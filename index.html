@@ -22,11 +22,29 @@
 <p>CIAAC · AFAC</p>
 </div>
 </div>
+
+<!-- PASO 1: correo -->
+<div id="pasoCorreo" class="paso-modal activo">
 <h2>Acceso al curso</h2>
-<p>Ingresa tu correo institucional para continuar con tu capacitación OJT.</p>
+<p>Ingresa tu correo institucional. Te enviaremos un código de verificación.</p>
 <input type="email" id="inputCorreo" placeholder="nombre.apellido@afac.gob.mx">
 <p id="errorCorreo" class="error-correo"></p>
-<button class="btn-principal" onclick="iniciarAcceso()">Ingresar</button>
+<button class="btn-principal" id="btnEnviarCodigo" onclick="solicitarCodigo()">Enviar código</button>
+</div>
+
+<!-- PASO 2: código -->
+<div id="pasoCodigo" class="paso-modal">
+<h2>Verifica tu correo</h2>
+<p>Enviamos un código de 6 dígitos a <strong id="correoParaCodigo"></strong>.</p>
+<input type="text" inputmode="numeric" maxlength="6" id="inputCodigo" placeholder="000000">
+<p id="errorCodigo" class="error-correo"></p>
+<button class="btn-principal" id="btnConfirmarCodigo" onclick="confirmarCodigo()">Confirmar</button>
+<div class="modal-acciones-secundarias">
+<a href="#" id="linkReenviar" onclick="reenviarCodigo(); return false;">Reenviar código</a>
+<a href="#" onclick="volverACorreo(); return false;">Usar otro correo</a>
+</div>
+</div>
+
 </div>
 </div>
 

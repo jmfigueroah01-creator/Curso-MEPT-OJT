@@ -75,19 +75,28 @@ h1, h2, h3, h4 {
     color: var(--texto-suave);
 }
 
-.modal-caja h2 {
+.paso-modal {
+    display: none;
+}
+
+.paso-modal.activo {
+    display: block;
+}
+
+.paso-modal h2 {
     margin: 0 0 6px;
     font-size: 22px;
 }
 
-.modal-caja > p {
+.paso-modal > p {
     color: var(--texto-suave);
     font-size: 14px;
     margin: 0 0 20px;
     line-height: 1.6;
 }
 
-.modal-caja input[type="email"] {
+.paso-modal input[type="email"],
+.paso-modal input[type="text"] {
     width: 100%;
     padding: 12px 14px;
     border: 1px solid var(--borde);
@@ -97,7 +106,14 @@ h1, h2, h3, h4 {
     margin-bottom: 12px;
 }
 
-.modal-caja input[type="email"]:focus {
+#inputCodigo {
+    text-align: center;
+    letter-spacing: 8px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.paso-modal input:focus {
     outline: 2px solid var(--azul-medio);
     outline-offset: 1px;
 }
@@ -107,6 +123,23 @@ h1, h2, h3, h4 {
     font-size: 13px;
     margin: 0 0 12px;
     display: none;
+}
+
+.modal-acciones-secundarias {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    font-size: 13px;
+}
+
+.modal-acciones-secundarias a {
+    color: var(--azul-medio);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.modal-acciones-secundarias a:hover {
+    text-decoration: underline;
 }
 
 /* ============================================================
@@ -236,6 +269,7 @@ main {
     font-size: 15px;
     font-weight: 600;
     font-family: inherit;
+    width: 100%;
 }
 
 .btn-principal:hover {
@@ -353,6 +387,11 @@ main {
     justify-content: space-between;
     margin-top: 28px;
     gap: 12px;
+}
+
+.tour-botones .btn-principal,
+.tour-botones .btn-secundario {
+    width: auto;
 }
 
 /* ============================================================
