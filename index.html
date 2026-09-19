@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capacitación de Inspectores</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ================= MODAL DE ACCESO ================= -->
+<div id="modalAcceso" class="modal-acceso">
+<div class="modal-caja">
+<div class="marca">
+<div class="marca-icono">
+<img src="logo CIAAC-03.png" alt="Logo CIAAC">
+</div>
+<div class="marca-texto">
+<p>CIAAC · AFAC</p>
+</div>
+</div>
+<h2>Acceso al curso</h2>
+<p>Ingresa tu correo institucional para continuar con tu capacitación OJT.</p>
+<input type="email" id="inputCorreo" placeholder="nombre.apellido@afac.gob.mx">
+<p id="errorCorreo" class="error-correo"></p>
+<button class="btn-principal" onclick="iniciarAcceso()">Ingresar</button>
+</div>
+</div>
+
+<!-- ================= APP (oculta hasta validar correo) ================= -->
+<div id="appCurso" style="display:none;">
+
+<header class="header">
+
+<div class="logo">
+
+<img src="logo CIAAC-03.png" alt="Logo CIAAC">
+
+</div>
+
+<div>
+
+<h1>Manual de Entrenamiento en el Puesto de Trabajo</h1>
+
+<p>Curso autogestivo</p>
+
+</div>
+
+</header>
+
+<nav class="menu" id="menuNav">
+
+<button data-sec="inicio" class="activo" onclick="mostrarSeccion('inicio')">
+
+<span class="icono-menu">🏠</span> Inicio
+
+</button>
+
+<button data-sec="curso" onclick="mostrarSeccion('curso')">
+
+<span class="icono-menu">📚</span> Curso
+
+</button>
+
+<button data-sec="evaluacion" onclick="mostrarSeccion('evaluacion')">
+
+<span class="icono-menu">📝</span> Evaluación
+
+</button>
+
+<button data-sec="progreso" onclick="mostrarSeccion('progreso')">
+
+<span class="icono-menu">📊</span> Mi progreso
+
+</button>
+
+</nav>
+
+<main>
+
+<!-- ================= INICIO ================= -->
+
+<section id="inicio" class="seccion activa">
+
+<div class="hero hero-tour">
+
+<nav class="tour-progreso" aria-label="Progreso de la bienvenida">
+
+<button type="button" class="punto activo" data-paso="1" onclick="mostrarPaso(1)" aria-label="Paso 1">
+
+<span class="punto-num">1</span>
+
+</button>
+
+<span class="punto-linea"></span>
+
+<button type="button" class="punto" data-paso="2" onclick="mostrarPaso(2)" aria-label="Paso 2">
+
+<span class="punto-num">2</span>
+
+</button>
+
+<span class="punto-linea"></span>
+
+<button type="button" class="punto" data-paso="3" onclick="mostrarPaso(3)" aria-label="Paso 3">
+
+<span class="punto-num">3</span>
+
+</button>
+
+<span class="punto-linea"></span>
+
+<button type="button" class="punto" data-paso="4" onclick="mostrarPaso(4)" aria-label="Paso 4">
+
+<span class="punto-num">4</span>
+
+</button>
+
+<span class="punto-linea"></span>
+
+<button type="button" class="punto" data-paso="5" onclick="mostrarPaso(5)" aria-label="Paso 5">
+
+<span class="punto-num">5</span>
+
+</button>
+
+<span class="punto-linea"></span>
+
+<button type="button" class="punto" data-paso="6" onclick="mostrarPaso(6)" aria-label="Paso 6">
+
+<span class="punto-num">6</span>
+
+</button>
+
+</nav>
+
+<div class="paso-tour activo" id="paso1">
+
+<p class="tour-eyebrow">Paso 1 de 6</p>
+
+<h2>Bienvenida al Curso Autogestivo</h2>
+
+<p class="subtitulo-hero">
+
+Programa de Entrenamiento en el Puesto de Trabajo (O.J.T.)
+
+</p>
+
+<p>
+
+La Agencia Federal de Aviación Civil (AFAC), a través del
+
+Centro Internacional de Adiestramiento de Aviación Civil (CIAAC),
+
+le da la bienvenida al presente curso, correspondiente al
+
+Programa de Entrenamiento en el Puesto de Trabajo
+
+(O.J.T., por sus siglas en inglés, On the Job Training).
+
+</p>
+
+</div>
+
+<div class="paso-tour" id="paso2">
+
+<p class="tour-eyebrow">Paso 2 de 6</p>
+
+<h3>Propósito del curso</h3>
+
+<p>
+
+El presente curso tiene como finalidad proporcionar al personal
+
+sujeto al Programa OJT el conocimiento normativo, estructural y
+
+procedimental necesario para su participación conforme a lo
+
+establecido en el Manual de Entrenamiento en el Puesto de Trabajo
+
+(MEPT) vigente, previo al inicio de su entrenamiento práctico
+
+en el puesto de trabajo.
+
+</p>
+
+</div>
+
+<div class="paso-tour" id="paso3">
+
+<p class="tour-eyebrow">Paso 3 de 6</p>
+
+<h3>Modalidad autogestiva</h3>
+
+<p>
+
+Este curso se imparte bajo la modalidad autogestiva, lo que
+
+permite a cada participante avanzar de manera independiente,
+
+conforme a su disponibilidad de tiempo, dentro del plazo
+
+establecido para su proceso de capacitación. La modalidad
+
+autogestiva no exime al participante de la responsabilidad
+
+de concluir el curso en tiempo y forma, ni de acreditar, en
+
+su caso, la evaluación o actividad de cierre correspondiente.
+
+Ante cualquier duda relacionada con el contenido, el
+
+participante podrá dirigirse a su Instructor Coordinador OJT
+
+o a la Coordinación del Programa de Entrenamiento en el
+
+Puesto de Trabajo (CPEPT).
+
+</p>
+
+</div>
+
+<div class="paso-tour" id="paso4">
+
+<p class="tour-eyebrow">Paso 4 de 6</p>
+
+<h3>Objetivo general</h3>
+
+<p>
+
+Al concluir el curso, el participante será capaz de identificar
+
+la estructura del Programa OJT, las figuras y responsabilidades
+
+institucionales que lo conforman, los procesos de programación,
+
+ejecución, convalidación y designación, así como la
+
+documentación aplicable, con el fin de participar en el
+
+programa con pleno conocimiento de sus obligaciones.
+
+</p>
+
+</div>
+
+<div class="paso-tour" id="paso5">
+
+<p class="tour-eyebrow">Paso 5 de 6</p>
+
+<h3>Estructura del curso</h3>
+
+<ol class="silabo-lista">
+
+<li class="silabo-item">
+
+<span class="silabo-num">01</span>
+
+<div class="silabo-info">
+
+<h4>Introducción</h4>
+
+<p>Conceptos fundamentales y objetivos de la capacitación.</p>
+
+</div>
+
+</li>
+
+<li class="silabo-item">
+
+<span class="silabo-num">02</span>
+
+<div class="silabo-info">
+
+<h4>Marco normativo</h4>
+
+<p>Requisitos y documentación aplicable.</p>
+
+</div>
+
+</li>
+
+<li class="silabo-item">
+
+<span class="silabo-num">03</span>
+
+<div class="silabo-info">
+
+<h4>Procedimientos</h4>
+
+<p>Aplicación de procedimientos de inspección.</p>
+
+</div>
+
+</li>
+
+</ol>
+
+</div>
+
+<div class="paso-tour" id="paso6">
+
+<p class="tour-eyebrow">Paso 6 de 6</p>
+
+<h3>Recomendaciones generales</h3>
+
+<ul>
+
+<li>Revisar los módulos en el orden establecido, dado que cada uno constituye la base del siguiente.</li>
+
+<li>Consultar el MEPT vigente para profundizar en los numerales referidos a lo largo del curso.</li>
+
+<li>Concluir cada módulo dentro de los plazos establecidos por su proceso de capacitación.</li>
+
+<li>Dirigir cualquier duda técnica o normativa a su Instructor Coordinador OJT o a la CPEPT.</li>
+
+</ul>
+
+<p class="cierre-hero">
+
+La AFAC reconoce en el Programa OJT una responsabilidad
+
+institucional compartida, orientada al fortalecimiento del
+
+criterio técnico del personal y al aseguramiento de la
+
+seguridad operacional del Sistema de Aviación Civil Mexicano.
+
+Se invita al participante a iniciar el presente curso con el
+
+compromiso y la disciplina que este proceso formativo requiere.
+
+</p>
+
+</div>
+
+<div class="tour-botones">
+
+<button class="btn-secundario" id="btnAtras" onclick="pasoAnterior()">
+
+← Atrás
+
+</button>
+
+<button class="btn-principal" id="btnSiguiente" onclick="siguientePaso()">
+
+Siguiente →
+
+</button>
+
+</div>
+
+</div>
+
+<div class="tarjetas">
+
+<div class="tarjeta">
+
+<div class="tarjeta-icono"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8 H16 M8 12 H16 M8 16 H12"/></svg></div>
+
+<h3>Contenido</h3>
+
+<p>
+
+Material de estudio organizado por módulos.
+
+</p>
+
+</div>
+
+<div class="tarjeta">
+
+<div class="tarjeta-icono"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div>
+
+<h3>Competencias</h3>
+
+<p>
+
+Desarrollo de conocimientos y habilidades.
+
+</p>
+
+</div>
+
+<div class="tarjeta">
+
+<div class="tarjeta-icono"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8.5 13 L11 15.5 L15.5 10.5"/><rect x="5" y="4" width="14" height="17" rx="1.5"/></svg></div>
+
+<h3>Evaluación</h3>
+
+<p>
+
+Evaluaciones para comprobar el aprendizaje.
+
+</p>
+
+</div>
+
+<div class="tarjeta">
+
+<div class="tarjeta-icono"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20 V10 M12 20 V4 M20 20 V14"/></svg></div>
+
+<h3>Progreso</h3>
+
+<p>
+
+Consulta el avance de tu capacitación.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= CURSO ================= -->
+
+<section id="curso" class="seccion">
+
+<h2>Contenido del curso</h2>
+
+<p>
+
+Completa cada módulo en orden para avanzar al siguiente.
+
+</p>
+
+<div class="ruta" id="rutaModulos"></div>
+
+<div id="contenidoModulo"
+
+class="contenido-modulo">
+
+</div>
+
+</section>
+
+<!-- ================= EVALUACIÓN ================= -->
+
+<section id="evaluacion" class="seccion">
+
+<h2>Evaluación final</h2>
+
+<div class="aviso-eval">
+
+Esta es una autoevaluación de práctica. La evaluación oficial se realiza en Microsoft Forms, ligada a tu correo institucional, y se desbloquea al concluir el módulo 3.
+
+</div>
+
+<form id="quiz">
+
+<div class="pregunta">
+
+<h3>
+
+1. ¿Cuál es el propósito principal de
+
+una inspección?
+
+</h3>
+
+<label>
+
+<input type="radio"
+
+name="p1"
+
+value="a">
+
+Identificar y evaluar el cumplimiento
+
+de los requisitos aplicables.
+
+</label>
+
+<label>
+
+<input type="radio"
+
+name="p1"
+
+value="b">
+
+Sustituir los procedimientos de la
+
+organización.
+
+</label>
+
+<label>
+
+<input type="radio"
+
+name="p1"
+
+value="c">
+
+Eliminar toda posibilidad de riesgo.
+
+</label>
+
+</div>
+
+<div class="pregunta">
+
+<h3>
+
+2. ¿Qué debe sustentar un hallazgo?
+
+</h3>
+
+<label>
+
+<input type="radio"
+
+name="p2"
+
+value="a">
+
+Evidencia objetiva.
+
+</label>
+
+<label>
+
+<input type="radio"
+
+name="p2"
+
+value="b">
+
+Una opinión personal.
+
+</label>
+
+<label>
+
+<input type="radio"
+
+name="p2"
+
+value="c">
+
+Un comentario informal.
+
+</label>
+
+</div>
+
+<div class="pregunta">
+
+<h3>
+
+3. ¿Qué debe hacer el inspector antes
+
+de realizar una actividad?
+
+</h3>
+
+<label>
+
+<input type="radio"
+
+name="p3"
+
+value="a">
+
+Revisar los procedimientos y requisitos
+
+aplicables.
+
+</label>
+
+<label>
+
+<input type="radio"
+
+name="p3"
+
+value="b">
+
+Realizar la actividad sin preparación.
+
+</label>
+
+<label>
+
+<input type="radio"
+
+name="p3"
+
+value="c">
+
+Delegar siempre la actividad.
+
+</label>
+
+</div>
+
+<button type="button"
+
+class="btn-secundario"
+
+onclick="calificar()">
+
+Calificar práctica
+
+</button>
+
+</form>
+
+<div id="resultado" style="display:none;"></div>
+
+<button id="btnIrEvaluacion" class="btn-principal" style="margin-top: 20px; width:auto;" onclick="irAEvaluacionOficial()">
+
+Ir a la evaluación oficial (Microsoft Forms) →
+
+</button>
+
+</section>
+
+<!-- ================= PROGRESO ================= -->
+
+<section id="progreso" class="seccion">
+
+<h2>Mi progreso</h2>
+
+<p class="sesion-info">Sesión iniciada como <strong id="correoMostrado"></strong> · <a href="#" onclick="cerrarSesion(); return false;">cerrar sesión</a></p>
+
+<div class="progreso-container">
+
+<div class="barra">
+
+<div id="barraProgreso">
+
+</div>
+
+</div>
+
+<p id="porcentaje">
+
+0% completado
+
+</p>
+
+</div>
+
+<div id="estadoModulos">
+
+</div>
+
+<button class="btn-secundario"
+
+onclick="reiniciarCurso()">
+
+Reiniciar progreso
+
+</button>
+
+</section>
+
+</main>
+
+<footer>
+
+<p class="footer-nombre">
+
+Centro Internacional de Adiestramiento de Aviación Civil
+
+</p>
+
+<p>
+
+Boulevard Puerto Aéreo 161, Colonia Federal, Alcaldía Venustiano Carranza, C. P. 15700, Ciudad de México
+
+</p>
+
+<p>
+
+Tel: (55)5723 9300 Ext. 18674 &nbsp;·&nbsp;
+
+Correo: jose.figueroa@afac.gob.mx
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
