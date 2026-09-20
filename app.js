@@ -89,10 +89,12 @@ function solicitarCodigo() {
             mostrarPasoModal("pasoCodigo");
             iniciarCooldownReenvio();
         })
-        .catch(() => {
+        .catch((err) => {
             boton.disabled = false;
             boton.textContent = "Enviar código";
-            error.textContent = "No se pudo enviar el código. Intenta de nuevo en unos segundos.";
+            error.textContent = (err && err.message)
+                ? err.message
+                : "No se pudo enviar el código. Intenta de nuevo en unos segundos.";
             error.style.display = "block";
         });
 }
@@ -106,9 +108,15 @@ function enviarCodigoAlServidor(correo) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ correo: correo })
-    }).then(resp => {
-        if (!resp.ok) throw new Error("El servidor no pudo enviar el código");
-    });
+    })
+        .then(resp => resp.json().catch(() => ({})))
+        .then(data => {
+            if (!data || data.enviado !== true) {
+                throw new Error(
+                    (data && data.mensaje) ? data.mensaje : "El servidor no pudo enviar el código"
+                );
+            }
+        });
 }
 
 function reenviarCodigo() {
@@ -116,9 +124,11 @@ function reenviarCodigo() {
 
     enviarCodigoAlServidor(correoPendiente)
         .then(() => iniciarCooldownReenvio())
-        .catch(() => {
+        .catch((err) => {
             const error = document.getElementById("errorCodigo");
-            error.textContent = "No se pudo reenviar el código. Intenta de nuevo.";
+            error.textContent = (err && err.message)
+                ? err.message
+                : "No se pudo reenviar el código. Intenta de nuevo.";
             error.style.display = "block";
         });
 }
