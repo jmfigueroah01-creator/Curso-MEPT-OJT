@@ -205,6 +205,10 @@ function confirmarCodigo() {
     mostrarModal(false);
     mostrarPantallaCarga(true);
 
+    // Se adelanta la carga del contenido del curso en paralelo a la
+    // validación del código, para no esperar una cosa y luego la otra.
+    const promesaContenido = cargarContenidoCurso();
+
     validarCodigoEnServidor(correoPendiente, codigo)
         .then(data => {
             boton.disabled = false;
@@ -222,7 +226,7 @@ function confirmarCodigo() {
             localStorage.setItem("tokenSesion", data.token || "");
             localStorage.setItem("nombreUsuario", data.nombre || "");
             error.style.display = "none";
-            mostrarApp();
+            mostrarApp(promesaContenido);
             registrarEvento("acceso", null);
         })
         .catch(() => {
@@ -253,11 +257,13 @@ function validarCodigoEnServidor(correo, codigo) {
    MOSTRAR APP Y CERRAR SESIÓN
    ============================================================ */
 
-function mostrarApp() {
+function mostrarApp(promesaContenido) {
     mostrarModal(false);
     mostrarPantallaCarga(true);
 
-    cargarContenidoCurso()
+    const promesa = promesaContenido || cargarContenidoCurso();
+
+    promesa
         .then(() => {
             mostrarPantallaCarga(false);
             document.getElementById("appCurso").style.display = "";
