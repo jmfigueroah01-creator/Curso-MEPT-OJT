@@ -41,6 +41,13 @@ h1, h2, h3, h4 {
     align-items: center;
     justify-content: center;
     z-index: 1100;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+.pantalla-carga.oculto {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .pantalla-carga-spinner {
@@ -90,6 +97,13 @@ h1, h2, h3, h4 {
     justify-content: center;
     z-index: 1000;
     padding: 16px;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+.modal-acceso.oculto {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .modal-caja {

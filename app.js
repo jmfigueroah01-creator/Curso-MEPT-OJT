@@ -59,6 +59,14 @@ function mostrarPasoModal(id) {
     document.getElementById(id).classList.add("activo");
 }
 
+function mostrarPantallaCarga(mostrar) {
+    document.getElementById("pantallaCarga").classList.toggle("oculto", !mostrar);
+}
+
+function mostrarModal(mostrar) {
+    document.getElementById("modalAcceso").classList.toggle("oculto", !mostrar);
+}
+
 function solicitarCodigo() {
     const input = document.getElementById("inputCorreo");
     const error = document.getElementById("errorCorreo");
@@ -194,8 +202,8 @@ function confirmarCodigo() {
     boton.disabled = true;
     boton.textContent = "Verificando...";
 
-    document.getElementById("modalAcceso").style.display = "none";
-    document.getElementById("pantallaCarga").style.display = "flex";
+    mostrarModal(false);
+    mostrarPantallaCarga(true);
 
     validarCodigoEnServidor(correoPendiente, codigo)
         .then(data => {
@@ -203,8 +211,8 @@ function confirmarCodigo() {
             boton.textContent = "Confirmar";
 
             if (!data || data.valido !== true) {
-                document.getElementById("pantallaCarga").style.display = "none";
-                document.getElementById("modalAcceso").style.display = "flex";
+                mostrarPantallaCarga(false);
+                mostrarModal(true);
                 error.textContent = "Código incorrecto o vencido. Solicita uno nuevo.";
                 error.style.display = "block";
                 return;
@@ -220,8 +228,8 @@ function confirmarCodigo() {
         .catch(() => {
             boton.disabled = false;
             boton.textContent = "Confirmar";
-            document.getElementById("pantallaCarga").style.display = "none";
-            document.getElementById("modalAcceso").style.display = "flex";
+            mostrarPantallaCarga(false);
+            mostrarModal(true);
             error.textContent = "No se pudo verificar el código. Intenta de nuevo.";
             error.style.display = "block";
         });
@@ -246,12 +254,12 @@ function validarCodigoEnServidor(correo, codigo) {
    ============================================================ */
 
 function mostrarApp() {
-    document.getElementById("modalAcceso").style.display = "none";
-    document.getElementById("pantallaCarga").style.display = "flex";
+    mostrarModal(false);
+    mostrarPantallaCarga(true);
 
     cargarContenidoCurso()
         .then(() => {
-            document.getElementById("pantallaCarga").style.display = "none";
+            mostrarPantallaCarga(false);
             document.getElementById("appCurso").style.display = "";
 
             const correoMostrado = document.getElementById("correoMostrado");
@@ -268,14 +276,14 @@ function mostrarApp() {
             actualizarProgreso();
         })
         .catch(() => {
-            document.getElementById("pantallaCarga").style.display = "none";
+            mostrarPantallaCarga(false);
             alert("No se pudo cargar el contenido del curso. Verifica tu conexión y recarga la página.");
         });
 }
 
 function mostrarModalConMensaje(mensaje) {
-    document.getElementById("pantallaCarga").style.display = "none";
-    document.getElementById("modalAcceso").style.display = "flex";
+    mostrarPantallaCarga(false);
+    mostrarModal(true);
     document.getElementById("appCurso").style.display = "none";
     mostrarPasoModal("pasoCorreo");
 
@@ -303,13 +311,14 @@ function verificarAccesoAlCargar() {
     const correo = obtenerCorreo();
     const token = obtenerToken();
 
+    const DURACION_MINIMA_CARGA = 400; // ms
+
     if (!validarCorreoInstitucional(correo) || !token) {
-        mostrarModalConMensaje("");
+        setTimeout(() => mostrarModalConMensaje(""), DURACION_MINIMA_CARGA);
         return;
     }
 
     const inicioCarga = Date.now();
-    const DURACION_MINIMA_CARGA = 400; // ms
 
     function despuesDeMinimo(callback) {
         const transcurrido = Date.now() - inicioCarga;
