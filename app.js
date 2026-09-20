@@ -68,7 +68,7 @@ function solicitarCodigo() {
     const correo = input.value.trim().toLowerCase();
 
     if (!validarCorreoInstitucional(correo)) {
-        error.textContent = "Ingresa tu correo institucional (" + DOMINIO_INSTITUCIONAL + ").";
+        error.textContent = "El correo ingresado no tiene un formato válido. Debe ser nombre.apellido@afac.gob.mx";
         error.style.display = "block";
         return;
     }
