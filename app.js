@@ -134,11 +134,15 @@ function reenviarCodigo() {
 
     enviarCodigoAlServidor(correoPendiente)
         .then(() => {
-            link.style.pointerEvents = "";
             confirmacion.textContent = "Código reenviado. Revisa tu correo.";
             confirmacion.style.display = "block";
-            setTimeout(() => { confirmacion.style.display = "none"; }, 5000);
-            iniciarCooldownReenvio();
+            link.textContent = textoOriginal;
+
+            setTimeout(() => {
+                confirmacion.style.display = "none";
+                link.style.pointerEvents = "";
+                iniciarCooldownReenvio();
+            }, 10000);
         })
         .catch((err) => {
             link.style.pointerEvents = "";
