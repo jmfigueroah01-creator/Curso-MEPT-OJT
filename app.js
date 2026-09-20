@@ -206,12 +206,17 @@ function confirmarCodigo() {
     boton.disabled = true;
     boton.textContent = "Verificando...";
 
+    document.getElementById("modalAcceso").style.display = "none";
+    document.getElementById("pantallaCarga").style.display = "flex";
+
     validarCodigoEnServidor(correoPendiente, codigo)
         .then(data => {
             boton.disabled = false;
             boton.textContent = "Confirmar";
 
             if (!data || data.valido !== true) {
+                document.getElementById("pantallaCarga").style.display = "none";
+                document.getElementById("modalAcceso").style.display = "flex";
                 error.textContent = "Código incorrecto o vencido. Solicita uno nuevo.";
                 error.style.display = "block";
                 return;
@@ -227,6 +232,8 @@ function confirmarCodigo() {
         .catch(() => {
             boton.disabled = false;
             boton.textContent = "Confirmar";
+            document.getElementById("pantallaCarga").style.display = "none";
+            document.getElementById("modalAcceso").style.display = "flex";
             error.textContent = "No se pudo verificar el código. Intenta de nuevo.";
             error.style.display = "block";
         });
@@ -304,26 +311,39 @@ function verificarAccesoAlCargar() {
         return;
     }
 
+    const inicioCarga = Date.now();
+    const DURACION_MINIMA_CARGA = 400; // ms
+
+    function despuesDeMinimo(callback) {
+        const transcurrido = Date.now() - inicioCarga;
+        const falta = DURACION_MINIMA_CARGA - transcurrido;
+        if (falta > 0) {
+            setTimeout(callback, falta);
+        } else {
+            callback();
+        }
+    }
+
     verificarSesionEnServidor(correo, token)
         .then(data => {
             if (!data || data.valido !== true) {
                 cerrarSesion(true);
-                mostrarModalConMensaje(
+                despuesDeMinimo(() => mostrarModalConMensaje(
                     (data && data.mensaje) ? data.mensaje : "Tu sesión ya no es válida. Ingresa de nuevo."
-                );
+                ));
                 return;
             }
 
             if (data.nombre) {
                 localStorage.setItem("nombreUsuario", data.nombre);
             }
-            mostrarApp();
+            despuesDeMinimo(() => mostrarApp());
         })
         .catch(() => {
             // Si no se pudo contactar al servidor, no cerramos la sesión de golpe:
             // dejamos entrar con lo que ya había en localStorage para no bloquear
             // por un problema de red pasajero.
-            mostrarApp();
+            despuesDeMinimo(() => mostrarApp());
         });
 }
 
