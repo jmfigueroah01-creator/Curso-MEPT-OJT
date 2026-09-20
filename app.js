@@ -15,31 +15,19 @@ const WEBHOOK_URL = "";
 // Link a tu Microsoft Form oficial de evaluación.
 const LINK_EVALUACION_OFICIAL = "https://forms.office.com/r/TU_ID_AQUI";
 
-const TOTAL_MODULOS = 3;
+let TOTAL_MODULOS = 0;
+let MODULOS = {};
+let RESPUESTAS_QUIZ = {};
 
-const MODULOS = {
-    1: {
-        titulo: "Introducción",
-        resumen: "Conceptos fundamentales y objetivos de la capacitación.",
-        objetivo: "Comprender los conceptos fundamentales relacionados con la función de inspección.",
-        contenido: "La función de inspección constituye una actividad fundamental para verificar el cumplimiento de los requisitos aplicables.",
-        actividad: "Identifique tres responsabilidades principales de un inspector."
-    },
-    2: {
-        titulo: "Marco normativo",
-        resumen: "Requisitos y documentación aplicable.",
-        objetivo: "Identificar los principales documentos normativos aplicables a las actividades de inspección.",
-        contenido: "El inspector debe conocer los requisitos aplicables a la actividad que desarrolla y utilizar las fuentes oficiales correspondientes.",
-        actividad: "Revise el procedimiento correspondiente y determine qué requisitos aplican al escenario planteado."
-    },
-    3: {
-        titulo: "Procedimientos",
-        resumen: "Aplicación de procedimientos de inspección.",
-        objetivo: "Aplicar correctamente los procedimientos establecidos para realizar una actividad de inspección.",
-        contenido: "Analice un procedimiento de inspección y determine la secuencia correcta de ejecución: preparación, revisión documental, verificación, registro de evidencia y comunicación de resultados.",
-        actividad: "Ordene los pasos del procedimiento aplicado a un caso real de su área."
-    }
-};
+function cargarContenidoCurso() {
+    return fetch("contenido-curso.json")
+        .then(resp => resp.json())
+        .then(data => {
+            MODULOS = data.modulos || {};
+            RESPUESTAS_QUIZ = data.respuestas || {};
+            TOTAL_MODULOS = Object.keys(MODULOS).length;
+        });
+}
 
 
 /* ============================================================
@@ -258,22 +246,31 @@ function validarCodigoEnServidor(correo, codigo) {
    ============================================================ */
 
 function mostrarApp() {
-    document.getElementById("pantallaCarga").style.display = "none";
     document.getElementById("modalAcceso").style.display = "none";
-    document.getElementById("appCurso").style.display = "";
+    document.getElementById("pantallaCarga").style.display = "flex";
 
-    const correoMostrado = document.getElementById("correoMostrado");
-    if (correoMostrado) correoMostrado.textContent = obtenerCorreo() || "";
+    cargarContenidoCurso()
+        .then(() => {
+            document.getElementById("pantallaCarga").style.display = "none";
+            document.getElementById("appCurso").style.display = "";
 
-    const saludoUsuario = document.getElementById("saludoUsuario");
-    if (saludoUsuario) {
-        const nombre = obtenerNombre();
-        saludoUsuario.textContent = nombre ? ("Hola, " + nombre) : "";
-    }
+            const correoMostrado = document.getElementById("correoMostrado");
+            if (correoMostrado) correoMostrado.textContent = obtenerCorreo() || "";
 
-    cargarProgreso();
-    renderRuta();
-    actualizarProgreso();
+            const saludoUsuario = document.getElementById("saludoUsuario");
+            if (saludoUsuario) {
+                const nombre = obtenerNombre();
+                saludoUsuario.textContent = nombre ? ("Hola, " + nombre) : "";
+            }
+
+            cargarProgreso();
+            renderRuta();
+            actualizarProgreso();
+        })
+        .catch(() => {
+            document.getElementById("pantallaCarga").style.display = "none";
+            alert("No se pudo cargar el contenido del curso. Verifica tu conexión y recarga la página.");
+        });
 }
 
 function mostrarModalConMensaje(mensaje) {
@@ -540,7 +537,7 @@ function irAEvaluacionOficial() {
 
 // Autoevaluación de práctica — NO es la calificación oficial.
 function calificar() {
-    const respuestas = { p1: "a", p2: "a", p3: "a" };
+    const respuestas = RESPUESTAS_QUIZ;
     let puntos = 0;
 
     Object.keys(respuestas).forEach(pregunta => {

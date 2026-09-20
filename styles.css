@@ -45,8 +45,8 @@ h1, h2, h3, h4 {
 
 .pantalla-carga-spinner {
     position: relative;
-    width: 64px;
-    height: 64px;
+    width: 104px;
+    height: 104px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,14 +57,14 @@ h1, h2, h3, h4 {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 3px solid rgba(255, 255, 255, 0.2);
+    border: 4px solid rgba(255, 255, 255, 0.2);
     border-top-color: var(--oro);
     animation: girar 1s linear infinite;
 }
 
 .pantalla-carga-icono {
-    width: 34px;
-    height: 34px;
+    width: 54px;
+    height: 54px;
     transform: rotate(45deg);
     display: block;
     margin: auto;

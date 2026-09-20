@@ -1,0 +1,30 @@
+{
+    "modulos": {
+        "1": {
+            "titulo": "Introducción",
+            "resumen": "Conceptos fundamentales y objetivos de la capacitación.",
+            "objetivo": "Comprender los conceptos fundamentales relacionados con la función de inspección.",
+            "contenido": "La función de inspección constituye una actividad fundamental para verificar el cumplimiento de los requisitos aplicables.",
+            "actividad": "Identifique tres responsabilidades principales de un inspector."
+        },
+        "2": {
+            "titulo": "Marco normativo",
+            "resumen": "Requisitos y documentación aplicable.",
+            "objetivo": "Identificar los principales documentos normativos aplicables a las actividades de inspección.",
+            "contenido": "El inspector debe conocer los requisitos aplicables a la actividad que desarrolla y utilizar las fuentes oficiales correspondientes.",
+            "actividad": "Revise el procedimiento correspondiente y determine qué requisitos aplican al escenario planteado."
+        },
+        "3": {
+            "titulo": "Procedimientos",
+            "resumen": "Aplicación de procedimientos de inspección.",
+            "objetivo": "Aplicar correctamente los procedimientos establecidos para realizar una actividad de inspección.",
+            "contenido": "Analice un procedimiento de inspección y determine la secuencia correcta de ejecución: preparación, revisión documental, verificación, registro de evidencia y comunicación de resultados.",
+            "actividad": "Ordene los pasos del procedimiento aplicado a un caso real de su área."
+        }
+    },
+    "respuestas": {
+        "p1": "a",
+        "p2": "a",
+        "p3": "a"
+    }
+}
