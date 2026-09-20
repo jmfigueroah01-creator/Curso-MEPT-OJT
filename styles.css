@@ -42,7 +42,7 @@ h1, h2, h3, h4 {
     justify-content: center;
     z-index: 1100;
     opacity: 1;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.45s ease-in-out;
 }
 
 .pantalla-carga.oculto {
@@ -98,7 +98,7 @@ h1, h2, h3, h4 {
     z-index: 1000;
     padding: 16px;
     opacity: 1;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.45s ease-in-out;
 }
 
 .modal-acceso.oculto {
