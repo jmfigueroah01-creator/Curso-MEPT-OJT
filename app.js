@@ -7,6 +7,7 @@ const DOMINIO_INSTITUCIONAL = "@afac.gob.mx";
 // URLs de los dos flujos de Power Automate para el código de acceso.
 const URL_ENVIAR_CODIGO = "https://defaultb7c9bdfffd974461ab1bd2a2813f8b.a4.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/10/workflows/ba842193e68f400998fc6341ccaa467c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=C3iuWkiPu8P7CBwgNp9rZLmnA2O71bzkBs0tO94wNoA";
 const URL_VALIDAR_CODIGO = "https://defaultb7c9bdfffd974461ab1bd2a2813f8b.a4.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/26/workflows/99a974f68f4b410697ac1202e178d13d/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=FiEyhSJ-qHuIAB-OcC0EoN3ZxaxDMzXtqr1t2oKs0gI";
+const URL_VERIFICAR_SESION = "https://defaultb7c9bdfffd974461ab1bd2a2813f8b4.a4.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/21/workflows/ffe6d7e4bf2d43a3b9b52c6ed5d06a86/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=AG4AMv9-mCbUgispAE0r7ElUAdmPXUYAz8CnSqRTT4w";
 
 // URL del flujo que registra progreso (correo + evento + fecha).
 const WEBHOOK_URL = "";
@@ -50,6 +51,14 @@ let cooldownReenviar = false;
 
 function obtenerCorreo() {
     return localStorage.getItem("correoUsuario");
+}
+
+function obtenerToken() {
+    return localStorage.getItem("tokenSesion");
+}
+
+function obtenerNombre() {
+    return localStorage.getItem("nombreUsuario");
 }
 
 function validarCorreoInstitucional(correo) {
@@ -198,17 +207,19 @@ function confirmarCodigo() {
     boton.textContent = "Verificando...";
 
     validarCodigoEnServidor(correoPendiente, codigo)
-        .then(valido => {
+        .then(data => {
             boton.disabled = false;
             boton.textContent = "Confirmar";
 
-            if (!valido) {
+            if (!data || data.valido !== true) {
                 error.textContent = "Código incorrecto o vencido. Solicita uno nuevo.";
                 error.style.display = "block";
                 return;
             }
 
             localStorage.setItem("correoUsuario", correoPendiente);
+            localStorage.setItem("tokenSesion", data.token || "");
+            localStorage.setItem("nombreUsuario", data.nombre || "");
             error.style.display = "none";
             mostrarApp();
             registrarEvento("acceso", null);
@@ -231,8 +242,7 @@ function validarCodigoEnServidor(correo, codigo) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ correo: correo, codigo: codigo })
     })
-        .then(resp => resp.json())
-        .then(data => data && data.valido === true);
+        .then(resp => resp.json());
 }
 
 
@@ -247,27 +257,84 @@ function mostrarApp() {
     const correoMostrado = document.getElementById("correoMostrado");
     if (correoMostrado) correoMostrado.textContent = obtenerCorreo() || "";
 
+    const saludoUsuario = document.getElementById("saludoUsuario");
+    if (saludoUsuario) {
+        const nombre = obtenerNombre();
+        saludoUsuario.textContent = nombre ? ("Hola, " + nombre) : "";
+    }
+
     cargarProgreso();
     renderRuta();
     actualizarProgreso();
 }
 
-function verificarAccesoAlCargar() {
-    const correo = obtenerCorreo();
+function mostrarModalConMensaje(mensaje) {
+    document.getElementById("modalAcceso").style.display = "flex";
+    document.getElementById("appCurso").style.display = "none";
+    mostrarPasoModal("pasoCorreo");
 
-    if (validarCorreoInstitucional(correo)) {
-        mostrarApp();
-    } else {
-        document.getElementById("modalAcceso").style.display = "flex";
-        document.getElementById("appCurso").style.display = "none";
-        mostrarPasoModal("pasoCorreo");
+    if (mensaje) {
+        const error = document.getElementById("errorCorreo");
+        error.textContent = mensaje;
+        error.style.display = "block";
     }
 }
 
-function cerrarSesion() {
-    if (confirm("Esto cerrará tu sesión en este dispositivo (no borra tu avance). ¿Continuar?")) {
+function verificarSesionEnServidor(correo, token) {
+    if (!URL_VERIFICAR_SESION) {
+        return Promise.reject(new Error("URL_VERIFICAR_SESION no configurada"));
+    }
+
+    return fetch(URL_VERIFICAR_SESION, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ correo: correo, token: token })
+    })
+        .then(resp => resp.json());
+}
+
+function verificarAccesoAlCargar() {
+    const correo = obtenerCorreo();
+    const token = obtenerToken();
+
+    if (!validarCorreoInstitucional(correo) || !token) {
+        mostrarModalConMensaje("");
+        return;
+    }
+
+    verificarSesionEnServidor(correo, token)
+        .then(data => {
+            if (!data || data.valido !== true) {
+                cerrarSesion(true);
+                mostrarModalConMensaje(
+                    (data && data.mensaje) ? data.mensaje : "Tu sesión ya no es válida. Ingresa de nuevo."
+                );
+                return;
+            }
+
+            if (data.nombre) {
+                localStorage.setItem("nombreUsuario", data.nombre);
+            }
+            mostrarApp();
+        })
+        .catch(() => {
+            // Si no se pudo contactar al servidor, no cerramos la sesión de golpe:
+            // dejamos entrar con lo que ya había en localStorage para no bloquear
+            // por un problema de red pasajero.
+            mostrarApp();
+        });
+}
+
+function cerrarSesion(silencioso) {
+    const continuar = silencioso === true
+        ? true
+        : confirm("Esto cerrará tu sesión en este dispositivo (no borra tu avance). ¿Continuar?");
+
+    if (continuar) {
         localStorage.removeItem("correoUsuario");
-        location.reload();
+        localStorage.removeItem("tokenSesion");
+        localStorage.removeItem("nombreUsuario");
+        if (!silencioso) location.reload();
     }
 }
 
