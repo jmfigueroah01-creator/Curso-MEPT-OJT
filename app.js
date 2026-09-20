@@ -251,6 +251,7 @@ function validarCodigoEnServidor(correo, codigo) {
    ============================================================ */
 
 function mostrarApp() {
+    document.getElementById("pantallaCarga").style.display = "none";
     document.getElementById("modalAcceso").style.display = "none";
     document.getElementById("appCurso").style.display = "";
 
@@ -269,6 +270,7 @@ function mostrarApp() {
 }
 
 function mostrarModalConMensaje(mensaje) {
+    document.getElementById("pantallaCarga").style.display = "none";
     document.getElementById("modalAcceso").style.display = "flex";
     document.getElementById("appCurso").style.display = "none";
     mostrarPasoModal("pasoCorreo");

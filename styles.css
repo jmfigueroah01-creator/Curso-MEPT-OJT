@@ -30,6 +30,51 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================================
+   PANTALLA DE CARGA
+   ============================================================ */
+
+.pantalla-carga {
+    position: fixed;
+    inset: 0;
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+}
+
+.pantalla-carga-spinner {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pantalla-carga-spinner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top-color: var(--oro);
+    animation: girar 1s linear infinite;
+}
+
+.pantalla-carga-icono {
+    width: 34px;
+    height: 34px;
+    transform: rotate(45deg);
+    display: block;
+    margin: auto;
+}
+
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================================
    MODAL DE ACCESO
    ============================================================ */
 
