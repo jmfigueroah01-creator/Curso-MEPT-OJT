@@ -122,10 +122,27 @@ function enviarCodigoAlServidor(correo) {
 function reenviarCodigo() {
     if (cooldownReenviar) return;
 
+    const link = document.getElementById("linkReenviar");
+    const confirmacion = document.getElementById("confirmacionReenvio");
+    const error = document.getElementById("errorCodigo");
+
+    error.style.display = "none";
+    confirmacion.style.display = "none";
+    link.style.pointerEvents = "none";
+    const textoOriginal = link.textContent;
+    link.textContent = "Enviando...";
+
     enviarCodigoAlServidor(correoPendiente)
-        .then(() => iniciarCooldownReenvio())
+        .then(() => {
+            link.style.pointerEvents = "";
+            confirmacion.textContent = "Código reenviado. Revisa tu correo.";
+            confirmacion.style.display = "block";
+            setTimeout(() => { confirmacion.style.display = "none"; }, 5000);
+            iniciarCooldownReenvio();
+        })
         .catch((err) => {
-            const error = document.getElementById("errorCodigo");
+            link.style.pointerEvents = "";
+            link.textContent = textoOriginal;
             error.textContent = (err && err.message)
                 ? err.message
                 : "No se pudo reenviar el código. Intenta de nuevo.";

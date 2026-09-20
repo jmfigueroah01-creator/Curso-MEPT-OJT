@@ -125,6 +125,13 @@ h1, h2, h3, h4 {
     display: none;
 }
 
+.confirmacion-reenvio {
+    color: #2F7A4D;
+    font-size: 13px;
+    margin: 0 0 12px;
+    display: none;
+}
+
 .modal-acciones-secundarias {
     display: flex;
     justify-content: space-between;
