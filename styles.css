@@ -221,7 +221,6 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
     position: relative;
 }
 
@@ -231,6 +230,15 @@ h1, h2, h3, h4 {
     left: 0; right: 0; bottom: 0;
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--oro) 50%, transparent);
+}
+
+.header-inner {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .header-marca {
@@ -254,7 +262,9 @@ h1, h2, h3, h4 {
 .header h1 {
     margin: 0;
     color: white;
-    font-size: 23px;
+    font-size: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 .header p {
@@ -268,7 +278,7 @@ h1, h2, h3, h4 {
 
 .header-usuario {
     position: absolute;
-    right: 25px;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
     display: none;
@@ -305,6 +315,7 @@ h1, h2, h3, h4 {
 .menu {
     background: white;
     display: flex;
+    justify-content: center;
     gap: 4px;
     padding: 10px 24px;
     border-bottom: 1px solid var(--borde);
@@ -785,6 +796,11 @@ footer::before {
     left: 0; right: 0; top: 0;
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--oro) 50%, transparent);
+}
+
+.footer-inner {
+    max-width: 640px;
+    margin: 0 auto;
 }
 
 footer p {
