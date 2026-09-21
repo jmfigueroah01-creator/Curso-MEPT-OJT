@@ -278,8 +278,8 @@ h1, h2, h3, h4 {
 
 .header-usuario {
     position: absolute;
-    top: 40px;
-    right: 130px;
+    top: 0;
+    right: 0;
     display: none;
     align-items: center;
     gap: 8px;
@@ -332,11 +332,6 @@ h1, h2, h3, h4 {
     font-weight: 500;
     color: var(--texto-suave);
     border-radius: 7px;
-}
-
-.icono-menu {
-    font-size: 22px;
-    margin-right: 5px;
 }
 
 .menu button:hover {
