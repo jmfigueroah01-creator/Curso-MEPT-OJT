@@ -108,9 +108,9 @@ h1, h2, h3, h4 {
 
 .modal-caja {
     background: var(--superficie);
-    border-radius: 16px;
-    padding: 44px 40px;
-    max-width: 460px;
+    border-radius: 18px;
+    padding: 52px 48px;
+    max-width: 560px;
     width: 100%;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
@@ -123,8 +123,13 @@ h1, h2, h3, h4 {
 }
 
 .marca-icono img {
-    height: 42px;
+    height: 46px;
     width: auto;
+}
+
+.modal-caja .btn-principal {
+    padding: 15px 28px;
+    font-size: 16px;
 }
 
 .marca-texto p {
@@ -143,32 +148,32 @@ h1, h2, h3, h4 {
 }
 
 .paso-modal h2 {
-    margin: 0 0 6px;
-    font-size: 24px;
+    margin: 0 0 8px;
+    font-size: 28px;
 }
 
 .paso-modal > p {
     color: var(--texto-suave);
-    font-size: 14px;
-    margin: 0 0 20px;
+    font-size: 15px;
+    margin: 0 0 22px;
     line-height: 1.6;
 }
 
 .paso-modal input[type="email"],
 .paso-modal input[type="text"] {
     width: 100%;
-    padding: 12px 14px;
+    padding: 15px 16px;
     border: 1px solid var(--borde);
-    border-radius: 8px;
-    font-size: 15px;
+    border-radius: 9px;
+    font-size: 16px;
     font-family: inherit;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 #inputCodigo {
     text-align: center;
-    letter-spacing: 8px;
-    font-size: 20px;
+    letter-spacing: 10px;
+    font-size: 24px;
     font-weight: 600;
 }
 
