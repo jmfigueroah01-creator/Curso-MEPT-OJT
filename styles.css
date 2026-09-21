@@ -217,9 +217,10 @@ h1, h2, h3, h4 {
 .header {
     background: var(--azul);
     color: white;
-    padding: 25px;
+    padding: 30px 25px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 20px;
     position: relative;
 }
@@ -229,11 +230,21 @@ h1, h2, h3, h4 {
     position: absolute;
     left: 0; right: 0; bottom: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--oro), transparent 70%);
+    background: linear-gradient(90deg, transparent, var(--oro) 50%, transparent);
+}
+
+.header-marca {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-marca > div {
+    text-align: left;
 }
 
 .logo img {
-    height: 110px;
+    height: 120px;
     width: auto;
     background: white;
     padding: 10px 14px;
@@ -243,13 +254,52 @@ h1, h2, h3, h4 {
 .header h1 {
     margin: 0;
     color: white;
-    font-size: 22px;
+    font-size: 23px;
 }
 
 .header p {
-    margin: 5px 0 0;
-    color: var(--oro-claro);
+    margin: 0 0 6px;
+    color: var(--oro);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+}
+
+.header-usuario {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 30px;
     font-size: 13px;
+    color: white;
+    white-space: nowrap;
+}
+
+.header-usuario.visible {
+    display: flex;
+}
+
+.header-usuario-icono {
+    display: flex;
+    color: var(--oro);
+    flex-shrink: 0;
+}
+
+.header-usuario-icono svg {
+    width: 15px;
+    height: 15px;
+}
+
+.header-usuario-saludo {
+    color: rgba(255, 255, 255, 0.65);
 }
 
 .menu {
@@ -723,15 +773,49 @@ main {
 footer {
     margin-top: 50px;
     background: var(--azul);
-    color: rgba(255, 255, 255, 0.75);
-    padding: 25px;
+    color: white;
+    padding: 32px 25px 28px;
     text-align: center;
+    position: relative;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--oro) 50%, transparent);
+}
+
+footer p {
+    margin: 4px 0;
+    font-size: 14px;
 }
 
 .footer-nombre {
-    color: white;
-    font-weight: 600;
-    font-family: 'Source Serif 4', serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.footer-linea {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-icono {
+    width: 14px;
+    height: 14px;
+    color: var(--oro);
+    flex-shrink: 0;
+}
+
+.footer-contacto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 /* ============================================================
@@ -748,6 +832,16 @@ footer {
     .header {
         flex-direction: column;
         text-align: center;
+    }
+
+    .header-usuario {
+        position: static;
+        transform: none;
+        margin-top: 6px;
+    }
+
+    .header-usuario.visible {
+        display: inline-flex;
     }
 
     .menu {

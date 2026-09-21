@@ -272,9 +272,13 @@ function mostrarApp(promesaContenido) {
             if (correoMostrado) correoMostrado.textContent = obtenerCorreo() || "";
 
             const saludoUsuario = document.getElementById("saludoUsuario");
+            const headerUsuario = document.getElementById("headerUsuario");
+            const nombre = obtenerNombre();
             if (saludoUsuario) {
-                const nombre = obtenerNombre();
-                saludoUsuario.textContent = nombre ? ("Hola, " + nombre) : "";
+                saludoUsuario.textContent = nombre ? nombre.trim().split(/\s+/).slice(0, 2).join(" ") : "";
+            }
+            if (headerUsuario) {
+                headerUsuario.classList.toggle("visible", Boolean(nombre));
             }
 
             cargarProgreso();
