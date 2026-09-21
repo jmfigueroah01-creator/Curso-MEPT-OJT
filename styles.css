@@ -383,6 +383,55 @@ main {
     line-height: 1.7;
 }
 
+.paso-icono {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--fondo);
+    color: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    animation: flotar 3s ease-in-out infinite;
+}
+
+.paso-icono svg {
+    width: 28px;
+    height: 28px;
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.bienvenida-encabezado {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 18px;
+}
+
+.bienvenida-texto {
+    flex: 1;
+    min-width: 0;
+}
+
+.bienvenida-imagen {
+    width: 220px;
+    height: auto;
+    border-radius: 14px;
+    border: 1px solid var(--borde);
+    flex-shrink: 0;
+    animation: flotar-bienvenida 3s ease-in-out infinite;
+}
+
+@keyframes flotar-bienvenida {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
 .tour-eyebrow {
     color: var(--oro);
     font-size: 13px;
@@ -852,6 +901,18 @@ footer p {
 }
 
 @media (max-width: 600px) {
+    .bienvenida-encabezado {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 14px;
+    }
+
+    .bienvenida-imagen {
+        width: 170px;
+        height: auto;
+        margin: 0 auto;
+    }
+
     .header {
         padding: 24px 20px;
     }
