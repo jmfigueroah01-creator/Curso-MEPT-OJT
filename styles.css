@@ -412,7 +412,7 @@ main {
 
 .bienvenida-encabezado {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 28px;
     margin-bottom: 18px;
 }
