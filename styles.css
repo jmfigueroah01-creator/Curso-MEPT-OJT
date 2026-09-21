@@ -383,6 +383,10 @@ main {
     line-height: 1.7;
 }
 
+.paso-tour p {
+    text-align: justify;
+}
+
 .paso-icono {
     width: 60px;
     height: 60px;
@@ -418,18 +422,71 @@ main {
     min-width: 0;
 }
 
+.bienvenida-imagen-envoltura {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.bienvenida-imagen-envoltura::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 64px;
+    height: 64px;
+    background: var(--oro-claro);
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 0;
+}
+
 .bienvenida-imagen {
+    position: relative;
+    z-index: 1;
     width: 220px;
     height: auto;
     border-radius: 14px;
     border: 1px solid var(--borde);
-    flex-shrink: 0;
+    display: block;
     animation: flotar-bienvenida 3s ease-in-out infinite;
 }
 
 @keyframes flotar-bienvenida {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
+}
+
+.subtitulo-hero {
+    font-size: 18px;
+    color: var(--azul);
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.paso-tour strong {
+    color: var(--azul);
+    font-weight: 700;
+}
+
+.bienvenida-divisor {
+    height: 1px;
+    background: linear-gradient(90deg, var(--oro), transparent 60%);
+    margin: 4px 0 22px;
+}
+
+.bienvenida-destacado {
+    background: var(--fondo);
+    border-left: 3px solid var(--oro);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 22px;
+    margin: 4px 0 18px;
+}
+
+.bienvenida-destacado p {
+    margin: 0;
 }
 
 .tour-eyebrow {
