@@ -240,9 +240,10 @@ h1, h2, h3, h4 {
 .header-inner {
     width: 92%;
     max-width: 1000px;
+    margin: 0 auto;       /* Centra este contenedor dentro del header */
     display: flex;
     justify-content: center;
-    position: relative;
+    position: relative;   /* Asegura que el botón se posicione dentro de estos 1000px */
 }
 
 .header-marca {
