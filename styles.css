@@ -2363,17 +2363,36 @@ footer p {
 
 /* --- Clasificación por nivel y especialidad (Módulo 2) --- */
 
+.clasificacion-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 14px 0 12px;
+}
+
+.clasificacion-contador {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--azul);
+    background: var(--fondo);
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
 .clasificacion-lista {
     display: grid;
     gap: 10px;
-    margin: 14px 0 4px;
+    margin: 0 0 4px;
 }
 
 .caso-fila {
-    background: var(--fondo);
+    background: white;
     border: 1px solid var(--borde);
-    border-radius: 8px;
-    padding: 12px 14px;
+    border-radius: 12px;
+    padding: 16px 18px;
     transition: .2s;
 }
 
@@ -2387,33 +2406,94 @@ footer p {
     border-color: rgba(163,53,44,0.3);
 }
 
-.caso-texto {
-    font-size: 12.5px;
-    line-height: 1.55;
-    margin: 0 0 9px;
-}
-
-.caso-num {
-    font-weight: 700;
-    color: var(--azul);
-    margin-right: 4px;
-}
-
-.caso-controles {
+.caso-cabecera {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 14px;
 }
 
-.caso-controles select {
+.caso-icono {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.caso-icono svg {
+    width: 19px;
+    height: 19px;
+}
+
+.caso-texto {
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 0;
+    font-style: italic;
+    color: var(--texto);
+}
+
+.caso-etiqueta {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--oro);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin: 0 0 6px;
+}
+
+.caso-niveles {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.nivel-pill {
     flex: 1;
-    min-width: 150px;
-    padding: 7px 9px;
-    border: 1px solid var(--borde);
-    border-radius: 6px;
-    font-size: 11.5px;
-    font-family: inherit;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1.5px solid var(--borde);
     background: white;
+    font-size: 12px;
+    color: var(--texto-suave);
+    cursor: pointer;
+    font-family: inherit;
+    transition: .15s;
+}
+
+.nivel-pill:hover {
+    border-color: var(--azul-medio);
+}
+
+.nivel-pill.activo {
+    border-color: var(--azul);
+    background: var(--azul);
+    color: white;
+}
+
+.caso-fila.caso-correcto .nivel-pill.activo {
+    border-color: var(--exito);
+    background: var(--exito);
+}
+
+.caso-fila.caso-incorrecto .nivel-pill.activo {
+    border-color: #A3352C;
+    background: #A3352C;
+}
+
+.caso-especialidad {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid var(--borde);
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-family: inherit;
+    background: var(--fondo);
+    color: var(--texto);
 }
 
 .clasificacion-resultado {

@@ -656,6 +656,7 @@ function abrirModulo(numero) {
     `;
 
     barajarDinamicaEmparejar();
+    barajarCasosClasificacion();
     contenido.scrollIntoView({ behavior: "smooth" });
 }
 
@@ -928,23 +929,55 @@ function intentarEmparejarDinamica() {
    CLASIFICACIÓN POR NIVEL Y ESPECIALIDAD (Módulo 2)
    ============================================================ */
 
+function seleccionarNivel(boton) {
+    const fila = boton.closest(".caso-fila");
+    fila.querySelectorAll(".nivel-pill").forEach(p => p.classList.remove("activo"));
+    boton.classList.add("activo");
+    actualizarContadorClasificacion();
+}
+
+function actualizarContadorClasificacion() {
+    const filas = document.querySelectorAll(".caso-fila");
+    const contador = document.getElementById("clasificacionContador");
+    if (!contador) return;
+
+    const completados = Array.from(filas).filter(f =>
+        f.querySelector(".nivel-pill.activo") && f.querySelector(".caso-especialidad").value
+    ).length;
+
+    contador.textContent = `${completados} de ${filas.length} completados`;
+}
+
+function barajarCasosClasificacion() {
+    const contenedor = document.querySelector(".clasificacion-lista");
+    if (!contenedor) return;
+
+    const filas = Array.from(contenedor.querySelectorAll(".caso-fila"));
+    for (let i = filas.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [filas[i], filas[j]] = [filas[j], filas[i]];
+    }
+    filas.forEach(f => contenedor.appendChild(f));
+}
+
 function verificarClasificacion() {
     const filas = document.querySelectorAll(".caso-fila");
     let correctas = 0;
 
     filas.forEach(fila => {
-        const nivelSel = fila.querySelector(".caso-nivel");
+        const nivelPill = fila.querySelector(".nivel-pill.activo");
         const espSel = fila.querySelector(".caso-especialidad");
-        const ok = nivelSel.value === fila.dataset.nivel && espSel.value === fila.dataset.especialidad;
+        const nivelVal = nivelPill ? nivelPill.dataset.valor : "";
+        const ok = nivelVal === fila.dataset.nivel && espSel.value === fila.dataset.especialidad;
 
         fila.classList.remove("caso-correcto", "caso-incorrecto");
-        if (!nivelSel.value || !espSel.value) return;
+        if (!nivelVal || !espSel.value) return;
         fila.classList.add(ok ? "caso-correcto" : "caso-incorrecto");
         if (ok) correctas++;
     });
 
     const total = filas.length;
-    const contestadas = Array.from(filas).filter(f => f.querySelector(".caso-nivel").value && f.querySelector(".caso-especialidad").value).length;
+    const contestadas = Array.from(filas).filter(f => f.querySelector(".nivel-pill.activo") && f.querySelector(".caso-especialidad").value).length;
     const resultado = document.getElementById("clasificacionResultado");
     if (!resultado) return;
 
