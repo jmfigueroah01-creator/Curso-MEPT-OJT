@@ -21,6 +21,7 @@ const URL_ASISTENTE_IA = "";
 
 let TOTAL_MODULOS = 0;
 let MODULOS = {};
+let moduloEnPantalla = null;
 let RESPUESTAS_QUIZ = {};
 
 function cargarContenidoCurso() {
@@ -585,13 +586,7 @@ function abrirModulo(numero) {
     const m = MODULOS[numero];
     const contenido = document.getElementById("contenidoModulo");
     const yaCompleto = !!progreso["modulo" + numero];
-
-    const opcionesHtml = m.checkpoint.opciones.map(op => `
-        <label class="checkpoint-opcion">
-            <input type="radio" name="checkpoint${numero}" value="${op.id}">
-            ${op.texto}
-        </label>
-    `).join("");
+    moduloEnPantalla = numero;
 
     contenido.innerHTML = `
         <div class="contenido">
@@ -604,8 +599,6 @@ function abrirModulo(numero) {
                 <span>Al terminar podrás</span>
                 <p>${m.objetivo_desempeno}</p>
             </div>
-
-            <p class="contexto-modulo">${m.contexto}</p>
 
             <p class="temario-eyebrow">Temario de este módulo</p>
             <ul class="temario-lista">
@@ -646,20 +639,13 @@ function abrirModulo(numero) {
 
                         ${m.actividad_html}
 
-                        <div class="checkpoint-box" id="checkpointBox${numero}">
-                            <p class="checkpoint-pregunta">${m.checkpoint.pregunta}</p>
-                            <div class="checkpoint-opciones">${opcionesHtml}</div>
-                            <div class="checkpoint-feedback" id="checkpointFeedback${numero}"></div>
-                            <button class="btn-secundario" onclick="verificarCheckpoint(${numero})">Verificar respuesta</button>
-                        </div>
-
                         <div class="checklist-modulo">
                             <p class="checklist-modulo-titulo">Checklist de referencia</p>
                             <ul>${m.checklist.map(item => `<li>${item}</li>`).join("")}</ul>
                         </div>
 
                         <button class="btn-principal" style="width:auto;" id="btnCompletarModulo${numero}" onclick="completarModulo(${numero})" ${yaCompleto ? "" : "disabled"}>
-                            ${yaCompleto ? "Módulo completado ✓ (repasar no reinicia tu progreso)" : "Responde la actividad para habilitar este botón"}
+                            ${yaCompleto ? "Módulo completado ✓ (repasar no reinicia tu progreso)" : "Completa la actividad de arriba para habilitar este botón"}
                         </button>
 
                     </div>
@@ -871,6 +857,14 @@ function clickFuncion(boton) {
     intentarEmparejarDinamica();
 }
 
+function habilitarBotonCompletar(numero) {
+    const btn = document.getElementById(`btnCompletarModulo${numero}`);
+    if (!btn) return;
+    if (progreso["modulo" + numero]) return;
+    btn.disabled = false;
+    btn.textContent = "Marcar módulo como completado";
+}
+
 function intentarEmparejarDinamica() {
     const f = document.querySelector(".figura-btn.seleccionado");
     const g = document.querySelector(".funcion-btn.seleccionado");
@@ -890,6 +884,7 @@ function intentarEmparejarDinamica() {
         if (hechos === total) {
             const msg = document.getElementById("dinamicaCompleta");
             if (msg) msg.style.display = "block";
+            habilitarBotonCompletar(moduloEnPantalla);
         }
     } else {
         f.classList.add("incorrecto");
@@ -936,7 +931,11 @@ function verificarClasificacion() {
     const pct = Math.round((correctas / total) * 100);
     resultado.className = "clasificacion-resultado " + (pct >= 80 ? "correcto" : "incorrecto");
     resultado.textContent = `${correctas} de ${total} correctos (${pct}%).` +
-        (pct >= 80 ? " Buen resultado." : " Revisa los casos marcados en rojo e inténtalo de nuevo.");
+        (pct >= 80 ? " Buen resultado — ya puedes completar el módulo." : " Revisa los casos marcados en rojo e inténtalo de nuevo.");
+
+    if (pct >= 80) {
+        habilitarBotonCompletar(moduloEnPantalla);
+    }
 }
 
 
@@ -951,6 +950,15 @@ function alternarModeloLlenado() {
     const visible = modelo.style.display === "block";
     modelo.style.display = visible ? "none" : "block";
     if (btn) btn.textContent = visible ? "Ver modelo de llenado" : "Ocultar modelo de llenado";
+}
+
+function confirmarPracticaBitacora() {
+    const btn = document.getElementById("btnConfirmarBitacora");
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Práctica registrada ✓";
+    }
+    habilitarBotonCompletar(moduloEnPantalla);
 }
 
 
