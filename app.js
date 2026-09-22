@@ -724,3 +724,104 @@ function pasoAnterior() {
 
 verificarAccesoAlCargar();
 irPaso(1);
+
+
+/* ============================================================
+   DINÁMICA "FIGURA ↔ FUNCIÓN" (Módulo 1)
+   ============================================================ */
+
+function clickFigura(boton) {
+    if (boton.classList.contains("emparejado")) return;
+    document.querySelectorAll(".figura-btn.seleccionado").forEach(b => b.classList.remove("seleccionado"));
+    boton.classList.add("seleccionado");
+    intentarEmparejarDinamica();
+}
+
+function clickFuncion(boton) {
+    if (boton.classList.contains("emparejado")) return;
+    document.querySelectorAll(".funcion-btn.seleccionado").forEach(b => b.classList.remove("seleccionado"));
+    boton.classList.add("seleccionado");
+    intentarEmparejarDinamica();
+}
+
+function intentarEmparejarDinamica() {
+    const f = document.querySelector(".figura-btn.seleccionado");
+    const g = document.querySelector(".funcion-btn.seleccionado");
+    if (!f || !g) return;
+
+    if (f.dataset.id === g.dataset.id) {
+        f.classList.remove("seleccionado");
+        g.classList.remove("seleccionado");
+        f.classList.add("emparejado");
+        g.classList.add("emparejado");
+
+        const total = document.querySelectorAll(".figura-btn").length;
+        const hechos = document.querySelectorAll(".figura-btn.emparejado").length;
+        const contador = document.getElementById("dinamicaProgreso");
+        if (contador) contador.textContent = `${hechos} de ${total} emparejados`;
+
+        if (hechos === total) {
+            const msg = document.getElementById("dinamicaCompleta");
+            if (msg) msg.style.display = "block";
+        }
+    } else {
+        f.classList.add("incorrecto");
+        g.classList.add("incorrecto");
+        setTimeout(() => {
+            f.classList.remove("seleccionado", "incorrecto");
+            g.classList.remove("seleccionado", "incorrecto");
+        }, 550);
+    }
+}
+
+
+/* ============================================================
+   CLASIFICACIÓN POR NIVEL Y ESPECIALIDAD (Módulo 2)
+   ============================================================ */
+
+function verificarClasificacion() {
+    const filas = document.querySelectorAll(".caso-fila");
+    let correctas = 0;
+
+    filas.forEach(fila => {
+        const nivelSel = fila.querySelector(".caso-nivel");
+        const espSel = fila.querySelector(".caso-especialidad");
+        const ok = nivelSel.value === fila.dataset.nivel && espSel.value === fila.dataset.especialidad;
+
+        fila.classList.remove("caso-correcto", "caso-incorrecto");
+        if (!nivelSel.value || !espSel.value) return;
+        fila.classList.add(ok ? "caso-correcto" : "caso-incorrecto");
+        if (ok) correctas++;
+    });
+
+    const total = filas.length;
+    const contestadas = Array.from(filas).filter(f => f.querySelector(".caso-nivel").value && f.querySelector(".caso-especialidad").value).length;
+    const resultado = document.getElementById("clasificacionResultado");
+    if (!resultado) return;
+
+    resultado.style.display = "block";
+    if (contestadas < total) {
+        resultado.className = "clasificacion-resultado aviso";
+        resultado.textContent = `Responde los ${total} casos antes de verificar (llevas ${contestadas}).`;
+        return;
+    }
+
+    const pct = Math.round((correctas / total) * 100);
+    resultado.className = "clasificacion-resultado " + (pct >= 80 ? "correcto" : "incorrecto");
+    resultado.textContent = `${correctas} de ${total} correctos (${pct}%).` +
+        (pct >= 80 ? " Buen resultado." : " Revisa los casos marcados en rojo e inténtalo de nuevo.");
+}
+
+
+/* ============================================================
+   PRÁCTICA: LLENADO DE BITÁCORA OJT (Módulo 3)
+   ============================================================ */
+
+function alternarModeloLlenado() {
+    const modelo = document.getElementById("modeloLlenado");
+    const btn = document.getElementById("btnModeloLlenado");
+    if (!modelo) return;
+    const visible = modelo.style.display === "block";
+    modelo.style.display = visible ? "none" : "block";
+    if (btn) btn.textContent = visible ? "Ver modelo de llenado" : "Ocultar modelo de llenado";
+}

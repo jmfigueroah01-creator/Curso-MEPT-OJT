@@ -1754,3 +1754,259 @@ footer p {
     .flujo-diagrama { flex-direction: column; }
     .flujo-flecha { transform: rotate(90deg); padding: 4px 0; }
 }
+
+/* --- Dinámica Figura ↔ Función (Módulo 1) --- */
+
+.dinamica-columnas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin: 14px 0 4px;
+}
+
+.figura-btn, .funcion-btn {
+    text-align: left;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--borde);
+    border-radius: 8px;
+    background: var(--fondo);
+    font-size: 11.5px;
+    line-height: 1.4;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--texto);
+}
+
+.figura-btn {
+    font-weight: 700;
+    color: var(--azul);
+}
+
+.figura-btn.seleccionado, .funcion-btn.seleccionado {
+    border-color: var(--azul);
+    background: white;
+    box-shadow: 0 0 0 1px var(--azul);
+}
+
+.figura-btn.emparejado, .funcion-btn.emparejado {
+    border-color: var(--exito);
+    background: rgba(47,122,77,0.08);
+    color: var(--exito);
+    cursor: default;
+}
+
+.figura-btn.incorrecto, .funcion-btn.incorrecto {
+    border-color: #A3352C;
+    background: rgba(163,53,44,0.08);
+}
+
+.dinamica-progreso {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azul);
+    margin: 10px 0 0;
+}
+
+.dinamica-completa {
+    display: none;
+    margin-top: 10px;
+    padding: 11px 15px;
+    background: rgba(47,122,77,0.1);
+    color: var(--exito);
+    border: 1px solid rgba(47,122,77,0.3);
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+/* --- Clasificación por nivel y especialidad (Módulo 2) --- */
+
+.clasificacion-lista {
+    display: grid;
+    gap: 10px;
+    margin: 14px 0 4px;
+}
+
+.caso-fila {
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 12px 14px;
+    transition: .2s;
+}
+
+.caso-fila.caso-correcto {
+    background: rgba(47,122,77,0.08);
+    border-color: rgba(47,122,77,0.35);
+}
+
+.caso-fila.caso-incorrecto {
+    background: rgba(163,53,44,0.07);
+    border-color: rgba(163,53,44,0.3);
+}
+
+.caso-texto {
+    font-size: 12.5px;
+    line-height: 1.55;
+    margin: 0 0 9px;
+}
+
+.caso-num {
+    font-weight: 700;
+    color: var(--azul);
+    margin-right: 4px;
+}
+
+.caso-controles {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.caso-controles select {
+    flex: 1;
+    min-width: 150px;
+    padding: 7px 9px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-family: inherit;
+    background: white;
+}
+
+.clasificacion-resultado {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.clasificacion-resultado.correcto {
+    background: rgba(47,122,77,0.1);
+    color: var(--exito);
+}
+
+.clasificacion-resultado.incorrecto {
+    background: rgba(185,138,46,0.1);
+    color: var(--oro);
+}
+
+.clasificacion-resultado.aviso {
+    background: var(--fondo);
+    color: var(--texto-suave);
+}
+
+/* --- Práctica de llenado: Bitácora OJT (Módulo 3) --- */
+
+.formato-datos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0 16px;
+}
+
+.formato-campo label {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--texto-suave);
+    margin-bottom: 4px;
+}
+
+.formato-campo input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-family: inherit;
+}
+
+.bitacora-scroll {
+    overflow-x: auto;
+    margin: 6px 0 4px;
+}
+
+.bitacora-tabla {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.bitacora-tabla th {
+    background: var(--azul);
+    color: white;
+    padding: 7px 6px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+
+.bitacora-tabla td {
+    border: 1px solid var(--borde);
+    padding: 5px;
+    text-align: center;
+    background: var(--fondo);
+}
+
+.bitacora-tabla input[type="date"],
+.bitacora-tabla select {
+    width: 100%;
+    padding: 4px;
+    border: 1px solid var(--borde);
+    border-radius: 5px;
+    font-size: 10.5px;
+    font-family: inherit;
+    background: white;
+}
+
+.bitacora-firma {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-size: 9.5px;
+}
+
+.modelo-llenado {
+    display: none;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--borde);
+}
+
+.modelo-llenado p {
+    font-size: 11px;
+    color: var(--texto-suave);
+    margin: 0 0 8px;
+}
+
+.modelo-llenado table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    font-size: 10.5px;
+}
+
+.modelo-llenado th, .modelo-llenado td {
+    border: 1px solid var(--borde);
+    padding: 5px;
+    text-align: center;
+}
+
+.modelo-llenado th {
+    background: var(--oro-claro);
+    color: var(--oro);
+}
+
+@media (max-width: 700px) {
+    .dinamica-columnas, .formato-datos {
+        grid-template-columns: 1fr;
+    }
+}
