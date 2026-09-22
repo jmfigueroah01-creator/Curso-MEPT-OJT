@@ -1,7 +1,7 @@
 {
   "modulos": {
     "1": {
-      "titulo": "Introducción, objetivos y estructura",
+      "titulo": "Marco general del Programa OJT",
       "resumen": "Qué es el OJT, para qué sirve y quién es responsable de qué.",
       "capitulo_mept": "Cap. 1–3 MEPT",
       "objetivo_desempeno": "Explicar por qué existe el Programa OJT, qué se espera lograr con él, y ubicar tu propio rol dentro de su estructura de responsabilidades.",
@@ -34,7 +34,7 @@
       ]
     },
     "2": {
-      "titulo": "Requisitos para el entrenamiento en el puesto de trabajo",
+      "titulo": "Requisitos de implementación del Programa OJT",
       "resumen": "Niveles 1, 2 y 3, convalidación, designación y modificación de tareas.",
       "capitulo_mept": "Cap. 4 MEPT",
       "objetivo_desempeno": "Identificar los 3 niveles de formación OJT y aplicar correctamente los procedimientos de convalidación, designación y modificación de tareas conforme a las reglas vigentes (R06).",
@@ -67,7 +67,7 @@
       ]
     },
     "3": {
-      "titulo": "Ejecución, evaluación y mejora",
+      "titulo": "Proceso de ejecución del Programa OJT",
       "resumen": "Cómo se ejecuta el entrenamiento paso a paso y cómo se evalúa el programa.",
       "capitulo_mept": "Cap. 5–6 MEPT",
       "objetivo_desempeno": "Describir la secuencia del proceso general OJT y de la fase de entrenamiento, incluyendo los plazos documentales vigentes, y explicar el ciclo de evaluación y mejora del programa.",

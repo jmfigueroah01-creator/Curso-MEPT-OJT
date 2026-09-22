@@ -638,30 +638,75 @@ main {
     display: block;
 }
 
-.silabo-lista {
+.silabo-tarjetas {
     list-style: none;
     padding: 0;
     margin: 16px 0 0;
+    display: grid;
+    gap: 12px;
 }
 
-.silabo-item {
+.silabo-tarjeta {
     display: flex;
     gap: 16px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--borde);
+    align-items: center;
+    background: var(--fondo);
+    border-radius: 12px;
+    padding: 16px 18px;
+    border-left: 4px solid var(--azul);
 }
 
-.silabo-item:last-child {
-    border-bottom: none;
-}
+.silabo-m2 { border-left-color: var(--azul-medio); }
+.silabo-m3 { border-left-color: var(--oro); }
 
-.silabo-num {
-    font-family: 'Source Serif 4', serif;
-    font-weight: 700;
-    color: var(--oro);
-    font-size: 15px;
+.silabo-icono {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--azul);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    width: 24px;
+}
+
+.silabo-m2 .silabo-icono { background: var(--azul-medio); }
+.silabo-m3 .silabo-icono { background: var(--oro); }
+
+.silabo-icono svg {
+    width: 20px;
+    height: 20px;
+}
+
+.silabo-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.silabo-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 3px;
+}
+
+.silabo-modulo {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--azul);
+}
+
+.silabo-m2 .silabo-modulo { color: var(--azul-medio); }
+.silabo-m3 .silabo-modulo { color: var(--oro); }
+
+.silabo-cap {
+    font-size: 10px;
+    color: var(--texto-suave);
+    background: white;
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid var(--borde);
 }
 
 .silabo-info h4 {
@@ -670,7 +715,7 @@ main {
 }
 
 .silabo-info p {
-    font-size: 13px;
+    font-size: 12.5px;
     margin: 0;
     color: var(--texto-suave);
 }
