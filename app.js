@@ -655,7 +655,34 @@ function abrirModulo(numero) {
         </div>
     `;
 
+    barajarDinamicaEmparejar();
     contenido.scrollIntoView({ behavior: "smooth" });
+}
+
+function barajarDinamicaEmparejar() {
+    const contenedor = document.querySelector(".dinamica-columnas");
+    if (!contenedor) return;
+
+    const figuras = Array.from(contenedor.querySelectorAll(".figura-btn"));
+    const funciones = Array.from(contenedor.querySelectorAll(".funcion-btn"));
+    if (!figuras.length || !funciones.length) return;
+
+    const barajar = (arr) => {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    };
+
+    const figurasBarajadas = barajar(figuras);
+    const funcionesBarajadas = barajar(funciones);
+
+    contenedor.innerHTML = "";
+    for (let i = 0; i < figurasBarajadas.length; i++) {
+        contenedor.appendChild(figurasBarajadas[i]);
+        contenedor.appendChild(funcionesBarajadas[i]);
+    }
 }
 
 function alternarAcordeon(boton) {
