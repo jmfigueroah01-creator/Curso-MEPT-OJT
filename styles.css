@@ -238,7 +238,7 @@ h1, h2, h3, h4 {
 }
 
 .header-inner {
-    width: 80%;
+    width: 92%;
     max-width: 1000px;
     display: flex;
     justify-content: center;
@@ -356,7 +356,7 @@ h1, h2, h3, h4 {
 
 main {
     max-width: 1000px;
-    width: 80%;
+    width: 92%;
     margin: 20px auto;
     padding: 0 20px;
 }
