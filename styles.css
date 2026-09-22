@@ -1298,16 +1298,16 @@ footer p {
 
 .modalidad-tarjeta strong {
     display: block;
-    font-size: 13.5px;
+    font-size: 14.5px;
     color: var(--texto);
     margin-bottom: 3px;
 }
 
 .modalidad-tarjeta p {
     margin: 0;
-    font-size: 12.5px;
+    font-size: 13.5px;
     color: var(--texto-suave);
-    line-height: 1.5;
+    line-height: 1.55;
     text-align: left;
 }
 
@@ -1426,7 +1426,7 @@ footer p {
     padding: 10px 14px 10px 38px;
     background: var(--fondo);
     border-radius: 8px;
-    font-size: 13.5px;
+    font-size: 14.5px;
     line-height: 1.5;
 }
 
