@@ -634,8 +634,8 @@ function calificar() {
     resultado.style.display = "block";
 
     resultado.innerHTML = porcentaje >= 80
-        ? `Buen resultado en la práctica: ${porcentaje}%. Ya puedes continuar a la evaluación oficial en Microsoft Forms.`
-        : `Resultado de práctica: ${porcentaje}%. Revise nuevamente los contenidos antes de ir a la evaluación oficial.`;
+        ? `Buen resultado en la práctica: ${porcentaje}%. Ya puedes continuar a la evaluación final en Microsoft Forms.`
+        : `Resultado de práctica: ${porcentaje}%. Revise nuevamente los contenidos antes de ir a la evaluación final.`;
 }
 
 
