@@ -15,6 +15,10 @@ const WEBHOOK_URL = "";
 // Link a tu Microsoft Form oficial de evaluación.
 const LINK_EVALUACION_OFICIAL = "https://forms.office.com/r/TU_ID_AQUI";
 
+// URL del flujo de Power Automate que llama a la API de IA para el asistente MEPT.
+// Debe recibir POST { pregunta, historial } y responder { respuesta }. Ver especificación al final de este archivo.
+const URL_ASISTENTE_IA = "";
+
 let TOTAL_MODULOS = 0;
 let MODULOS = {};
 let RESPUESTAS_QUIZ = {};
@@ -691,7 +695,7 @@ function irPaso(n) {
         linea.classList.toggle("completado", idx < n);
     });
 
-    const etiquetas = ["Bienvenida", "Propósito", "Tu ritmo", "Objetivo", "Estructura", "Antes de iniciar"];
+    const etiquetas = ["Bienvenida", "Objetivos", "Contenido", "Recursos", "Toma nota", "Evaluación"];
     const contador = document.getElementById("rutaContador");
     if (contador) contador.textContent = `Paso ${n} de ${TOTAL_PASOS} · ${etiquetas[n - 1]}`;
 
@@ -824,4 +828,89 @@ function alternarModeloLlenado() {
     const visible = modelo.style.display === "block";
     modelo.style.display = visible ? "none" : "block";
     if (btn) btn.textContent = visible ? "Ver modelo de llenado" : "Ocultar modelo de llenado";
+}
+
+
+/* ============================================================
+   ASISTENTE DE IA (chat de dudas sobre el MEPT)
+   ============================================================
+   Requiere un flujo de Power Automate en URL_ASISTENTE_IA que:
+   1) Reciba POST con JSON { pregunta: string, historial: [{rol, texto}, ...] }
+   2) Llame a la API de IA de su elección con un system prompt basado en el MEPT
+   3) Responda JSON { respuesta: string }
+   Ver especificación completa al final de este archivo.
+   ============================================================ */
+
+let historialAsistente = [];
+
+function alternarAsistente() {
+    const panel = document.getElementById("asistentePanel");
+    if (!panel) return;
+    panel.classList.toggle("visible");
+    if (panel.classList.contains("visible")) {
+        const input = document.getElementById("asistenteInput");
+        if (input) input.focus();
+    }
+}
+
+function agregarMensajeAsistente(texto, rol) {
+    const contenedor = document.getElementById("asistenteMensajes");
+    if (!contenedor) return;
+    const div = document.createElement("div");
+    div.className = "asistente-mensaje " + (rol === "usuario" ? "asistente-usuario" : rol === "error" ? "asistente-bot asistente-error" : "asistente-bot");
+    div.textContent = texto;
+    contenedor.appendChild(div);
+    contenedor.scrollTop = contenedor.scrollHeight;
+}
+
+function enviarPreguntaAsistente() {
+    const input = document.getElementById("asistenteInput");
+    const boton = document.querySelector(".asistente-enviar");
+    if (!input) return;
+
+    const pregunta = input.value.trim();
+    if (!pregunta) return;
+
+    if (!URL_ASISTENTE_IA) {
+        agregarMensajeAsistente(pregunta, "usuario");
+        agregarMensajeAsistente("El asistente aún no está conectado. Falta configurar URL_ASISTENTE_IA en app.js con el flujo de Power Automate correspondiente.", "error");
+        input.value = "";
+        return;
+    }
+
+    agregarMensajeAsistente(pregunta, "usuario");
+    historialAsistente.push({ rol: "usuario", texto: pregunta });
+    input.value = "";
+    input.style.height = "auto";
+
+    if (boton) boton.disabled = true;
+    const contenedor = document.getElementById("asistenteMensajes");
+    const indicador = document.createElement("div");
+    indicador.className = "asistente-escribiendo";
+    indicador.id = "asistenteEscribiendo";
+    indicador.innerHTML = "<span></span><span></span><span></span>";
+    contenedor.appendChild(indicador);
+    contenedor.scrollTop = contenedor.scrollHeight;
+
+    fetch(URL_ASISTENTE_IA, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pregunta: pregunta, historial: historialAsistente })
+    })
+        .then(resp => resp.json())
+        .then(data => {
+            const escribiendo = document.getElementById("asistenteEscribiendo");
+            if (escribiendo) escribiendo.remove();
+            const respuesta = (data && data.respuesta) ? data.respuesta : "No obtuve respuesta. Intenta de nuevo o contacta a tu Instructor Coordinador OJT.";
+            agregarMensajeAsistente(respuesta, "bot");
+            historialAsistente.push({ rol: "asistente", texto: respuesta });
+        })
+        .catch(() => {
+            const escribiendo = document.getElementById("asistenteEscribiendo");
+            if (escribiendo) escribiendo.remove();
+            agregarMensajeAsistente("No fue posible conectar con el asistente. Verifica tu conexión o contacta a tu Instructor Coordinador OJT.", "error");
+        })
+        .finally(() => {
+            if (boton) boton.disabled = false;
+        });
 }
