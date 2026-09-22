@@ -575,33 +575,76 @@ function abrirModulo(numero) {
 
             <p class="contexto-modulo">${m.contexto}</p>
 
-            ${renderPresentacionModulo(m, numero)}
+            <div class="modulo-acordeon">
 
-            ${m.microbloques_html}
-
-            <div class="checkpoint-box" id="checkpointBox${numero}">
-                <div class="checkpoint-titulo">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 13 11 15.5 15.5 10.5"/><rect x="5" y="4" width="14" height="17" rx="1.5"/></svg>
-                    Actividad del módulo
+                <div class="acc-seccion acc-abierta">
+                    <button type="button" class="acc-header" onclick="alternarAcordeon(this)">
+                        <svg class="acc-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4.5" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16.5V20"/></svg>
+                        <span class="acc-titulo">Presentación</span>
+                        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 15l6-6 6 6"/></svg>
+                    </button>
+                    <div class="acc-body">
+                        ${renderPresentacionModulo(m, numero)}
+                    </div>
                 </div>
-                <p class="checkpoint-pregunta">${m.checkpoint.pregunta}</p>
-                <div class="checkpoint-opciones">${opcionesHtml}</div>
-                <div class="checkpoint-feedback" id="checkpointFeedback${numero}"></div>
-                <button class="btn-secundario" onclick="verificarCheckpoint(${numero})">Verificar respuesta</button>
-            </div>
 
-            <div class="checklist-modulo">
-                <p class="checklist-modulo-titulo">Checklist de referencia</p>
-                <ul>${m.checklist.map(item => `<li>${item}</li>`).join("")}</ul>
-            </div>
+                <div class="acc-seccion">
+                    <button type="button" class="acc-header" onclick="alternarAcordeon(this)">
+                        <svg class="acc-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V8h4"/><path d="M8.5 12.5h7M8.5 15.5h7M8.5 18h4"/></svg>
+                        <span class="acc-titulo">Contenido del módulo</span>
+                        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 15l6-6 6 6"/></svg>
+                    </button>
+                    <div class="acc-body" style="display:none;">
+                        ${m.microbloques_html}
+                    </div>
+                </div>
 
-            <button class="btn-principal" style="width:auto;" id="btnCompletarModulo${numero}" onclick="completarModulo(${numero})" ${yaCompleto ? "" : "disabled"}>
-                ${yaCompleto ? "Módulo completado ✓ (repasar no reinicia tu progreso)" : "Responde la actividad para habilitar este botón"}
-            </button>
+                <div class="acc-seccion">
+                    <button type="button" class="acc-header" onclick="alternarAcordeon(this)">
+                        <svg class="acc-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="9" width="14" height="11" rx="1.5"/><path d="M8 9V6.5a4 4 0 0 1 8 0V9"/></svg>
+                        <span class="acc-titulo">Actividad del módulo</span>
+                        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 15l6-6 6 6"/></svg>
+                    </button>
+                    <div class="acc-body" style="display:none;">
+
+                        <div class="checkpoint-box" id="checkpointBox${numero}">
+                            <p class="checkpoint-pregunta">${m.checkpoint.pregunta}</p>
+                            <div class="checkpoint-opciones">${opcionesHtml}</div>
+                            <div class="checkpoint-feedback" id="checkpointFeedback${numero}"></div>
+                            <button class="btn-secundario" onclick="verificarCheckpoint(${numero})">Verificar respuesta</button>
+                        </div>
+
+                        <div class="checklist-modulo">
+                            <p class="checklist-modulo-titulo">Checklist de referencia</p>
+                            <ul>${m.checklist.map(item => `<li>${item}</li>`).join("")}</ul>
+                        </div>
+
+                        <button class="btn-principal" style="width:auto;" id="btnCompletarModulo${numero}" onclick="completarModulo(${numero})" ${yaCompleto ? "" : "disabled"}>
+                            ${yaCompleto ? "Módulo completado ✓ (repasar no reinicia tu progreso)" : "Responde la actividad para habilitar este botón"}
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     `;
 
     contenido.scrollIntoView({ behavior: "smooth" });
+}
+
+function alternarAcordeon(boton) {
+    const seccion = boton.closest(".acc-seccion");
+    const body = seccion.querySelector(".acc-body");
+    const abierta = seccion.classList.contains("acc-abierta");
+
+    if (abierta) {
+        seccion.classList.remove("acc-abierta");
+        body.style.display = "none";
+    } else {
+        seccion.classList.add("acc-abierta");
+        body.style.display = "block";
+    }
 }
 
 function verificarCheckpoint(numero) {
