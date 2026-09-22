@@ -615,6 +615,11 @@ function abrirModulo(numero) {
                     </button>
                     <div class="acc-body">
                         ${renderPresentacionModulo(m, numero)}
+
+                        <div class="checklist-modulo">
+                            <p class="checklist-modulo-titulo">Resumen</p>
+                            <ul>${m.checklist.map(item => `<li>${item}</li>`).join("")}</ul>
+                        </div>
                     </div>
                 </div>
 
@@ -638,11 +643,6 @@ function abrirModulo(numero) {
                     <div class="acc-body" style="display:none;">
 
                         ${m.actividad_html}
-
-                        <div class="checklist-modulo">
-                            <p class="checklist-modulo-titulo">Checklist de referencia</p>
-                            <ul>${m.checklist.map(item => `<li>${item}</li>`).join("")}</ul>
-                        </div>
 
                         <button class="btn-principal" style="width:auto;" id="btnCompletarModulo${numero}" onclick="completarModulo(${numero})" ${yaCompleto ? "" : "disabled"}>
                             ${yaCompleto ? "Módulo completado ✓ (repasar no reinicia tu progreso)" : "Completa la actividad de arriba para habilitar este botón"}
