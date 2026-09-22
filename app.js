@@ -514,6 +514,38 @@ function renderRuta() {
    el visor de Office Online. Mientras esté vacío, muestra "Próximamente".
    ============================================================ */
 
+/* ============================================================
+   INFOGRAMA DEL MÓDULO (resumen visual descargable)
+   ============================================================
+   Cuando m.infograma tenga el nombre de archivo (ej. "infograma-modulo1.pdf"
+   o ".png"), subido al mismo repositorio, se muestra la tarjeta de descarga.
+   Mientras esté vacío, muestra "Próximamente".
+   ============================================================ */
+
+function renderInfograma(m) {
+    if (!m.infograma) {
+        return `
+            <div class="presentacion-proximamente">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 16V10M12 16V8M16 16v-5"/></svg>
+                <p>Infograma en preparación — próximamente disponible.</p>
+            </div>
+        `;
+    }
+
+    const urlArchivo = new URL(m.infograma, window.location.href).href;
+
+    return `
+        <a class="infograma-descarga" href="${urlArchivo}" target="_blank" rel="noopener">
+            <span class="infograma-descarga-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 16V10M12 16V8M16 16v-5"/></svg></span>
+            <span class="infograma-descarga-texto">
+                <strong>Descargar infograma</strong>
+                <span>Resumen visual del módulo, en formato imprimible.</span>
+            </span>
+            <span class="infograma-descarga-flecha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v11M7 11l5 5 5-5"/><path d="M5 19h14"/></svg></span>
+        </a>
+    `;
+}
+
 function renderPresentacionModulo(m, numero) {
     if (!m.presentacion) {
         return `
@@ -575,6 +607,11 @@ function abrirModulo(numero) {
 
             <p class="contexto-modulo">${m.contexto}</p>
 
+            <p class="temario-eyebrow">Temario de este módulo</p>
+            <ul class="temario-lista">
+                ${m.temario.map((tema, i) => `<li><span class="temario-num">${i + 1}</span>${tema}</li>`).join("")}
+            </ul>
+
             <div class="modulo-acordeon">
 
                 <div class="acc-seccion acc-abierta">
@@ -590,12 +627,12 @@ function abrirModulo(numero) {
 
                 <div class="acc-seccion">
                     <button type="button" class="acc-header" onclick="alternarAcordeon(this)">
-                        <svg class="acc-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V8h4"/><path d="M8.5 12.5h7M8.5 15.5h7M8.5 18h4"/></svg>
-                        <span class="acc-titulo">Contenido del módulo</span>
+                        <svg class="acc-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 16V10M12 16V8M16 16v-5"/></svg>
+                        <span class="acc-titulo">Infograma</span>
                         <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 15l6-6 6 6"/></svg>
                     </button>
                     <div class="acc-body" style="display:none;">
-                        ${m.microbloques_html}
+                        ${renderInfograma(m)}
                     </div>
                 </div>
 
@@ -606,6 +643,8 @@ function abrirModulo(numero) {
                         <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 15l6-6 6 6"/></svg>
                     </button>
                     <div class="acc-body" style="display:none;">
+
+                        ${m.actividad_html}
 
                         <div class="checkpoint-box" id="checkpointBox${numero}">
                             <p class="checkpoint-pregunta">${m.checkpoint.pregunta}</p>
