@@ -283,8 +283,7 @@ function mostrarApp(promesaContenido) {
 
             const saludoBienvenida = document.getElementById("saludoBienvenida");
             if (saludoBienvenida) {
-                const primerNombre = nombre ? nombre.trim().split(/\s+/)[0] : "";
-                saludoBienvenida.textContent = primerNombre ? `Bienvenido(a), ${primerNombre}` : "Bienvenido(a)";
+                saludoBienvenida.textContent = "Bienvenido(a)";
             }
 
             cargarProgreso();

@@ -464,26 +464,36 @@ main {
 
 .bienvenida-centrada {
     text-align: center;
-    padding: 8px 0 28px;
+    padding: 12px 0 28px;
     margin-bottom: 6px;
     border-bottom: 1px solid var(--borde);
 }
 
+.bienvenida-fila {
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    text-align: left;
+    max-width: 520px;
+}
+
 .bienvenida-imagen {
-    width: 180px;
-    height: auto;
-    margin: 0 auto 18px;
-    display: block;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--oro);
+    flex-shrink: 0;
+    animation: flotar 3s ease-in-out infinite;
 }
 
-.bienvenida-centrada h2 {
-    font-size: 30px;
-    margin: 0 0 10px;
+.bienvenida-texto h2 {
+    font-size: 26px;
+    margin: 0 0 6px;
 }
 
-.bienvenida-centrada .subtitulo-hero {
-    max-width: 480px;
-    margin: 0 auto;
+.bienvenida-texto .subtitulo-hero {
+    margin: 0;
 }
 
 .subtitulo-hero {
@@ -1221,12 +1231,19 @@ footer p {
 }
 
 @media (max-width: 600px) {
-    .bienvenida-imagen {
-        width: 140px;
+    .bienvenida-fila {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
     }
 
-    .bienvenida-centrada h2 {
-        font-size: 24px;
+    .bienvenida-imagen {
+        width: 96px;
+        height: 96px;
+    }
+
+    .bienvenida-texto h2 {
+        font-size: 22px;
     }
 
     .header {
