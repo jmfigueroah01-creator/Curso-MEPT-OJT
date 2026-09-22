@@ -108,9 +108,9 @@ h1, h2, h3, h4 {
 
 .modal-caja {
     background: var(--superficie);
-    border-radius: 18px;
-    padding: 52px 48px;
-    max-width: 560px;
+    border-radius: 16px;
+    padding: 36px 34px;
+    max-width: 420px;
     width: 100%;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
@@ -119,22 +119,22 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .marca-icono img {
-    height: 46px;
+    height: 38px;
     width: auto;
 }
 
 .modal-caja .btn-principal {
-    padding: 15px 28px;
-    font-size: 16px;
+    padding: 13px 24px;
+    font-size: 15px;
 }
 
 .marca-texto p {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.03em;
     color: var(--texto-suave);
 }
@@ -148,32 +148,32 @@ h1, h2, h3, h4 {
 }
 
 .paso-modal h2 {
-    margin: 0 0 8px;
-    font-size: 28px;
+    margin: 0 0 6px;
+    font-size: 22px;
 }
 
 .paso-modal > p {
     color: var(--texto-suave);
-    font-size: 15px;
-    margin: 0 0 22px;
-    line-height: 1.6;
+    font-size: 13.5px;
+    margin: 0 0 18px;
+    line-height: 1.55;
 }
 
 .paso-modal input[type="email"],
 .paso-modal input[type="text"] {
     width: 100%;
-    padding: 15px 16px;
+    padding: 12px 14px;
     border: 1px solid var(--borde);
-    border-radius: 9px;
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 15px;
     font-family: inherit;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 #inputCodigo {
     text-align: center;
-    letter-spacing: 10px;
-    font-size: 24px;
+    letter-spacing: 9px;
+    font-size: 21px;
     font-weight: 600;
 }
 
@@ -213,6 +213,59 @@ h1, h2, h3, h4 {
 
 .modal-acciones-secundarias a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .modal-acceso {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .modal-caja {
+        max-width: 100%;
+        border-radius: 18px 18px 0 0;
+        padding: 26px 22px 30px;
+        box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-caja .marca {
+        margin-bottom: 12px;
+    }
+
+    .marca-icono img {
+        height: 32px;
+    }
+
+    .paso-modal h2 {
+        font-size: 19px;
+    }
+
+    .paso-modal > p {
+        font-size: 13px;
+        margin-bottom: 14px;
+    }
+
+    .paso-modal input[type="email"],
+    .paso-modal input[type="text"] {
+        padding: 11px 13px;
+        font-size: 16px;
+    }
+
+    #inputCodigo {
+        letter-spacing: 7px;
+        font-size: 19px;
+    }
+
+    .modal-caja .btn-principal {
+        width: 100%;
+        padding: 13px 20px;
+    }
+
+    .modal-acciones-secundarias {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
 }
 
 /* ============================================================
