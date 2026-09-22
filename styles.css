@@ -462,35 +462,37 @@ main {
     50% { transform: translateY(-6px); }
 }
 
-.bienvenida-fila {
-    display: flex;
-    align-items: flex-start;
-    gap: 28px;
-    text-align: left;
+.bienvenida-envoltura {
+    overflow: auto;
     margin-bottom: 18px;
 }
 
+.bienvenida-envoltura::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .bienvenida-imagen {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--oro);
-    flex-shrink: 0;
+    float: left;
+    shape-outside: circle(50%);
+    shape-margin: 18px;
+    margin: 0 24px 10px 0;
 }
 
-.bienvenida-texto {
-    flex: 1;
-    min-width: 0;
+.bienvenida-envoltura h2 {
+    font-size: 30px;
+    margin: 6px 0 14px;
 }
 
-.bienvenida-texto h2 {
-    font-size: 32px;
-    margin: 0 0 14px;
-}
-
-.bienvenida-texto p {
+.bienvenida-envoltura p {
     text-align: justify;
+    margin: 0 0 14px;
 }
 
 .subtitulo-hero {
@@ -509,11 +511,31 @@ main {
 }
 
 .bienvenida-destacado {
-    background: var(--fondo);
-    border-left: 3px solid var(--oro);
-    border-radius: 0 10px 10px 0;
-    padding: 16px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(185, 138, 46, 0.08);
+    border: 1px solid var(--oro-claro);
+    border-radius: 12px;
+    padding: 16px 20px;
     margin: 4px 0 18px;
+}
+
+.bienvenida-destacado-icono {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--oro);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bienvenida-destacado-icono svg {
+    width: 15px;
+    height: 15px;
 }
 
 .bienvenida-destacado p {
@@ -1230,18 +1252,14 @@ footer p {
 }
 
 @media (max-width: 600px) {
-    .bienvenida-fila {
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-    }
-
     .bienvenida-imagen {
-        width: 96px;
-        height: 96px;
+        width: 90px;
+        height: 90px;
+        shape-margin: 12px;
+        margin: 0 16px 10px 0;
     }
 
-    .bienvenida-texto h2 {
+    .bienvenida-envoltura h2 {
         font-size: 22px;
     }
 
