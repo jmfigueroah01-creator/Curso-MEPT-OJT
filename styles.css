@@ -239,11 +239,10 @@ h1, h2, h3, h4 {
 
 .header-inner {
     width: 92%;
-    max-width: 1000px;
-    margin: 0 auto;       /* Centra este contenedor dentro del header */
+    max-width: 1400px;
     display: flex;
     justify-content: center;
-    position: relative;   /* Asegura que el botón se posicione dentro de estos 1000px */
+    position: relative;
 }
 
 .header-marca {
@@ -263,6 +262,7 @@ h1, h2, h3, h4 {
     padding: 12px 16px;
     border-radius: 10px;
 }
+
 .header h1 {
     margin: 0;
     color: white;
@@ -280,11 +280,12 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
     letter-spacing: 0.09em;
 }
+
 .header-usuario {
     position: absolute;
     top: 0;
-    right: max(4%, calc((100% - 1000px) / 2)); /* Calcula automáticamente el borde de los 1000px */
-    display: flex;
+    right: 0;
+    display: none;
     align-items: center;
     gap: 8px;
     background: rgba(255, 255, 255, 0.08);
@@ -353,10 +354,10 @@ h1, h2, h3, h4 {
    ============================================================ */
 
 main {
-    max-width: 1000px;
+    max-width: 1400px;
     width: 92%;
-    margin: 20px auto;
-    padding: 0 20px;
+    margin: 0 auto;
+    padding: 30px 0;
 }
 
 .seccion {
@@ -409,33 +410,83 @@ main {
     50% { transform: translateY(-6px); }
 }
 
-.bienvenida-editorial {
+.pase-abordar {
     display: flex;
-    align-items: center;
-    gap: 22px;
-    margin-bottom: 24px;
+    align-items: stretch;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    box-shadow: 0 10px 28px rgba(14, 42, 71, 0.1);
+    margin-bottom: 26px;
+    overflow: hidden;
 }
 
-.retrato-envoltura {
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--oro);
+.pase-principal {
+    flex: 1;
+    min-width: 0;
+    padding: 28px 30px;
+}
+
+.pase-campos {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.pase-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.pase-etiqueta {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--texto-suave);
+    font-weight: 600;
+}
+
+.pase-valor {
+    font-size: 14px;
+    color: var(--azul);
+    font-weight: 700;
+    font-family: 'Source Serif 4', serif;
+}
+
+.pase-perforacion {
+    width: 0;
+    border-left: 2px dashed var(--borde);
     flex-shrink: 0;
+}
+
+.pase-stub {
+    width: 160px;
+    flex-shrink: 0;
+    background: var(--fondo);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px;
+}
+
+.pase-stub-imagen {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    object-position: center 15%;
+    border-radius: 10px;
     animation: flotar-bienvenida 3s ease-in-out infinite;
 }
 
-.retrato-imagen {
+.pase-codigo {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 12%;
-}
-
-.bienvenida-editorial-texto {
-    flex: 1;
-    min-width: 0;
+    height: 20px;
+    background: repeating-linear-gradient(90deg, var(--azul) 0 2px, transparent 2px 5px, var(--azul) 5px 6px, transparent 6px 9px, var(--azul) 9px 12px, transparent 12px 16px, var(--azul) 16px 17px, transparent 17px 21px);
+    opacity: 0.55;
 }
 
 @keyframes flotar-bienvenida {
@@ -458,29 +509,16 @@ main {
     font-weight: 700;
 }
 
-.cita-destacada {
-    position: relative;
-    padding-left: 20px;
-    margin: 20px 0;
+.bienvenida-destacado {
+    background: var(--fondo);
+    border-left: 3px solid var(--oro);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 22px;
+    margin: 4px 0 18px;
 }
 
-.cita-destacada::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 8px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--oro);
-}
-
-.cita-destacada p {
-    font-size: 15px;
-    color: var(--texto);
+.bienvenida-destacado p {
     margin: 0;
-    line-height: 1.7;
-    text-align: justify;
 }
 
 .tour-eyebrow {
@@ -942,8 +980,247 @@ footer p {
 }
 
 /* ============================================================
-   RESPONSIVE
+   RUTA DE EMBARQUE (nuevo indicador de progreso del onboarding)
    ============================================================ */
+
+.ruta-embarque {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.ruta-punto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    flex-shrink: 0;
+    width: 64px;
+}
+
+.ruta-punto-icono {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1.5px solid var(--borde);
+    background: white;
+    color: var(--bloqueado);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s;
+}
+
+.ruta-punto-icono svg {
+    width: 16px;
+    height: 16px;
+}
+
+.ruta-punto-etiqueta {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--texto-suave);
+    text-align: center;
+    line-height: 1.2;
+}
+
+.ruta-punto.activo .ruta-punto-icono {
+    border-color: var(--azul);
+    background: var(--azul);
+    color: white;
+}
+
+.ruta-punto.activo .ruta-punto-etiqueta {
+    color: var(--azul);
+}
+
+.ruta-punto.completado .ruta-punto-icono {
+    border-color: var(--oro);
+    background: var(--oro-claro);
+    color: var(--oro);
+}
+
+.ruta-punto-linea {
+    flex: 1;
+    height: 1.5px;
+    background: var(--borde);
+    margin-top: 17px;
+    transition: .2s;
+}
+
+.ruta-punto-linea.completado {
+    background: var(--oro);
+}
+
+.ruta-embarque-contador {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--oro);
+    margin: 0 0 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   CHIPS DE TEMAS (paso 1 onboarding)
+   ============================================================ */
+
+.paso1-lead {
+    font-weight: 600;
+    color: var(--azul);
+    margin-bottom: 10px;
+}
+
+.chips-fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.chip-tema {
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    color: var(--azul);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 7px 13px;
+    border-radius: 20px;
+}
+
+/* ============================================================
+   LISTA DE PROPÓSITO (paso 2 onboarding)
+   ============================================================ */
+
+.lista-proposito {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+    display: grid;
+    gap: 10px;
+}
+
+.lista-proposito li {
+    background: var(--fondo);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   TARJETAS DE MODALIDAD (paso 3 onboarding) — color con significado
+   ============================================================ */
+
+.modalidad-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.modalidad-tarjeta {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 10px;
+    border-left: 3px solid;
+    background: var(--fondo);
+}
+
+.modalidad-tarjeta strong {
+    display: block;
+    font-size: 13.5px;
+    color: var(--texto);
+    margin-bottom: 3px;
+}
+
+.modalidad-tarjeta p {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--texto-suave);
+    line-height: 1.5;
+    text-align: left;
+}
+
+.modalidad-icono {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalidad-icono svg {
+    width: 16px;
+    height: 16px;
+}
+
+.modalidad-exito { border-left-color: var(--exito); }
+.modalidad-exito .modalidad-icono { background: rgba(47,122,77,0.12); color: var(--exito); }
+
+.modalidad-aviso { border-left-color: var(--oro); }
+.modalidad-aviso .modalidad-icono { background: rgba(185,138,46,0.14); color: var(--oro); }
+
+.modalidad-info { border-left-color: var(--azul-medio); }
+.modalidad-info .modalidad-icono { background: rgba(27,74,120,0.1); color: var(--azul-medio); }
+
+/* ============================================================
+   LISTA CON CHECK (paso 4 y 6 onboarding)
+   ============================================================ */
+
+.lista-objetivo {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+    display: grid;
+    gap: 8px;
+}
+
+.lista-objetivo li {
+    position: relative;
+    padding: 10px 14px 10px 38px;
+    background: var(--fondo);
+    border-radius: 8px;
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+
+.lista-objetivo li::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 13px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--azul);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5 10 17.5 19 7'/%3E%3C/svg%3E") center/10px no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5 10 17.5 19 7'/%3E%3C/svg%3E") center/10px no-repeat;
+}
+
+@media (max-width: 700px) {
+    .modalidad-tarjetas {
+        grid-template-columns: 1fr;
+    }
+    .ruta-punto-etiqueta {
+        display: none;
+    }
+    .ruta-punto {
+        width: auto;
+    }
+}
+
+/* ============================================================
+   CONTENIDO DE MÓDULO — basado en el MEPT
+   ============================================================ */
+
 
 @media (max-width: 800px) {
     .tarjetas {
@@ -1026,4 +1303,382 @@ footer p {
     .tarjetas {
         grid-template-columns: 1fr;
     }
+}
+
+.modulo-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.capitulo-tag {
+    display: inline-block;
+    background: var(--azul);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.objetivo-desempeno {
+    background: var(--fondo);
+    border-left: 3px solid var(--azul);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 14px 0 18px;
+}
+
+.objetivo-desempeno p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--azul);
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    line-height: 1.55;
+}
+
+.objetivo-desempeno span {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--oro);
+    margin-bottom: 6px;
+    font-style: normal;
+}
+
+.contexto-modulo {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--texto-suave);
+    margin-bottom: 24px;
+}
+
+.bloque {
+    margin: 30px 0;
+}
+
+.bloque-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: var(--azul);
+    margin-bottom: 12px;
+}
+
+.bloque-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--azul);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Source Serif 4', serif;
+}
+
+.r06-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(185,138,46,0.14);
+    color: var(--oro);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px 4px 8px;
+    border-radius: 20px;
+    margin: 4px 0 10px;
+    border: 1px solid rgba(185,138,46,0.35);
+}
+
+/* --- Organigrama de 3 niveles (Módulo 1) --- */
+
+.tier-organigrama {
+    display: grid;
+    gap: 10px;
+    margin: 14px 0 6px;
+}
+
+.tier {
+    background: var(--fondo);
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid var(--borde);
+}
+
+.tier-titulo {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--azul);
+    margin-bottom: 8px;
+}
+
+.tier-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.rol-chip {
+    background: white;
+    border: 1px solid var(--borde);
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 16px;
+    color: var(--texto);
+}
+
+.tier-nota {
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin: 6px 0 0;
+    line-height: 1.5;
+}
+
+.tier-flecha {
+    text-align: center;
+    color: var(--bloqueado);
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* --- Tarjetas comparativas de niveles OJT (Módulo 2) --- */
+
+.niveles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0 10px;
+}
+
+.nivel-card {
+    background: var(--fondo);
+    border-radius: 12px;
+    padding: 18px 14px;
+    text-align: center;
+    border-top: 3px solid var(--azul);
+}
+
+.nivel-card:nth-child(2) { border-top-color: var(--oro); }
+.nivel-card:nth-child(3) { border-top-color: var(--exito); }
+
+.nivel-numero {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--azul);
+}
+
+.nivel-etiqueta {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 4px 0 10px;
+}
+
+.nivel-rol {
+    font-size: 12px;
+    color: var(--texto-suave);
+    line-height: 1.6;
+    text-align: left;
+}
+
+.nivel-rol strong {
+    color: var(--texto);
+}
+
+/* --- Diagrama de flujo simplificado --- */
+
+.flujo-diagrama {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0;
+    margin: 16px 0 8px;
+}
+
+.flujo-paso {
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 12px 14px;
+    flex: 1;
+    min-width: 150px;
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+.flujo-paso strong {
+    display: block;
+    color: var(--azul);
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.flujo-paso-num {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--azul);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px;
+}
+
+.flujo-flecha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bloqueado);
+    padding: 0 4px;
+    flex-shrink: 0;
+}
+
+.flujo-nota-tiempo {
+    display: block;
+    margin-top: 6px;
+    font-size: 10.5px;
+    color: var(--texto-suave);
+    font-weight: 600;
+}
+
+/* --- Checkpoint de autoevaluación por módulo --- */
+
+.checkpoint-box {
+    background: var(--superficie);
+    border: 1.5px solid var(--azul);
+    border-radius: 12px;
+    padding: 22px;
+    margin: 30px 0;
+}
+
+.checkpoint-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--azul);
+    margin-bottom: 12px;
+}
+
+.checkpoint-pregunta {
+    font-size: 15px;
+    color: var(--texto);
+    margin: 0 0 16px;
+    line-height: 1.55;
+}
+
+.checkpoint-opciones {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.checkpoint-opcion {
+    display: block;
+    background: var(--fondo);
+    border: 1.5px solid var(--borde);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 13.5px;
+    cursor: pointer;
+}
+
+.checkpoint-opcion:hover {
+    border-color: var(--azul-medio);
+}
+
+.checkpoint-opcion input {
+    margin-right: 9px;
+}
+
+.checkpoint-feedback {
+    display: none;
+    border-radius: 8px;
+    padding: 13px 16px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+.checkpoint-feedback.visible {
+    display: block;
+}
+
+.checkpoint-feedback.correcto {
+    background: rgba(47,122,77,0.1);
+    color: var(--exito);
+    border: 1px solid rgba(47,122,77,0.3);
+}
+
+.checkpoint-feedback.incorrecto {
+    background: rgba(185,138,46,0.1);
+    color: var(--oro);
+    border: 1px solid rgba(185,138,46,0.3);
+}
+
+/* --- Checklist de referencia (cierre de módulo) --- */
+
+.checklist-modulo {
+    background: var(--fondo);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 24px 0;
+}
+
+.checklist-modulo-titulo {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--oro);
+    margin: 0 0 10px;
+}
+
+.checklist-modulo ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.checklist-modulo li {
+    position: relative;
+    padding-left: 24px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--texto);
+}
+
+.checklist-modulo li::before {
+    content: "☐";
+    position: absolute;
+    left: 0;
+    color: var(--oro);
+    font-size: 15px;
+}
+
+@media (max-width: 700px) {
+    .niveles-grid { grid-template-columns: 1fr; }
+    .flujo-diagrama { flex-direction: column; }
+    .flujo-flecha { transform: rotate(90deg); padding: 4px 0; }
 }

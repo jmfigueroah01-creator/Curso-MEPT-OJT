@@ -504,23 +504,76 @@ function abrirModulo(numero) {
 
     const m = MODULOS[numero];
     const contenido = document.getElementById("contenidoModulo");
+    const yaCompleto = !!progreso["modulo" + numero];
+
+    const opcionesHtml = m.checkpoint.opciones.map(op => `
+        <label class="checkpoint-opcion">
+            <input type="radio" name="checkpoint${numero}" value="${op.id}">
+            ${op.texto}
+        </label>
+    `).join("");
 
     contenido.innerHTML = `
         <div class="contenido">
-            <h2>Módulo ${numero} — ${m.titulo}</h2>
-            <h3>Objetivo</h3>
-            <p>${m.objetivo}</p>
-            <h3>Contenido</h3>
-            <p>${m.contenido}</p>
-            <h3>Actividad</h3>
-            <p>${m.actividad}</p>
-            <button class="btn-principal" style="width:auto;" onclick="completarModulo(${numero})">
-                Marcar módulo como completado
+            <div class="modulo-cabecera">
+                <h2>Módulo ${numero} — ${m.titulo}</h2>
+                <span class="capitulo-tag">${m.capitulo_mept}</span>
+            </div>
+
+            <div class="objetivo-desempeno">
+                <span>Al terminar podrás</span>
+                <p>${m.objetivo_desempeno}</p>
+            </div>
+
+            <p class="contexto-modulo">${m.contexto}</p>
+
+            ${m.microbloques_html}
+
+            <div class="checkpoint-box" id="checkpointBox${numero}">
+                <div class="checkpoint-titulo">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 13 11 15.5 15.5 10.5"/><rect x="5" y="4" width="14" height="17" rx="1.5"/></svg>
+                    Punto de chequeo
+                </div>
+                <p class="checkpoint-pregunta">${m.checkpoint.pregunta}</p>
+                <div class="checkpoint-opciones">${opcionesHtml}</div>
+                <div class="checkpoint-feedback" id="checkpointFeedback${numero}"></div>
+                <button class="btn-secundario" onclick="verificarCheckpoint(${numero})">Verificar respuesta</button>
+            </div>
+
+            <div class="checklist-modulo">
+                <p class="checklist-modulo-titulo">Checklist de referencia</p>
+                <ul>${m.checklist.map(item => `<li>${item}</li>`).join("")}</ul>
+            </div>
+
+            <button class="btn-principal" style="width:auto;" id="btnCompletarModulo${numero}" onclick="completarModulo(${numero})" ${yaCompleto ? "" : "disabled"}>
+                ${yaCompleto ? "Módulo completado ✓ (repasar no reinicia tu progreso)" : "Responde el checkpoint para habilitar este botón"}
             </button>
         </div>
     `;
 
     contenido.scrollIntoView({ behavior: "smooth" });
+}
+
+function verificarCheckpoint(numero) {
+    const seleccion = document.querySelector(`input[name="checkpoint${numero}"]:checked`);
+    const feedback = document.getElementById(`checkpointFeedback${numero}`);
+    const btnCompletar = document.getElementById(`btnCompletarModulo${numero}`);
+    const chk = MODULOS[numero].checkpoint;
+
+    if (!seleccion) {
+        feedback.className = "checkpoint-feedback visible incorrecto";
+        feedback.innerHTML = "Selecciona una opción antes de verificar.";
+        return;
+    }
+
+    const esCorrecta = seleccion.value === chk.correcta;
+    feedback.className = "checkpoint-feedback visible " + (esCorrecta ? "correcto" : "incorrecto");
+    feedback.innerHTML = (esCorrecta ? "✓ Correcto. " : "Aún no. ") + chk.explicacion;
+
+    if (esCorrecta && btnCompletar) {
+        btnCompletar.disabled = false;
+        btnCompletar.textContent = "Marcar módulo como completado";
+    }
 }
 
 function completarModulo(numero) {
@@ -622,9 +675,20 @@ function irPaso(n) {
     document.querySelectorAll(".paso-tour").forEach(p => p.classList.remove("activo"));
     document.getElementById("paso" + n).classList.add("activo");
 
-    document.querySelectorAll(".punto").forEach(p => {
-        p.classList.toggle("activo", Number(p.dataset.paso) === n);
+    document.querySelectorAll(".ruta-punto").forEach(p => {
+        const num = Number(p.dataset.paso);
+        p.classList.toggle("activo", num === n);
+        p.classList.toggle("completado", num < n);
     });
+
+    document.querySelectorAll(".ruta-punto-linea").forEach(linea => {
+        const idx = Number(linea.dataset.linea);
+        linea.classList.toggle("completado", idx < n);
+    });
+
+    const etiquetas = ["Bienvenida", "Propósito", "Tu ritmo", "Objetivo", "Estructura", "Antes de iniciar"];
+    const contador = document.getElementById("rutaContador");
+    if (contador) contador.textContent = `Paso ${n} de ${TOTAL_PASOS} · ${etiquetas[n - 1]}`;
 
     const btnAtras = document.getElementById("btnAtras");
     const btnSiguiente = document.getElementById("btnSiguiente");

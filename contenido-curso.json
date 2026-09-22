@@ -1,30 +1,108 @@
 {
-    "modulos": {
-        "1": {
-            "titulo": "Introducción",
-            "resumen": "Conceptos fundamentales y objetivos de la capacitación.",
-            "objetivo": "Comprender los conceptos fundamentales relacionados con la función de inspección.",
-            "contenido": "La función de inspección constituye una actividad fundamental para verificar el cumplimiento de los requisitos aplicables.",
-            "actividad": "Identifique tres responsabilidades principales de un inspector."
-        },
-        "2": {
-            "titulo": "Marco normativo",
-            "resumen": "Requisitos y documentación aplicable.",
-            "objetivo": "Identificar los principales documentos normativos aplicables a las actividades de inspección.",
-            "contenido": "El inspector debe conocer los requisitos aplicables a la actividad que desarrolla y utilizar las fuentes oficiales correspondientes.",
-            "actividad": "Revise el procedimiento correspondiente y determine qué requisitos aplican al escenario planteado."
-        },
-        "3": {
-            "titulo": "Procedimientos",
-            "resumen": "Aplicación de procedimientos de inspección.",
-            "objetivo": "Aplicar correctamente los procedimientos establecidos para realizar una actividad de inspección.",
-            "contenido": "Analice un procedimiento de inspección y determine la secuencia correcta de ejecución: preparación, revisión documental, verificación, registro de evidencia y comunicación de resultados.",
-            "actividad": "Ordene los pasos del procedimiento aplicado a un caso real de su área."
-        }
+  "modulos": {
+    "1": {
+      "titulo": "Introducción, objetivos y estructura",
+      "resumen": "Qué es el OJT, para qué sirve y quién es responsable de qué.",
+      "capitulo_mept": "Cap. 1–3 MEPT",
+      "objetivo_desempeno": "Explicar por qué existe el Programa OJT, qué se espera lograr con él, y ubicar tu propio rol dentro de su estructura de responsabilidades.",
+      "contexto": "Antes de aprender los procedimientos necesitas entender el problema que resuelven — si no, el OJT se siente como puro papeleo en vez de una herramienta que te protege a ti y a la seguridad operacional.",
+      "microbloques_html": "\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">1</span>El problema que resolvió el OJT</div>\n<p>La autoridad aeronáutica venía operando con conocimiento heredado \"de boca en boca\" entre inspectores — lo que generaba criterios distintos entre personas para la misma tarea. El OJT nace para que ese criterio se alinee a los manuales oficiales, sin depender de quién te tocó de mentor.</p>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">2</span>¿Qué es exactamente el OJT?</div>\n<p><em>On the Job Training</em> = acompañamiento de un inspector con experiencia hacia uno en formación. No es solo \"aprender viendo\": es <strong>práctico, planificado, estructurado, supervisado y documentado</strong> — cada palabra es una obligación, no un adjetivo.</p>\n<div class=\"chips-fila\">\n<span class=\"chip-tema\">Práctico</span>\n<span class=\"chip-tema\">Planificado</span>\n<span class=\"chip-tema\">Estructurado</span>\n<span class=\"chip-tema\">Supervisado</span>\n<span class=\"chip-tema\">Documentado</span>\n</div>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">3</span>Objetivo general</div>\n<p>Capacitar de forma práctica en el puesto de trabajo a todo el personal IVA de la AFAC, cumpliendo estándares nacionales e internacionales, mejorando su desempeño mediante tareas específicas de vigilancia e inspección realizadas de forma acompañada.</p>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">4</span>Objetivos específicos</div>\n<div class=\"chips-fila\">\n<span class=\"chip-tema\">Formatos estandarizados por especialidad</span>\n<span class=\"chip-tema\">El aprendiz demuestra sus tareas</span>\n<span class=\"chip-tema\">Correcto llenado de formatos y bitácoras</span>\n<span class=\"chip-tema\">Sistema de control de desempeño</span>\n<span class=\"chip-tema\">Formación de instructores</span>\n<span class=\"chip-tema\">Mejora continua del programa</span>\n</div>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">5</span>¿Quién es quién? — 3 niveles de responsabilidad</div>\n<p>En vez de memorizar 9 figuras por separado, ubícalas en 3 niveles — así está organizado el propio organigrama del Cap. 3:</p>\n\n<div class=\"tier-organigrama\">\n<div class=\"tier\">\n<div class=\"tier-titulo\">NIVEL 1 · DIRECCIÓN INSTITUCIONAL</div>\n<div class=\"tier-roles\">\n<span class=\"rol-chip\">Director del CIAAC</span>\n<span class=\"rol-chip\">CPEPT</span>\n<span class=\"rol-chip\">Jefe de División Seguimiento Operacional</span>\n<span class=\"rol-chip\">Jefe de División Análisis Técnico</span>\n</div>\n<p class=\"tier-nota\">Conducen metodología, estandarización y seguimiento institucional — no ejecutan el entrenamiento de cada IVA.</p>\n</div>\n\n<div class=\"tier-flecha\">↓ coordina con (no manda sobre) ↓</div>\n\n<div class=\"tier\">\n<div class=\"tier-titulo\">NIVEL 2 · RESPONSABILIDAD OPERATIVA <span class=\"r06-badge\">🆕 R06 — numerales 3.4.10 a 3.4.12</span></div>\n<div class=\"tier-roles\">\n<span class=\"rol-chip\">Titulares de área</span>\n<span class=\"rol-chip\">Comandancias Regionales</span>\n<span class=\"rol-chip\">Comandancias de Aeropuerto</span>\n<span class=\"rol-chip\">AICM / AIFA</span>\n</div>\n<p class=\"tier-nota\">Son quienes deben asegurar que su personal realmente haga el OJT. Antes esta responsabilidad estaba dispersa en el texto; ahora cada tipo de Comandancia tiene su propio numeral con obligaciones explícitas de supervisión.</p>\n</div>\n\n<div class=\"tier-flecha\">↓ coordina con (no manda sobre) ↓</div>\n\n<div class=\"tier\">\n<div class=\"tier-titulo\">NIVEL 3 · EJECUCIÓN DIRECTA</div>\n<div class=\"tier-roles\">\n<span class=\"rol-chip\">Instructor Coordinador OJT</span>\n<span class=\"rol-chip\">Instructor Principal OJT</span>\n<span class=\"rol-chip\">Instructor OJT</span>\n<span class=\"rol-chip\">IVA Aprendiz</span>\n</div>\n<p class=\"tier-nota\">Aquí ocurre el entrenamiento real, evento por evento.</p>\n</div>\n</div>\n\n<p class=\"tier-nota\" style=\"margin-top:14px;\"><strong>Idea clave (Cap. 3.4):</strong> \"Ninguna de estas intervenciones sustituye a las demás ni transfiere automáticamente atribuciones.\" El CIAAC coordina, pero tu Dirección/Comandancia sigue siendo responsable de tu entrenamiento.</p>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">6</span>Aplicabilidad y manuales relacionados</div>\n<p>Aplica a IVA, Instructores, Instructores Principales e Instructores Coordinadores OJT adscritos a Direcciones Ejecutivas, Direcciones de Área, Comandancias Regionales, de Aeropuerto y AICM/AIFA. El MEPT trabaja junto con 4 manuales complementarios:</p>\n<div class=\"chips-fila\">\n<span class=\"chip-tema\">MSIG · Gestión</span>\n<span class=\"chip-tema\">MPPC · Procesos</span>\n<span class=\"chip-tema\">MAC · Calidad</span>\n<span class=\"chip-tema\">MGCC · Capacitación</span>\n</div>\n</div>\n",
+      "checkpoint": {
+        "pregunta": "Tu Comandancia de Aeropuerto te dice: \"el CIAAC ya se está encargando de tu OJT, no te preocupes\". ¿Es correcto?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Sí, el CIAAC asume toda la responsabilidad una vez que te inscribes al programa."
+          },
+          {
+            "id": "b",
+            "texto": "No — el CIAAC conduce la metodología institucional, pero tu Dirección/Comandancia sigue siendo responsable de que ejecutes tu entrenamiento."
+          },
+          {
+            "id": "c",
+            "texto": "Sí, porque el Instructor OJT depende administrativamente del CIAAC."
+          }
+        ],
+        "correcta": "b",
+        "explicacion": "La administración del programa por parte del CIAAC no sustituye la responsabilidad de tu área de asegurar tu ejecución, evaluación y evidencia documental (Cap. 3.4 del MEPT)."
+      },
+      "checklist": [
+        "El OJT es práctico + planificado + estructurado + supervisado + documentado",
+        "Mi acreditación se limita a las tareas/subtareas evaluadas y aprobadas — no es automática",
+        "Existen 3 niveles de responsabilidad: dirección institucional, responsabilidad operativa de mi área, y ejecución directa",
+        "El CIAAC coordina, pero mi Dirección/Comandancia sigue siendo responsable de mi entrenamiento"
+      ]
     },
-    "respuestas": {
-        "p1": "a",
-        "p2": "a",
-        "p3": "a"
+    "2": {
+      "titulo": "Requisitos para el entrenamiento en el puesto de trabajo",
+      "resumen": "Niveles 1, 2 y 3, convalidación, designación y modificación de tareas.",
+      "capitulo_mept": "Cap. 4 MEPT",
+      "objetivo_desempeno": "Identificar los 3 niveles de formación OJT y aplicar correctamente los procedimientos de convalidación, designación y modificación de tareas conforme a las reglas vigentes (R06).",
+      "contexto": "Este es el capítulo más denso del manual porque aquí se define qué cuenta como evidencia válida — y el R06 cambió esa regla de fondo: ya no se puede acreditar de más con una sola evidencia.",
+      "microbloques_html": "\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">1</span>Los 3 niveles del OJT</div>\n<p>El entrenamiento avanza de forma progresiva por tarea y subtarea. Antes de iniciar, el Instructor verifica requisitos de ingreso, procedimientos vigentes y criterios de evaluación.</p>\n\n<div class=\"niveles-grid\">\n<div class=\"nivel-card\">\n<div class=\"nivel-numero\">1</div>\n<div class=\"nivel-etiqueta\">Conocimiento</div>\n<div class=\"nivel-rol\"><strong>Instructor:</strong> instruye — relaciona lo aprendido en el curso básico con la tarea real.<br><br><strong>Aprendiz:</strong> asimila conocimientos en el propio puesto de trabajo.</div>\n</div>\n<div class=\"nivel-card\">\n<div class=\"nivel-numero\">2</div>\n<div class=\"nivel-etiqueta\">Demostración</div>\n<div class=\"nivel-rol\"><strong>Instructor:</strong> demuestra y explica la tarea, sus criterios y puntos críticos.<br><br><strong>Aprendiz:</strong> observa y puede coadyuvar, bajo supervisión.</div>\n</div>\n<div class=\"nivel-card\">\n<div class=\"nivel-numero\">3</div>\n<div class=\"nivel-etiqueta\">Ejecución supervisada</div>\n<div class=\"nivel-rol\"><strong>Instructor:</strong> evalúa el desempeño autónomo del aprendiz.<br><br><strong>Aprendiz:</strong> realiza la tarea completa, sustentando sus decisiones.</div>\n</div>\n</div>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">2</span>Reglas obligatorias que cambian cómo se acredita</div>\n<span class=\"r06-badge\">🆕 R06 — numeral 4.2.4, criterios obligatorios</span>\n<p>Esta es probablemente la regla más importante de todo el manual para tu día a día:</p>\n<div class=\"modalidad-tarjetas\" style=\"grid-template-columns:1fr 1fr;\">\n<div class=\"modalidad-tarjeta modalidad-aviso\">\n<span class=\"modalidad-icono\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 9v4.5M12 17h.01\"/><path d=\"M10.3 3.9 2.7 18.1A1.8 1.8 0 0 0 4.3 20.7h15.4a1.8 1.8 0 0 0 1.6-2.6L13.7 3.9a1.8 1.8 0 0 0-3.4 0Z\"/></svg></span>\n<div><strong>Eventos y fechas distintas por nivel</strong><p>Los niveles 1, 2 y 3 de una misma tarea deben realizarse en eventos diferenciados, en fechas distintas y en orden progresivo. No puedes acreditar dos niveles el mismo día, aunque uses folios diferentes.</p></div>\n</div>\n<div class=\"modalidad-tarjeta modalidad-aviso\">\n<span class=\"modalidad-icono\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 9v4.5M12 17h.01\"/><path d=\"M10.3 3.9 2.7 18.1A1.8 1.8 0 0 0 4.3 20.7h15.4a1.8 1.8 0 0 0 1.6-2.6L13.7 3.9a1.8 1.8 0 0 0-3.4 0Z\"/></svg></span>\n<div><strong>Evidencia no reutilizable</strong><p>La evidencia de un evento no puede usarse para acreditar otros niveles de esa tarea ni otras tareas, aunque copies el documento y cambies el nombre.</p></div>\n</div>\n</div>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">3</span>Procedimiento: Convalidación de tareas (num. 4.5)</div>\n<p>Permite reconocer entrenamiento ya realizado con el formato anterior o con evidencia documental — sin acreditaciones extensivas.</p>\n<div class=\"flujo-diagrama\">\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">1</span>IVA Aprendiz</strong>Presenta su formato OJT anterior o evidencia documental.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">2</span>Instructor (ICO.J.T./IPO.J.T./IO.J.T.)</strong>Revisa que la evidencia cumpla los requisitos por tarea y nivel, sin mezclar niveles ni tareas.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">3</span>Instructor</strong>Determina procedencia y convalida cada tarea/nivel, registrando fechas reales.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">4</span>Instructor + CPEPT</strong>Se llena el formato vigente y bitácora; se entrega para firma y autorización.<span class=\"flujo-nota-tiempo\">Proceso oficial: DF-DCIA-CPEPT-02-R04, numeral 4.5.6-4.5.7</span></div>\n</div>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">4</span>Procedimiento: Designación de instructores (num. 4.7)</div>\n<div class=\"flujo-diagrama\">\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">1</span>CPEPT</strong>Solicita a Direcciones/Comandancias la designación de instructores.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">2</span>Direcciones/Comandancias</strong>Proponen candidatos que cumplan los criterios del Cap. 4 (num. 4.6/4.8).</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">3</span>CPEPT</strong>Corrobora la información contra el expediente de capacitación.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">4</span>CPEPT</strong>Emite el oficio de designación (o de observaciones si hay inconsistencias).<span class=\"flujo-nota-tiempo\">Numeral 4.7.6-4.7.7</span></div>\n</div>\n<span class=\"r06-badge\">🆕 R06 — el oficio ahora identifica explícitamente las tareas para las que el instructor puede instruir y evaluar, y se revisa su vigencia ante inactividad o resultados insuficientes.</span>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">5</span>Procedimiento: Modificación, adición o exclusión de tareas (num. 4.10)</div>\n<div class=\"flujo-diagrama\">\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">1</span>Dirección/Comandancia</strong>Solicita por oficio la modificación, justificando el cambio y su impacto.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">2</span>CPEPT</strong>Distribuye la solicitud a todas las áreas competentes para comentarios.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">3</span>Áreas</strong>Responden en 2 días hábiles con comentarios o aceptación.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">4</span>CPEPT</strong>Actualiza catálogo, formatos y bitácoras, conservando versión anterior y nueva.<span class=\"flujo-nota-tiempo\">Numeral 4.10.6-4.10.7</span></div>\n</div>\n<span class=\"r06-badge\">🆕 R06 — un cambio documental no acredita automáticamente nuevas tareas o niveles; se coordina la actualización en el Módulo OJT de la plataforma.</span>\n</div>\n",
+      "checkpoint": {
+        "pregunta": "Ya tienes una evidencia documental que acredita el Nivel 1 de la tarea \"Inspección de rampa\". ¿Puedes usar esa misma evidencia para acreditar también el Nivel 2 de esa tarea?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "Sí, si la vuelves a cargar en el Módulo OJT con otro nombre de archivo."
+          },
+          {
+            "id": "b",
+            "texto": "No — cada nivel requiere un evento y evidencia propios, diferenciados en fecha; la evidencia de un evento no acredita otro nivel."
+          },
+          {
+            "id": "c",
+            "texto": "Sí, porque pertenece a la misma tarea y especialidad."
+          }
+        ],
+        "correcta": "b",
+        "explicacion": "Es exactamente el criterio obligatorio del numeral 4.2.4 (R06): la evidencia de un evento no podrá utilizarse para acreditar otros niveles de esa tarea ni otras tareas, aun dentro del mismo nivel."
+      },
+      "checklist": [
+        "Nivel 1 = Conocimiento · Nivel 2 = Demostración · Nivel 3 = Ejecución supervisada",
+        "Cada nivel necesita evento y fecha distintos — nunca se acreditan dos niveles el mismo día",
+        "La evidencia de un evento no se reutiliza para otro nivel ni otra tarea",
+        "Un cambio documental (modificación de tareas) no acredita automáticamente nuevas tareas o niveles"
+      ]
+    },
+    "3": {
+      "titulo": "Ejecución, evaluación y mejora",
+      "resumen": "Cómo se ejecuta el entrenamiento paso a paso y cómo se evalúa el programa.",
+      "capitulo_mept": "Cap. 5–6 MEPT",
+      "objetivo_desempeno": "Describir la secuencia del proceso general OJT y de la fase de entrenamiento, incluyendo los plazos documentales vigentes, y explicar el ciclo de evaluación y mejora del programa.",
+      "contexto": "Aquí es donde la teoría de los módulos anteriores se convierte en pasos concretos que vas a vivir en campo — incluidos los plazos que, si no conoces, pueden hacer que tu documentación se devuelva sin acreditar el nivel.",
+      "microbloques_html": "\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">1</span>Proceso general del Programa OJT (num. 5.3)</div>\n<div class=\"flujo-diagrama\">\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">1</span>Instructor OJT</strong>Propone eventos individualizados por aprendiz, tarea y nivel.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">2</span>CPEPT</strong>Verifica correspondencia entre aprendiz, tarea, nivel, evento y progresión de fechas.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">3</span>CPEPT</strong>Solo tras la aprobación técnica se programa el siguiente nivel, en fecha posterior.<span class=\"flujo-nota-tiempo\">P-DCIA-CPEPT-01-R04, numeral 5.3.6-5.3.7</span></div>\n</div>\n<span class=\"r06-badge\">🆕 R06 — una revisión meramente documental ya no produce progresión automática al siguiente nivel.</span>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">2</span>Fase de entrenamiento (num. 5.4)</div>\n<div class=\"flujo-diagrama\">\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">1</span>Instructor OJT</strong>Conduce el evento de una tarea y un nivel específicos.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">2</span>Instructor</strong>Distingue impedimento, falta de oportunidad, interrupción o resultado no satisfactorio.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">3</span>Instructor</strong>Sin evaluación, no se registra aprobación ni resultado no satisfactorio.<span class=\"flujo-nota-tiempo\">Numeral 5.4.1-5.4.2</span></div>\n</div>\n\n<span class=\"r06-badge\">🆕 R06 — nuevos plazos documentales (num. 5.4)</span>\n<div class=\"niveles-grid\">\n<div class=\"nivel-card\"><div class=\"nivel-numero\">3</div><div class=\"nivel-etiqueta\">días naturales</div><div class=\"nivel-rol\">El aprendiz tiene para remitir su documentación.</div></div>\n<div class=\"nivel-card\"><div class=\"nivel-numero\">5</div><div class=\"nivel-etiqueta\">días naturales</div><div class=\"nivel-rol\">Máximo del Instructor Coordinador para devolver documentación incompleta.</div></div>\n<div class=\"nivel-card\"><div class=\"nivel-numero\">3</div><div class=\"nivel-etiqueta\">días naturales</div><div class=\"nivel-rol\">El aprendiz tiene para atender las observaciones. La devolución no acredita el nivel.</div></div>\n</div>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">3</span>Evaluación de la instrucción (num. 5.6)</div>\n<p>Al terminar cada actividad, el IVA Aprendiz evalúa al instructor y al programa ingresando a su perfil en el <strong>Módulo OJT de la Plataforma de Capacitación de la AFAC</strong>. Es confidencial y complementaria: no modifica el nivel acreditado ni determina por sí sola la continuidad del instructor.</p>\n</div>\n\n<div class=\"bloque\">\n<div class=\"bloque-titulo\"><span class=\"bloque-num\">4</span>Evaluación del Programa OJT y mejora (Cap. 6)</div>\n<div class=\"flujo-diagrama\">\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">1</span>Paso 1.1</strong>Evaluar el Programa OJT.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">2</span>Paso 1.2</strong>Comunicar los hallazgos.</div>\n<div class=\"flujo-flecha\">→</div>\n<div class=\"flujo-paso\"><strong><span class=\"flujo-paso-num\">3</span>Paso 1.3</strong>Implementar mejoras.<span class=\"flujo-nota-tiempo\">Numeral 6.2</span></div>\n</div>\n<p>Este ciclo es la razón por la que tu opinión y tus registros importan: son insumo directo para mejorar el programa.</p>\n</div>\n",
+      "checkpoint": {
+        "pregunta": "Terminaste tu evento de entrenamiento un jueves. ¿Cuánto tiempo tienes, como máximo, para remitir tu documentación?",
+        "opciones": [
+          {
+            "id": "a",
+            "texto": "3 días naturales"
+          },
+          {
+            "id": "b",
+            "texto": "5 días naturales"
+          },
+          {
+            "id": "c",
+            "texto": "No hay plazo, mientras se remita antes del cierre del programa"
+          }
+        ],
+        "correcta": "a",
+        "explicacion": "El aprendiz cuenta con un plazo máximo de 3 días naturales para remitir la documentación (numeral 5.4, novedad R06). Si está incompleta, el Instructor Coordinador la devuelve en máximo 5 días, y tú tienes otros 3 días para corregir — la devolución no acredita el nivel."
+      },
+      "checklist": [
+        "El siguiente nivel solo se programa tras la aprobación técnica del anterior — nunca por revisión documental automática",
+        "Tengo 3 días naturales para remitir mi documentación tras cada evento",
+        "Mi evaluación al instructor se hace en el Módulo OJT de la Plataforma de Capacitación — es confidencial y complementaria",
+        "El ciclo de mejora es: evaluar → comunicar hallazgos → implementar mejoras"
+      ]
     }
+  },
+  "respuestas": {
+    "p1": "b",
+    "p2": "b",
+    "p3": "a"
+  }
 }
