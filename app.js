@@ -542,7 +542,7 @@ function abrirModulo(numero) {
             <div class="checkpoint-box" id="checkpointBox${numero}">
                 <div class="checkpoint-titulo">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 13 11 15.5 15.5 10.5"/><rect x="5" y="4" width="14" height="17" rx="1.5"/></svg>
-                    Punto de chequeo
+                    Actividad del módulo
                 </div>
                 <p class="checkpoint-pregunta">${m.checkpoint.pregunta}</p>
                 <div class="checkpoint-opciones">${opcionesHtml}</div>
@@ -556,7 +556,7 @@ function abrirModulo(numero) {
             </div>
 
             <button class="btn-principal" style="width:auto;" id="btnCompletarModulo${numero}" onclick="completarModulo(${numero})" ${yaCompleto ? "" : "disabled"}>
-                ${yaCompleto ? "Módulo completado ✓ (repasar no reinicia tu progreso)" : "Responde el checkpoint para habilitar este botón"}
+                ${yaCompleto ? "Módulo completado ✓ (repasar no reinicia tu progreso)" : "Responde la actividad para habilitar este botón"}
             </button>
         </div>
     `;
@@ -696,7 +696,7 @@ function irPaso(n) {
         linea.classList.toggle("completado", idx < n);
     });
 
-    const etiquetas = ["Bienvenida", "Objetivos", "Contenido", "Recursos", "Toma nota", "Evaluación"];
+    const etiquetas = ["Bienvenida", "Objetivos", "Contenido", "Recursos", "Puntos clave", "Evaluación"];
     const contador = document.getElementById("rutaContador");
     if (contador) contador.textContent = `Paso ${n} de ${TOTAL_PASOS} · ${etiquetas[n - 1]}`;
 
