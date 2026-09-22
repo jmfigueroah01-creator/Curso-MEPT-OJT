@@ -1206,6 +1206,80 @@ footer p {
     gap: 8px;
 }
 
+.tarjetas-objetivo {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.tarjetas-objetivo li {
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 18px 14px;
+    text-align: center;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--texto);
+}
+
+.tarjetas-objetivo-svg {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--azul);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+}
+
+.tarjetas-objetivo-svg svg {
+    width: 17px;
+    height: 17px;
+}
+
+.lista-icono {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+    display: grid;
+    gap: 8px;
+}
+
+.lista-icono li {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    background: var(--fondo);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+
+.lista-icono-svg {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--azul);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.lista-icono-svg svg {
+    width: 14px;
+    height: 14px;
+}
+
 .lista-objetivo li {
     position: relative;
     padding: 10px 14px 10px 38px;
@@ -1230,6 +1304,9 @@ footer p {
 
 @media (max-width: 700px) {
     .modalidad-tarjetas {
+        grid-template-columns: 1fr;
+    }
+    .tarjetas-objetivo {
         grid-template-columns: 1fr;
     }
     .ruta-punto-etiqueta {
