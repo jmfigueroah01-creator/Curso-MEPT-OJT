@@ -281,13 +281,11 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
     letter-spacing: 0.09em;
 }
-
 .header-usuario {
     position: absolute;
-    top: 0;                   /* Mantiene la altura superior original */
-    right: 0;                 /* Referencia al borde derecho */
-    margin-right: 180px;      /* <--- Esto lo desplaza hacia la izquierda */
-    display: none;
+    top: 0;
+    right: max(4%, calc((100% - 1000px) / 2)); /* Calcula automáticamente el borde de los 1000px */
+    display: flex;
     align-items: center;
     gap: 8px;
     background: rgba(255, 255, 255, 0.08);
