@@ -281,6 +281,12 @@ function mostrarApp(promesaContenido) {
                 headerUsuario.classList.toggle("visible", Boolean(nombre));
             }
 
+            const saludoBienvenida = document.getElementById("saludoBienvenida");
+            if (saludoBienvenida) {
+                const primerNombre = nombre ? nombre.trim().split(/\s+/)[0] : "";
+                saludoBienvenida.textContent = primerNombre ? `Bienvenido(a), ${primerNombre}` : "Bienvenido(a)";
+            }
+
             cargarProgreso();
             renderRuta();
             actualizarProgreso();
