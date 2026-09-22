@@ -648,20 +648,20 @@ main {
 
 .silabo-tarjeta {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     align-items: center;
     background: var(--fondo);
-    border-radius: 12px;
-    padding: 16px 18px;
-    border-left: 4px solid var(--azul);
+    border-radius: 14px;
+    padding: 22px 26px;
+    border-left: 5px solid var(--azul);
 }
 
 .silabo-m2 { border-left-color: var(--azul-medio); }
 .silabo-m3 { border-left-color: var(--oro); }
 
 .silabo-icono {
-    width: 44px;
-    height: 44px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
     background: var(--azul);
     color: white;
@@ -675,8 +675,8 @@ main {
 .silabo-m3 .silabo-icono { background: var(--oro); }
 
 .silabo-icono svg {
-    width: 20px;
-    height: 20px;
+    width: 27px;
+    height: 27px;
 }
 
 .silabo-info {
@@ -687,12 +687,12 @@ main {
 .silabo-meta {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 3px;
+    gap: 10px;
+    margin-bottom: 5px;
 }
 
 .silabo-modulo {
-    font-size: 11px;
+    font-size: 12.5px;
     font-weight: 700;
     color: var(--azul);
 }
@@ -701,21 +701,21 @@ main {
 .silabo-m3 .silabo-modulo { color: var(--oro); }
 
 .silabo-cap {
-    font-size: 10px;
+    font-size: 11px;
     color: var(--texto-suave);
     background: white;
-    padding: 2px 8px;
+    padding: 3px 10px;
     border-radius: 20px;
     border: 1px solid var(--borde);
 }
 
 .silabo-info h4 {
-    font-size: 15px;
-    margin: 0 0 3px;
+    font-size: 18px;
+    margin: 0 0 5px;
 }
 
 .silabo-info p {
-    font-size: 12.5px;
+    font-size: 13.5px;
     margin: 0;
     color: var(--texto-suave);
 }
