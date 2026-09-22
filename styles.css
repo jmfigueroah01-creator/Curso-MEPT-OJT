@@ -1072,7 +1072,7 @@ main {
 #barraProgreso {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, var(--azul), var(--oro));
+    background: var(--exito);
     transition: .4s;
 }
 
