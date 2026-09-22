@@ -292,11 +292,11 @@ h1, h2, h3, h4 {
 
 .header-inner {
     width: 92%;
-    max-width: 1000px;
+    max-width: 1180px;
     margin: 0 auto;       /* Centra este contenedor dentro del header */
     display: flex;
     justify-content: center;
-    position: relative;   /* Asegura que el botón se posicione dentro de estos 1000px */
+    position: relative;   /* Asegura que el botón se posicione dentro de estos 1180px */
 }
 
 .header-marca {
@@ -336,7 +336,7 @@ h1, h2, h3, h4 {
 .header-usuario {
     position: absolute;
     top: 0;
-    right: max(4%, calc((100% - 1000px) / 2)); /* Calcula automáticamente el borde de los 1000px */
+    right: max(4%, calc((100% - 1180px) / 2)); /* Calcula automáticamente el borde de los 1180px */
     display: flex;
     align-items: center;
     gap: 8px;
@@ -406,7 +406,7 @@ h1, h2, h3, h4 {
    ============================================================ */
 
 main {
-    max-width: 1000px;
+    max-width: 1180px;
     width: 92%;
     margin: 20px auto;
     padding: 0 20px;
