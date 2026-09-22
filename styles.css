@@ -238,8 +238,8 @@ h1, h2, h3, h4 {
 }
 
 .header-inner {
-    width: 92%;
-    max-width: 1400px;
+    width: 80%;
+    max-width: 1000px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -283,8 +283,9 @@ h1, h2, h3, h4 {
 
 .header-usuario {
     position: absolute;
-    top: 0;
-    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
     display: none;
     align-items: center;
     gap: 8px;
