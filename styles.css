@@ -463,37 +463,37 @@ main {
 }
 
 .bienvenida-centrada {
-    text-align: center;
-    padding: 12px 0 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    text-align: left;
+    padding: 4px 0 28px;
     margin-bottom: 6px;
     border-bottom: 1px solid var(--borde);
 }
 
-.bienvenida-fila {
-    display: inline-flex;
-    align-items: center;
-    gap: 22px;
-    text-align: left;
-    max-width: 520px;
-}
-
 .bienvenida-imagen {
-    width: 84px;
-    height: 84px;
+    width: 116px;
+    height: 116px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--oro);
+    border: 4px solid var(--oro);
     flex-shrink: 0;
     animation: flotar 3s ease-in-out infinite;
 }
 
-.bienvenida-texto h2 {
-    font-size: 26px;
-    margin: 0 0 6px;
+.bienvenida-texto {
+    flex: 1;
+    min-width: 0;
 }
 
-.bienvenida-texto .subtitulo-hero {
-    margin: 0;
+.bienvenida-texto h2 {
+    font-size: 32px;
+    margin: 0 0 14px;
+}
+
+.bienvenida-texto p {
+    text-align: justify;
 }
 
 .subtitulo-hero {
@@ -988,7 +988,7 @@ footer p {
 .ruta-embarque {
     display: flex;
     align-items: flex-start;
-    max-width: 560px;
+    max-width: 680px;
     margin: 0 auto 6px;
 }
 
@@ -996,18 +996,18 @@ footer p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
     font-family: inherit;
     flex-shrink: 0;
-    width: 58px;
+    width: 68px;
 }
 
 .ruta-punto-icono {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: 1.5px solid var(--borde);
     background: white;
@@ -1019,16 +1019,16 @@ footer p {
 }
 
 .ruta-punto-icono svg {
-    width: 16px;
-    height: 16px;
+    width: 19px;
+    height: 19px;
 }
 
 .ruta-punto-etiqueta {
-    font-size: 10px;
+    font-size: 11.5px;
     font-weight: 600;
     color: var(--texto-suave);
     text-align: center;
-    line-height: 1.15;
+    line-height: 1.2;
 }
 
 .ruta-punto.activo .ruta-punto-icono {
@@ -1051,7 +1051,7 @@ footer p {
     flex: 1;
     height: 1.5px;
     background: var(--borde);
-    margin-top: 18px;
+    margin-top: 22px;
     transition: .2s;
 }
 
