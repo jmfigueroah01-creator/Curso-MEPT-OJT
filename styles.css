@@ -462,24 +462,21 @@ main {
     50% { transform: translateY(-6px); }
 }
 
-.bienvenida-centrada {
+.bienvenida-fila {
     display: flex;
     align-items: flex-start;
     gap: 28px;
     text-align: left;
-    padding: 4px 0 28px;
-    margin-bottom: 6px;
-    border-bottom: 1px solid var(--borde);
+    margin-bottom: 18px;
 }
 
 .bienvenida-imagen {
-    width: 116px;
-    height: 116px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--oro);
     flex-shrink: 0;
-    animation: flotar 3s ease-in-out infinite;
 }
 
 .bienvenida-texto {
