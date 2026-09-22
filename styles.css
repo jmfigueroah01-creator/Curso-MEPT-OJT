@@ -283,9 +283,9 @@ h1, h2, h3, h4 {
 
 .header-usuario {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
+    top: 0;                   /* Mantiene la altura superior original */
+    right: 0;                 /* Referencia al borde derecho */
+    margin-right: 180px;      /* <--- Esto lo desplaza hacia la izquierda */
     display: none;
     align-items: center;
     gap: 8px;
