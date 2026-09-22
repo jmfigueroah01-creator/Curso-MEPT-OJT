@@ -506,6 +506,44 @@ function renderRuta() {
    CONTENIDO DE MÓDULOS
    ============================================================ */
 
+/* ============================================================
+   PRESENTACIÓN DEL MÓDULO (PowerPoint)
+   ============================================================
+   Cuando m.presentacion tenga el nombre de archivo (ej. "modulo1.pptx"),
+   subido al mismo repositorio que index.html, se muestra embebido con
+   el visor de Office Online. Mientras esté vacío, muestra "Próximamente".
+   ============================================================ */
+
+function renderPresentacionModulo(m, numero) {
+    if (!m.presentacion) {
+        return `
+            <div class="bloque">
+            <div class="bloque-titulo"><span class="bloque-num">P</span>Presentación del módulo</div>
+            <div class="presentacion-proximamente">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4.5" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16.5V20"/></svg>
+                <p>Presentación en preparación — próximamente disponible.</p>
+            </div>
+            </div>
+        `;
+    }
+
+    const urlArchivo = new URL(m.presentacion, window.location.href).href;
+    const urlVisor = "https://view.officeapps.live.com/op/embed.aspx?src=" + encodeURIComponent(urlArchivo);
+
+    return `
+        <div class="bloque">
+        <div class="bloque-titulo"><span class="bloque-num">P</span>Presentación del módulo</div>
+        <div class="presentacion-embebida">
+            <iframe src="${urlVisor}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="presentacion-acciones">
+            <a class="btn-secundario" href="${urlVisor}" target="_blank" rel="noopener">Ver en pantalla completa</a>
+            <a class="btn-secundario" href="${urlArchivo}" download>Descargar .pptx</a>
+        </div>
+        </div>
+    `;
+}
+
 function abrirModulo(numero) {
     if (!estaDesbloqueado(numero)) {
         alert("Primero debes completar el módulo " + (numero - 1) + ".");
@@ -536,6 +574,8 @@ function abrirModulo(numero) {
             </div>
 
             <p class="contexto-modulo">${m.contexto}</p>
+
+            ${renderPresentacionModulo(m, numero)}
 
             ${m.microbloques_html}
 

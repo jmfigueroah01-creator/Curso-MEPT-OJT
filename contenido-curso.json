@@ -31,7 +31,8 @@
         "Mi acreditación se limita a las tareas/subtareas evaluadas y aprobadas — no es automática",
         "Existen 3 niveles de responsabilidad: dirección institucional, responsabilidad operativa de mi área, y ejecución directa",
         "El CIAAC coordina, pero mi Dirección/Comandancia sigue siendo responsable de mi entrenamiento"
-      ]
+      ],
+      "presentacion": ""
     },
     "2": {
       "titulo": "Requisitos de implementación del Programa OJT",
@@ -64,7 +65,8 @@
         "Cada nivel necesita evento y fecha distintos — nunca se acreditan dos niveles el mismo día",
         "La evidencia de un evento no se reutiliza para otro nivel ni otra tarea",
         "Un cambio documental (modificación de tareas) no acredita automáticamente nuevas tareas o niveles"
-      ]
+      ],
+      "presentacion": ""
     },
     "3": {
       "titulo": "Proceso de ejecución del Programa OJT",
@@ -97,7 +99,8 @@
         "Tengo 3 días naturales para remitir mi documentación tras cada evento",
         "Mi evaluación al instructor se hace en el Módulo OJT de la Plataforma de Capacitación — es confidencial y complementaria",
         "El ciclo de mejora es: evaluar → comunicar hallazgos → implementar mejoras"
-      ]
+      ],
+      "presentacion": ""
     }
   },
   "respuestas": {

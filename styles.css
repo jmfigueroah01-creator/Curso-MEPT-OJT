@@ -717,6 +717,12 @@ main {
     border-radius: 14px;
     padding: 20px 22px;
     margin: 16px 0;
+    text-decoration: none;
+    transition: background .15s;
+}
+
+.recursos-destacado:hover {
+    background: var(--azul-medio);
 }
 
 .recursos-destacado-icono {
@@ -749,6 +755,18 @@ main {
     margin: 0;
 }
 
+.recursos-destacado-descarga {
+    margin-left: auto;
+    color: rgba(255,255,255,0.6);
+    flex-shrink: 0;
+    display: flex;
+}
+
+.recursos-destacado-descarga svg {
+    width: 18px;
+    height: 18px;
+}
+
 .recursos-lista {
     list-style: none;
     padding: 0;
@@ -767,6 +785,24 @@ main {
 
 .recursos-lista li:last-child {
     border-bottom: none;
+}
+
+.recursos-lista-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    font-size: 13.5px;
+    color: var(--texto);
+    text-decoration: none;
+}
+
+.recursos-lista-descarga {
+    width: 16px;
+    height: 16px;
+    margin-left: auto;
+    color: var(--texto-suave);
+    flex-shrink: 0;
 }
 
 .recursos-lista-icono {
@@ -1779,6 +1815,56 @@ footer p {
 }
 
 /* --- Checkpoint de autoevaluación por módulo --- */
+
+.presentacion-proximamente {
+    background: var(--fondo);
+    border: 1px dashed var(--borde);
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--texto-suave);
+}
+
+.presentacion-proximamente svg {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 10px;
+    color: var(--bloqueado);
+}
+
+.presentacion-proximamente p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.presentacion-embebida {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: var(--fondo);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.presentacion-embebida iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.presentacion-acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.presentacion-acciones .btn-secundario {
+    text-decoration: none;
+    display: inline-block;
+}
 
 .checkpoint-box {
     background: var(--superficie);
