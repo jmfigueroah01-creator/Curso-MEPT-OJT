@@ -988,25 +988,26 @@ footer p {
 .ruta-embarque {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 6px;
+    max-width: 460px;
+    margin: 0 auto 6px;
 }
 
 .ruta-punto {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     background: none;
     border: none;
     cursor: pointer;
     font-family: inherit;
     flex-shrink: 0;
-    width: 64px;
+    width: 50px;
 }
 
 .ruta-punto-icono {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     border: 1.5px solid var(--borde);
     background: white;
@@ -1018,16 +1019,16 @@ footer p {
 }
 
 .ruta-punto-icono svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 
 .ruta-punto-etiqueta {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 600;
     color: var(--texto-suave);
     text-align: center;
-    line-height: 1.2;
+    line-height: 1.15;
 }
 
 .ruta-punto.activo .ruta-punto-icono {
@@ -1050,7 +1051,7 @@ footer p {
     flex: 1;
     height: 1.5px;
     background: var(--borde);
-    margin-top: 17px;
+    margin-top: 15px;
     transition: .2s;
 }
 
@@ -1063,6 +1064,7 @@ footer p {
     font-weight: 600;
     color: var(--oro);
     margin: 0 0 24px;
+    text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.04em;
 }
