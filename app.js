@@ -1007,6 +1007,18 @@ function normalizarTexto(v) {
     return (v || "").trim().toLowerCase().replace(/\s+/g, " ");
 }
 
+const FIRMAS_SVG = {
+    evr: '<svg viewBox="0 0 90 30" width="60" height="20"><path d="M5,20 C10,8 14,26 18,14 S26,6 30,16 S38,24 44,10 S54,8 60,18 S70,22 76,12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    evd: '<svg viewBox="0 0 90 30" width="60" height="20"><path d="M6,18 Q14,4 20,18 T34,12 Q42,24 50,10 T64,16 Q72,6 78,20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
+};
+
+function alternarFirma(el) {
+    const firmado = el.classList.toggle("firmado");
+    el.innerHTML = firmado
+        ? FIRMAS_SVG[el.dataset.tipo]
+        : '<span class="firma-placeholder">Toca para firmar</span>';
+}
+
 function verificarFormatoBitacora() {
     const campos = document.querySelectorAll(".campo-calificable");
     let contestados = 0;

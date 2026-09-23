@@ -2750,6 +2750,163 @@ footer p {
     }
 }
 
+.evidencias-titulo {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--azul);
+    margin: 20px 0 4px;
+}
+
+.evidencias-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.evidencia-item {
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.evidencia-item summary {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--azul);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.evidencia-icono {
+    flex-shrink: 0;
+}
+
+.evidencia-fecha {
+    margin-left: auto;
+    font-size: 10.5px;
+    font-weight: 400;
+    color: var(--texto-suave);
+}
+
+.evidencia-correo, .evidencia-lista-doc, .evidencia-minuta {
+    background: white;
+    border: 1px solid #D9D7CE;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.evidencia-correo-asunto {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto);
+    margin: 0 0 8px;
+}
+
+.evidencia-correo-meta {
+    font-size: 10.5px;
+    color: var(--texto-suave);
+    margin: 0 0 3px;
+}
+
+.evidencia-correo-cuerpo {
+    font-size: 11.5px;
+    color: var(--texto);
+    line-height: 1.6;
+    margin: 10px 0 0;
+}
+
+.evidencia-lista-titulo {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--azul);
+    margin: 0 0 2px;
+}
+
+.evidencia-lista-meta {
+    font-size: 9px;
+    color: var(--texto-suave);
+    margin: 0 0 10px;
+}
+
+.evidencia-checklist {
+    font-size: 10.5px;
+    color: var(--texto);
+    line-height: 1.8;
+}
+
+.evidencia-firmas-doc {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed #D9D7CE;
+}
+
+.evidencia-firmas-doc svg {
+    color: var(--azul-medio);
+}
+
+.evidencia-firma-nombre {
+    font-size: 9px;
+    color: var(--texto);
+    margin: 2px 0 0;
+    text-align: center;
+}
+
+.evidencia-firma-rol {
+    font-size: 8px;
+    color: var(--texto-suave);
+    margin: 0;
+    text-align: center;
+}
+
+.evidencia-minuta-etiqueta {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--oro);
+    text-transform: uppercase;
+    margin: 10px 0 3px;
+}
+
+.evidencia-minuta-etiqueta:first-of-type {
+    margin-top: 0;
+}
+
+.evidencia-minuta-texto {
+    font-size: 10.5px;
+    color: var(--texto);
+    line-height: 1.55;
+    margin: 0;
+}
+
+.firma-clic {
+    margin-top: 4px;
+    border: 1.5px dashed var(--borde);
+    border-radius: 6px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.firma-placeholder {
+    font-size: 9px;
+    color: var(--texto-suave);
+}
+
+.firma-clic.firmado {
+    border: 1.5px solid var(--azul-medio);
+    border-style: solid;
+    background: rgba(27,74,120,0.06);
+    color: var(--azul-medio);
+}
+
 .observaciones-campo {
     width: 100%;
     min-width: 120px;
