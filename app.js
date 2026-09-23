@@ -596,8 +596,11 @@ function abrirModulo(numero) {
             </div>
 
             <div class="objetivo-desempeno">
-                <span>Al terminar podrás</span>
-                <p>${m.objetivo_desempeno}</p>
+                <span class="objetivo-desempeno-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span>
+                <div>
+                    <span>Al terminar podrás</span>
+                    <p>${m.objetivo_desempeno}</p>
+                </div>
             </div>
 
             <p class="temario-eyebrow">Temario de este módulo</p>
@@ -615,11 +618,6 @@ function abrirModulo(numero) {
                     </button>
                     <div class="acc-body">
                         ${renderPresentacionModulo(m, numero)}
-
-                        <div class="checklist-modulo">
-                            <p class="checklist-modulo-titulo">Resumen</p>
-                            <ul>${m.checklist.map(item => `<li>${item}</li>`).join("")}</ul>
-                        </div>
                     </div>
                 </div>
 
