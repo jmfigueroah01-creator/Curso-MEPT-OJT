@@ -2659,7 +2659,7 @@ footer p {
 
 .bitacora-form-tabla {
     width: 100%;
-    min-width: 780px;
+    min-width: 900px;
     border-collapse: collapse;
     font-size: 11px;
 }
@@ -2748,6 +2748,18 @@ footer p {
     .formato-datos-grid, .formato-firmas-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.observaciones-campo {
+    width: 100%;
+    min-width: 120px;
+    padding: 6px 7px;
+    border: 1.5px solid var(--borde);
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
 }
 
 .clasificacion-resultado {
