@@ -42,7 +42,8 @@
         "Funciones y responsabilidades: Director del CIAAC, CPEPT, JDOP y JDAE",
         "Funciones y responsabilidades: ICOJT, IPOJT, IOJT e IVA Aprendiz"
       ],
-      "infograma": ""
+      "infograma": "",
+      "presentacion_pdf": ""
     },
     "2": {
       "titulo": "Requisitos de implementación del Programa OJT",
@@ -84,7 +85,8 @@
         "Especialidades técnicas del personal IVA (24 especialidades)",
         "Designación de instructores OJT y criterios de selección"
       ],
-      "infograma": ""
+      "infograma": "",
+      "presentacion_pdf": ""
     },
     "3": {
       "titulo": "Proceso de ejecución del Programa OJT",
@@ -127,7 +129,8 @@
         "Modificación, adición o exclusión de tareas/subtareas",
         "Herramienta electrónica de gestión OJT"
       ],
-      "infograma": ""
+      "infograma": "",
+      "presentacion_pdf": ""
     }
   },
   "respuestas": {

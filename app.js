@@ -572,6 +572,9 @@ function renderPresentacionModulo(m, numero) {
 
     const urlArchivo = new URL(m.presentacion, window.location.href).href;
     const urlVisor = "https://view.officeapps.live.com/op/embed.aspx?src=" + encodeURIComponent(urlArchivo);
+    const botonPdf = m.presentacion_pdf
+        ? `<a class="btn-secundario" href="${new URL(m.presentacion_pdf, window.location.href).href}" target="_blank" rel="noopener">Descargar PDF</a>`
+        : "";
 
     return `
         <div class="bloque">
@@ -581,7 +584,7 @@ function renderPresentacionModulo(m, numero) {
         </div>
         <div class="presentacion-acciones">
             <a class="btn-secundario" href="${urlVisor}" target="_blank" rel="noopener">Ver en pantalla completa</a>
-            <a class="btn-secundario" href="${urlArchivo}" download>Descargar .pptx</a>
+            ${botonPdf}
         </div>
         </div>
     `;
