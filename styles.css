@@ -2456,6 +2456,46 @@ footer p {
     font-weight: 600;
 }
 
+.conclusiones-caja {
+    margin-top: 16px;
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 22px 24px;
+    gap: 20px;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 30px;
+}
+
+.conclusiones-caja::before {
+    content: "";
+    position: absolute;
+    left: 24px;
+    top: 22px;
+    bottom: 22px;
+    width: 4px;
+    border-radius: 2px;
+    background: var(--oro);
+}
+
+.conclusiones-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--oro);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin: 0 0 10px;
+}
+
+.conclusiones-caja ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13px;
+    color: var(--texto);
+    line-height: 1.7;
+}
+
 /* --- Clasificación por nivel y especialidad (Módulo 2) --- */
 
 .clasificacion-cabecera {

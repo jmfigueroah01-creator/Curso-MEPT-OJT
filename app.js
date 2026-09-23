@@ -923,6 +923,8 @@ function intentarEmparejarDinamica() {
         if (hechos === total) {
             const msg = document.getElementById("dinamicaCompleta");
             if (msg) msg.style.display = "block";
+            const conclusiones = document.getElementById("dinamicaConclusiones");
+            if (conclusiones) conclusiones.style.display = "flex";
             habilitarBotonCompletar(moduloEnPantalla);
         }
     } else {
