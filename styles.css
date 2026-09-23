@@ -2518,7 +2518,30 @@ footer p {
     font-size: 12.5px;
     line-height: 1.6;
     color: var(--texto);
+    margin: 0 0 10px;
+}
+
+.formato-caso p:last-child {
+    margin-bottom: 0;
+}
+
+.formato-caso-instrucciones-titulo {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azul);
+    margin: 14px 0 6px;
+}
+
+.formato-caso-instrucciones {
+    font-size: 12.5px;
+    color: var(--texto);
+    line-height: 1.65;
     margin: 0;
+    padding-left: 18px;
+}
+
+.formato-caso-instrucciones li {
+    margin-bottom: 4px;
 }
 
 .formato-replica {
@@ -3006,6 +3029,19 @@ footer p {
     font-family: inherit;
     resize: vertical;
     box-sizing: border-box;
+}
+
+.observaciones-campo:disabled {
+    background: var(--fondo);
+    color: var(--texto-suave);
+    cursor: not-allowed;
+}
+
+.observaciones-hint {
+    font-size: 9px;
+    color: var(--texto-suave);
+    margin: 4px 0 0;
+    font-style: italic;
 }
 
 .clasificacion-resultado {

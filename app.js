@@ -1012,11 +1012,39 @@ const FIRMAS_SVG = {
     evd: '<svg viewBox="0 0 100 36" width="60" height="22"><path d="M6,28 L16,6 L24,32 L34,10 L44,30 L54,8 L64,26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 };
 
+const MODELO_OBSERVACIONES_TEXTO = "15.1 Asistencia a la plática del 10/02/2026 (correo de convocatoria + lista de asistencia + minuta)\n15.2 Lista de verificación firmada el 17/02/2026\n15.3 Lista de verificación firmada el 24/02/2026";
+
+function revisarNivel3(prefijo) {
+    const ids = [`${prefijo}-n3-evr-ini`, `${prefijo}-n3-evr-fecha`, `${prefijo}-n3-evd-ini`, `${prefijo}-n3-evd-fecha`];
+    const todosLlenos = ids.every(id => {
+        const el = document.getElementById(id);
+        return el && el.value;
+    });
+
+    const rubEvr = document.getElementById(`${prefijo}-n3-evr-rub`);
+    const rubEvd = document.getElementById(`${prefijo}-n3-evd-rub`);
+    const ambasFirmadas = rubEvr && rubEvr.classList.contains("firmado") && rubEvd && rubEvd.classList.contains("firmado");
+
+    const obs = document.getElementById(`${prefijo}-obs`);
+    const hint = document.getElementById(`${prefijo}-obs-hint`);
+    if (!obs) return;
+
+    if (todosLlenos && ambasFirmadas) {
+        obs.disabled = false;
+        if (!obs.value) obs.value = MODELO_OBSERVACIONES_TEXTO;
+        obs.placeholder = "";
+        if (hint) hint.style.display = "none";
+    }
+}
+
 function alternarFirma(el) {
     const firmado = el.classList.toggle("firmado");
     el.innerHTML = firmado
         ? FIRMAS_SVG[el.dataset.tipo]
         : '<span class="firma-placeholder">Toca para firmar</span>';
+
+    const m = el.id.match(/^(.+)-n3-(evr|evd)-rub$/);
+    if (m) revisarNivel3(m[1]);
 }
 
 function verificarFormatoBitacora() {
@@ -1056,8 +1084,6 @@ function verificarFormatoBitacora() {
     resultado.className = "clasificacion-resultado " + (pct >= 80 ? "correcto" : "incorrecto");
     if (pct >= 80) {
         habilitarBotonCompletar(moduloEnPantalla);
-        const modelo = document.getElementById("modeloObservaciones");
-        if (modelo) modelo.classList.add("visible");
     }
 }
 
