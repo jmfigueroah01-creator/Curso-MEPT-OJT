@@ -618,7 +618,7 @@ function abrirModulo(numero) {
 
             <p class="temario-eyebrow">Temario de este módulo</p>
             <ul class="temario-lista">
-                ${m.temario.map((tema, i) => `<li><span class="temario-num">${i + 1}</span>${tema}</li>`).join("")}
+                ${m.temario.map((tema, i) => `<li><span class="temario-num">${numero}.${i + 1}</span>${tema}</li>`).join("")}
             </ul>
 
             <div class="modulo-acordeon">
@@ -1063,6 +1063,8 @@ function verificarVerdaderoFalso() {
 
     if (pct >= 80) {
         habilitarBotonCompletar(moduloEnPantalla);
+        const conclusiones = document.getElementById("modulo2Conclusiones");
+        if (conclusiones) conclusiones.style.display = "flex";
     }
 }
 
