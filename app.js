@@ -558,7 +558,7 @@ function renderInfograma(m) {
 }
 
 function renderPresentacionModulo(m, numero) {
-    if (!m.presentacion) {
+    if (!m.presentacion && !m.presentacion_pdf) {
         return `
             <div class="bloque">
             <div class="bloque-titulo"><span class="bloque-num">P</span>Presentación del módulo</div>
@@ -570,11 +570,26 @@ function renderPresentacionModulo(m, numero) {
         `;
     }
 
+    // Si ya existe el PDF, se embebe directo (evita exponer el .pptx editable vía el visor de Office).
+    if (m.presentacion_pdf) {
+        const urlPdf = new URL(m.presentacion_pdf, window.location.href).href;
+        return `
+            <div class="bloque">
+            <div class="bloque-titulo"><span class="bloque-num">P</span>Presentación del módulo</div>
+            <div class="presentacion-embebida">
+                <iframe src="${urlPdf}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="presentacion-acciones">
+                <a class="btn-secundario" href="${urlPdf}" target="_blank" rel="noopener">Ver en pantalla completa</a>
+                <a class="btn-secundario" href="${urlPdf}" target="_blank" rel="noopener">Descargar PDF</a>
+            </div>
+            </div>
+        `;
+    }
+
+    // Mientras no haya PDF, se embebe el .pptx vía Office Viewer (temporal).
     const urlArchivo = new URL(m.presentacion, window.location.href).href;
     const urlVisor = "https://view.officeapps.live.com/op/embed.aspx?src=" + encodeURIComponent(urlArchivo);
-    const botonPdf = m.presentacion_pdf
-        ? `<a class="btn-secundario" href="${new URL(m.presentacion_pdf, window.location.href).href}" target="_blank" rel="noopener">Descargar PDF</a>`
-        : "";
 
     return `
         <div class="bloque">
@@ -584,7 +599,6 @@ function renderPresentacionModulo(m, numero) {
         </div>
         <div class="presentacion-acciones">
             <a class="btn-secundario" href="${urlVisor}" target="_blank" rel="noopener">Ver en pantalla completa</a>
-            ${botonPdf}
         </div>
         </div>
     `;
