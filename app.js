@@ -694,6 +694,34 @@ function barajarDinamicaEmparejar() {
         contenedor.appendChild(figurasBarajadas[i]);
         contenedor.appendChild(funcionesBarajadas[i]);
     }
+
+    colorearDinamicaAleatoria(figurasBarajadas, funcionesBarajadas);
+}
+
+const PALETA_FIGURAS = ["#185FA5", "#993556", "#0E2A47", "#0F6E56", "#534AB7", "#993C1D"];
+const PALETA_SITUACIONES = ["#B98A2E", "#0F766E", "#7C3F9E", "#B5541D", "#1D6FA5", "#5B6E3F"];
+
+function colorearDinamicaAleatoria(figuras, funciones) {
+    const barajar = (arr) => {
+        const copia = [...arr];
+        for (let i = copia.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copia[i], copia[j]] = [copia[j], copia[i]];
+        }
+        return copia;
+    };
+
+    const coloresFiguras = barajar(PALETA_FIGURAS);
+    const coloresSituaciones = barajar(PALETA_SITUACIONES);
+
+    figuras.forEach((btn, i) => {
+        const icono = btn.querySelector(".dinamica-icono");
+        if (icono) icono.style.setProperty("--color-icono", coloresFiguras[i % coloresFiguras.length]);
+    });
+    funciones.forEach((btn, i) => {
+        const icono = btn.querySelector(".dinamica-icono");
+        if (icono) icono.style.setProperty("--color-icono", coloresSituaciones[i % coloresSituaciones.length]);
+    });
 }
 
 function alternarAcordeon(boton) {
