@@ -2905,57 +2905,69 @@ footer p {
 }
 
 .firma-clic[data-tipo="evr"].firmado {
-    border: 1.5px solid var(--azul);
-    background: rgba(14,42,71,0.07);
-    color: var(--azul);
+    border: 1.5px solid #0C2A4D;
+    background: #E6F1FB;
+    color: #0C2A4D;
 }
 
 .firma-clic[data-tipo="evd"].firmado {
-    border: 1.5px solid var(--oro);
-    background: rgba(185,138,46,0.08);
-    color: var(--oro);
+    border: 1.5px solid #8A6106;
+    background: #FAEEDA;
+    color: #8A6106;
 }
 
-.evidencia-compacta {
+.evidencia-carpeta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     margin-top: 10px;
 }
 
-.evidencia-mini-etiqueta {
-    font-size: 9.5px;
-    font-weight: 700;
-    color: var(--oro);
-    text-transform: uppercase;
-    margin: 12px 0 6px;
-}
-
-.evidencia-mini-etiqueta:first-child {
-    margin-top: 0;
-}
-
-.evidencia-correo-mini {
+.evidencia-doc {
     background: white;
-    border: 1px solid #D9D7CE;
-    border-radius: 6px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.evidencia-doc-header {
+    padding: 6px 12px;
+    font-size: 9px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: .02em;
+}
+
+.evidencia-doc-body {
     padding: 10px 12px;
 }
 
-.evidencia-correo-mini .evidencia-correo-meta {
+.evidencia-correo-meta {
     font-size: 9.5px;
+    color: var(--texto-suave);
     margin: 0 0 6px;
 }
 
-.evidencia-correo-mini .evidencia-correo-cuerpo {
+.evidencia-correo-cuerpo {
     font-size: 10.5px;
-    margin: 0;
+    color: var(--texto);
     font-style: italic;
+    margin: 0;
+    line-height: 1.5;
 }
 
-.evidencia-firmas-mini {
-    padding: 8px 12px;
-    background: white;
-    border: 1px solid #D9D7CE;
+.evidencia-firma-col {
+    text-align: center;
+    flex: 1;
+}
+
+.evidencia-firma-caja {
     border-radius: 6px;
-    margin-top: 0;
+    padding: 8px;
+}
+
+.evidencia-firma-caja svg {
+    display: block;
 }
 
 .modelo-observaciones {

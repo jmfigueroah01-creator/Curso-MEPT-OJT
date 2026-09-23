@@ -1008,8 +1008,8 @@ function normalizarTexto(v) {
 }
 
 const FIRMAS_SVG = {
-    evr: '<svg viewBox="0 0 90 30" width="60" height="20"><path d="M5,20 C10,8 14,26 18,14 S26,6 30,16 S38,24 44,10 S54,8 60,18 S70,22 76,12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
-    evd: '<svg viewBox="0 0 90 30" width="60" height="20"><path d="M6,18 Q14,4 20,18 T34,12 Q42,24 50,10 T64,16 Q72,6 78,20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
+    evr: '<svg viewBox="0 0 100 36" width="60" height="22"><path d="M6,20 C10,4 16,32 20,16 C24,4 30,4 32,18 C34,28 40,28 44,14 C48,2 54,2 58,16 S68,30 74,12 S86,4 92,20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+    evd: '<svg viewBox="0 0 100 36" width="60" height="22"><path d="M6,28 L16,6 L24,32 L34,10 L44,30 L54,8 L64,26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 };
 
 function alternarFirma(el) {
