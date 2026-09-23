@@ -667,7 +667,6 @@ function abrirModulo(numero) {
     `;
 
     barajarDinamicaEmparejar();
-    barajarCasosClasificacion();
     contenido.scrollIntoView({ behavior: "smooth" });
 }
 
@@ -942,69 +941,97 @@ function intentarEmparejarDinamica() {
    CLASIFICACIÓN POR NIVEL Y ESPECIALIDAD (Módulo 2)
    ============================================================ */
 
-function seleccionarNivel(boton) {
-    const fila = boton.closest(".caso-fila");
-    fila.querySelectorAll(".nivel-pill").forEach(p => p.classList.remove("activo"));
-    boton.classList.add("activo");
-    actualizarContadorClasificacion();
-}
-
-function actualizarContadorClasificacion() {
-    const filas = document.querySelectorAll(".caso-fila");
-    const contador = document.getElementById("clasificacionContador");
-    if (!contador) return;
-
-    const completados = Array.from(filas).filter(f =>
-        f.querySelector(".nivel-pill.activo") && f.querySelector(".caso-especialidad").value
-    ).length;
-
-    contador.textContent = `${completados} de ${filas.length} completados`;
-}
-
-function barajarCasosClasificacion() {
-    const contenedor = document.querySelector(".clasificacion-lista");
-    if (!contenedor) return;
-
-    const filas = Array.from(contenedor.querySelectorAll(".caso-fila"));
-    for (let i = filas.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [filas[i], filas[j]] = [filas[j], filas[i]];
-    }
-    filas.forEach(f => contenedor.appendChild(f));
-}
-
-function verificarClasificacion() {
-    const filas = document.querySelectorAll(".caso-fila");
+function verificarIncumplimientos() {
+    const opciones = document.querySelectorAll(".incumplimiento-opcion input[type='checkbox']");
     let correctas = 0;
+    let marcadas = 0;
+
+    opciones.forEach(op => {
+        const label = op.closest(".incumplimiento-opcion");
+        const esperada = op.dataset.correcta === "true";
+        label.classList.remove("incumplimiento-ok", "incumplimiento-mal");
+
+        if (op.checked) {
+            marcadas++;
+            if (esperada) {
+                correctas++;
+                label.classList.add("incumplimiento-ok");
+            } else {
+                label.classList.add("incumplimiento-mal");
+            }
+        } else if (esperada) {
+            label.classList.add("incumplimiento-mal");
+        }
+    });
+
+    const totalCorrectas = Array.from(opciones).filter(op => op.dataset.correcta === "true").length;
+    const resultado = document.getElementById("incumplimientosResultado");
+    if (resultado) {
+        resultado.style.display = "block";
+        const acerto = correctas === totalCorrectas && marcadas === totalCorrectas;
+        resultado.className = "clasificacion-resultado " + (acerto ? "correcto" : "incorrecto");
+        resultado.textContent = acerto
+            ? `Identificaste los ${totalCorrectas} incumplimientos correctamente.`
+            : `Encontraste ${correctas} de ${totalCorrectas} incumplimientos reales. Revisa las opciones marcadas en rojo.`;
+    }
+
+    const retro = document.getElementById("retroalimentacionCaso");
+    if (retro) retro.style.display = "block";
+
+    if (correctas === totalCorrectas && marcadas === totalCorrectas) {
+        desbloquearActividad22();
+    }
+}
+
+function desbloquearActividad22() {
+    const bloque = document.getElementById("bloqueActividad22");
+    const candado = document.getElementById("candadoActividad22");
+    const contenido = document.getElementById("contenidoActividad22");
+    if (bloque) bloque.classList.remove("bloque-bloqueado");
+    if (candado) candado.style.display = "none";
+    if (contenido) contenido.style.display = "block";
+}
+
+function seleccionarVF(boton) {
+    const fila = boton.closest(".vf-fila");
+    fila.querySelectorAll(".vf-btn").forEach(b => b.classList.remove("activo"));
+    boton.classList.add("activo");
+}
+
+function verificarVerdaderoFalso() {
+    const filas = document.querySelectorAll(".vf-fila");
+    let correctas = 0;
+    let contestadas = 0;
 
     filas.forEach(fila => {
-        const nivelPill = fila.querySelector(".nivel-pill.activo");
-        const espSel = fila.querySelector(".caso-especialidad");
-        const nivelVal = nivelPill ? nivelPill.dataset.valor : "";
-        const ok = nivelVal === fila.dataset.nivel && espSel.value === fila.dataset.especialidad;
+        const btnActivo = fila.querySelector(".vf-btn.activo");
+        const exp = fila.querySelector(".vf-explicacion");
+        fila.classList.remove("vf-ok", "vf-mal");
 
-        fila.classList.remove("caso-correcto", "caso-incorrecto");
-        if (!nivelVal || !espSel.value) return;
-        fila.classList.add(ok ? "caso-correcto" : "caso-incorrecto");
+        if (!btnActivo) return;
+        contestadas++;
+
+        const ok = btnActivo.dataset.valor === fila.dataset.correcta;
+        fila.classList.add(ok ? "vf-ok" : "vf-mal");
         if (ok) correctas++;
+        if (exp) exp.style.display = "block";
     });
 
     const total = filas.length;
-    const contestadas = Array.from(filas).filter(f => f.querySelector(".nivel-pill.activo") && f.querySelector(".caso-especialidad").value).length;
-    const resultado = document.getElementById("clasificacionResultado");
+    const resultado = document.getElementById("vfResultado");
     if (!resultado) return;
 
     resultado.style.display = "block";
     if (contestadas < total) {
         resultado.className = "clasificacion-resultado aviso";
-        resultado.textContent = `Responde los ${total} casos antes de verificar (llevas ${contestadas}).`;
+        resultado.textContent = `Responde las ${total} afirmaciones antes de verificar (llevas ${contestadas}).`;
         return;
     }
 
     const pct = Math.round((correctas / total) * 100);
     resultado.className = "clasificacion-resultado " + (pct >= 80 ? "correcto" : "incorrecto");
-    resultado.textContent = `${correctas} de ${total} correctos (${pct}%).` +
-        (pct >= 80 ? " Buen resultado — ya puedes completar el módulo." : " Revisa los casos marcados en rojo e inténtalo de nuevo.");
+    resultado.textContent = `${correctas} de ${total} correctas (${pct}%).` +
+        (pct >= 80 ? " Buen resultado — ya puedes completar el módulo." : " Repasa el numeral indicado en las que fallaste e inténtalo de nuevo.");
 
     if (pct >= 80) {
         habilitarBotonCompletar(moduloEnPantalla);
