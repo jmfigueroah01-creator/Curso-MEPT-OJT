@@ -3020,6 +3020,11 @@ footer p {
     cursor: pointer;
 }
 
+.firma-clic-nombre {
+    height: 44px;
+    margin-top: 6px;
+}
+
 .firma-placeholder {
     font-size: 9px;
     color: var(--texto-suave);
