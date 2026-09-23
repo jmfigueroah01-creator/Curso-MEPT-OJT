@@ -1000,25 +1000,54 @@ function verificarClasificacion() {
 
 
 /* ============================================================
-   PRÁCTICA: LLENADO DE BITÁCORA OJT (Módulo 3)
+   LLENADO DEL FORMATO Y BITÁCORA OJT (Módulo 3)
    ============================================================ */
 
-function alternarModeloLlenado() {
-    const modelo = document.getElementById("modeloLlenado");
-    const btn = document.getElementById("btnModeloLlenado");
-    if (!modelo) return;
-    const visible = modelo.style.display === "block";
-    modelo.style.display = visible ? "none" : "block";
-    if (btn) btn.textContent = visible ? "Ver modelo de llenado" : "Ocultar modelo de llenado";
+function normalizarTexto(v) {
+    return (v || "").trim().toLowerCase().replace(/\s+/g, " ");
 }
 
-function confirmarPracticaBitacora() {
-    const btn = document.getElementById("btnConfirmarBitacora");
-    if (btn) {
-        btn.disabled = true;
-        btn.textContent = "Práctica registrada ✓";
+function verificarFormatoBitacora() {
+    const campos = document.querySelectorAll(".campo-calificable");
+    let contestados = 0;
+    let correctos = 0;
+
+    campos.forEach(campo => {
+        const valor = campo.value;
+        const correcta = campo.dataset.correcta;
+        campo.classList.remove("campo-correcto", "campo-incorrecto");
+
+        if (!valor) return;
+        contestados++;
+
+        const ok = campo.type === "date"
+            ? valor === correcta
+            : normalizarTexto(valor) === normalizarTexto(correcta);
+
+        campo.classList.add(ok ? "campo-correcto" : "campo-incorrecto");
+        if (ok) correctos++;
+    });
+
+    const total = campos.length;
+    const resultado = document.getElementById("formatoResultado");
+    if (!resultado) return;
+
+    resultado.style.display = "block";
+
+    if (contestados < total) {
+        resultado.className = "clasificacion-resultado aviso";
+        resultado.textContent = `Llena los ${total} campos antes de verificar (llevas ${contestados}).`;
+        return;
     }
-    habilitarBotonCompletar(moduloEnPantalla);
+
+    const pct = Math.round((correctos / total) * 100);
+    resultado.className = "clasificacion-resultado " + (pct >= 80 ? "correcto" : "incorrecto");
+    resultado.textContent = `${correctos} de ${total} campos correctos (${pct}%).` +
+        (pct >= 80 ? " Buen resultado — ya puedes completar el módulo." : " Revisa los campos marcados en rojo y vuelve a verificar.");
+
+    if (pct >= 80) {
+        habilitarBotonCompletar(moduloEnPantalla);
+    }
 }
 
 

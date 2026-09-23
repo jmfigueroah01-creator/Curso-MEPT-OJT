@@ -2497,6 +2497,258 @@ footer p {
     color: var(--texto);
 }
 
+.formato-caso {
+    background: rgba(185,138,46,0.08);
+    border: 1px solid var(--oro-claro);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 14px 0 20px;
+}
+
+.formato-caso-titulo {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--oro);
+    margin: 0 0 6px;
+}
+
+.formato-caso p {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--texto);
+    margin: 0;
+}
+
+.formato-replica {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 20px 22px;
+}
+
+.formato-encabezado {
+    text-align: center;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--borde);
+}
+
+.formato-logo {
+    height: 56px;
+    margin-bottom: 8px;
+}
+
+.formato-titulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--azul);
+    margin: 0 0 2px;
+}
+
+.formato-subtitulo {
+    font-size: 11.5px;
+    color: var(--texto-suave);
+    margin: 0;
+}
+
+.formato-seccion {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azul);
+    background: var(--fondo);
+    padding: 6px 10px;
+    margin: 18px 0 10px;
+    border-radius: 4px;
+}
+
+.formato-datos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 6px;
+}
+
+.formato-datos-columna {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--oro);
+    margin: 0 0 8px;
+}
+
+.formato-replica label {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--texto-suave);
+    margin: 8px 0 3px;
+}
+
+.campo-calificable {
+    width: 100%;
+    padding: 7px 9px;
+    border: 1.5px solid var(--borde);
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.campo-calificable.campo-correcto {
+    border-color: var(--exito);
+    background: rgba(47,122,77,0.06);
+}
+
+.campo-calificable.campo-incorrecto {
+    border-color: #A3352C;
+    background: rgba(163,53,44,0.06);
+}
+
+.tareas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 16px;
+}
+
+.tarea-fila {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 11.5px;
+}
+
+.tarea-bloqueada {
+    background: var(--fondo);
+    opacity: .55;
+}
+
+.tarea-activa {
+    background: rgba(14,42,71,0.06);
+    border: 1.5px solid var(--azul);
+}
+
+.tarea-num {
+    width: 20px;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--texto-suave);
+}
+
+.tarea-activa .tarea-num {
+    color: var(--azul);
+}
+
+.tarea-nombre {
+    flex: 1;
+}
+
+.tarea-icono {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: var(--texto-suave);
+}
+
+.tarea-activa .tarea-icono {
+    color: var(--exito);
+}
+
+.bitacora-form-tabla {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.bitacora-form-tabla th {
+    background: var(--azul);
+    color: white;
+    padding: 6px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.bitacora-form-tabla td {
+    border: 1px solid var(--borde);
+    padding: 6px 8px;
+    vertical-align: top;
+}
+
+.nivel-etiqueta {
+    font-weight: 700;
+    color: var(--azul);
+    white-space: nowrap;
+    width: 90px;
+}
+
+.nivel-etiqueta span {
+    display: block;
+    font-weight: 400;
+    color: var(--texto-suave);
+    font-size: 10px;
+}
+
+.bitacora-form-tabla .campo-calificable {
+    margin-bottom: 4px;
+}
+
+.campo-rubrica {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--texto-suave);
+    margin-top: 2px;
+}
+
+.subtarea-bloque {
+    margin: 16px 0;
+}
+
+.subtarea-titulo {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto);
+    margin: 0 0 8px;
+}
+
+.formato-tarea-generica {
+    font-size: 12px;
+    color: var(--texto);
+    margin: 12px 0 6px;
+}
+
+.formato-firmas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 6px;
+}
+
+.formato-firma-etiqueta {
+    font-size: 10px;
+    color: var(--texto-suave);
+    text-align: center;
+    margin: 4px 0 0;
+}
+
+.formato-nota {
+    font-size: 11px;
+    color: var(--texto-suave);
+    margin: 14px 0 0;
+    font-style: italic;
+}
+
+@media (max-width: 700px) {
+    .formato-datos-grid, .formato-firmas-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .clasificacion-resultado {
     display: none;
     margin-top: 14px;
