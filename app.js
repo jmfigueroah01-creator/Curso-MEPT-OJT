@@ -1054,11 +1054,10 @@ function verificarFormatoBitacora() {
 
     const pct = Math.round((correctos / total) * 100);
     resultado.className = "clasificacion-resultado " + (pct >= 80 ? "correcto" : "incorrecto");
-    resultado.textContent = `${correctos} de ${total} campos correctos (${pct}%).` +
-        (pct >= 80 ? " Buen resultado — ya puedes completar el módulo." : " Revisa los campos marcados en rojo y vuelve a verificar.");
-
     if (pct >= 80) {
         habilitarBotonCompletar(moduloEnPantalla);
+        const modelo = document.getElementById("modeloObservaciones");
+        if (modelo) modelo.classList.add("visible");
     }
 }
 
