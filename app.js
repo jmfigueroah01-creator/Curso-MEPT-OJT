@@ -269,7 +269,7 @@ function mostrarApp(promesaContenido) {
             mostrarPantallaCarga(false);
             document.getElementById("appCurso").style.display = "";
 
-            const correoMostrado = document.getElementById("correoMostrado");
+            const correoMostrado = document.getElementById("correoMenuUsuario");
             if (correoMostrado) correoMostrado.textContent = obtenerCorreo() || "";
 
             const saludoUsuario = document.getElementById("saludoUsuario");
@@ -369,6 +369,20 @@ function verificarAccesoAlCargar() {
             despuesDeMinimo(() => mostrarApp());
         });
 }
+
+function alternarMenuUsuario() {
+    const menu = document.getElementById("menuUsuario");
+    if (!menu) return;
+    menu.classList.toggle("visible");
+}
+
+document.addEventListener("click", (e) => {
+    const menu = document.getElementById("menuUsuario");
+    const header = document.getElementById("headerUsuario");
+    if (menu && menu.classList.contains("visible") && header && !header.contains(e.target)) {
+        menu.classList.remove("visible");
+    }
+});
 
 function cerrarSesion(silencioso) {
     const continuar = silencioso === true

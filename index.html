@@ -85,11 +85,24 @@
 
 </div>
 
-<div class="header-usuario" id="headerUsuario">
+<div class="header-usuario" id="headerUsuario" onclick="alternarMenuUsuario()">
 <span class="header-usuario-icono">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.2-4 4.2-6 7-6s5.8 2 7 6"/></svg>
 </span>
 <span><span class="header-usuario-saludo">Hola,</span> <span id="saludoUsuario"></span></span>
+<svg class="header-usuario-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+
+<div class="menu-usuario" id="menuUsuario" onclick="event.stopPropagation()">
+<div class="menu-usuario-correo">
+<p>Sesión iniciada como</p>
+<strong id="correoMenuUsuario"></strong>
+</div>
+<button type="button" class="menu-usuario-salir" onclick="cerrarSesion()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+Cerrar sesión
+</button>
+</div>
+
 </div>
 
 </div>
@@ -635,7 +648,6 @@ Ir a la evaluación final (Microsoft Forms) →
 
 <h2>Mi progreso</h2>
 
-<p class="sesion-info">Sesión iniciada como <strong id="correoMostrado"></strong> · <a href="#" onclick="cerrarSesion(); return false;">cerrar sesión</a></p>
 
 <div class="progreso-container">
 
