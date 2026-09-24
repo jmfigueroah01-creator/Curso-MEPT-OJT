@@ -39,6 +39,12 @@
 .reglas-contacto-nombre{margin:2px 0 4px;font-weight:600;color:#13294b;font-size:14.5px}
 .reglas-contacto a{font-size:14px;color:#13294b;text-decoration:underline;text-underline-offset:2px;word-break:break-all}
 .reglas-contacto-ext{margin:4px 0 0;font-size:13.5px;color:var(--texto-suave,#6b7280)}
+.reglas-grid{display:flex !important;flex-wrap:wrap;justify-content:center;gap:12px}
+.reglas-grid>li{flex:0 1 calc((100% - 24px)/3);min-width:0}
+.reglas-grid>li.reglas-dudas{flex-basis:100%}
+.reglas-grid .sin-corte{white-space:nowrap}
+@media (max-width:860px){.reglas-grid>li{flex-basis:calc((100% - 12px)/2)}}
+@media (max-width:560px){.reglas-grid>li{flex-basis:100%}}
 /* ===== Menú de 7 pasos: ocupa todo el ancho, sin desplazamiento ===== */
 .ruta-embarque{display:flex;align-items:flex-start;justify-content:space-between;width:100%;max-width:100%;overflow:visible;gap:0;padding:4px 0 2px}
 .ruta-embarque .ruta-punto{flex:0 0 auto;width:92px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0}
@@ -288,7 +294,7 @@ Tu compromiso y participación activa son clave para el éxito de este programa.
 <li class="silabo-tarjeta silabo-m1">
 <span class="silabo-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m14.5 9.5-2 5-5 2 2-5 5-2Z"/></svg></span>
 <div class="silabo-info">
-<div class="silabo-titulo-fila"><p class="silabo-titulo">Módulo 1 · Marco general del Programa OJT</p><span class="silabo-cap">Cap. 1–3 MEPT</span></div>
+<div class="silabo-titulo-fila"><p class="silabo-titulo">Módulo 1 · Marco general del Programa OJT</p><span class="silabo-cap">Cap. 2–3 MEPT</span></div>
 <p class="silabo-desc">Qué es el OJT, para qué sirve y quién es responsable de qué.</p>
 </div>
 </li>
@@ -304,8 +310,8 @@ Tu compromiso y participación activa son clave para el éxito de este programa.
 <li class="silabo-tarjeta silabo-m3">
 <span class="silabo-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.3"/><circle cx="18" cy="6" r="2.3"/><path d="M8 17 16.5 8"/></svg></span>
 <div class="silabo-info">
-<div class="silabo-titulo-fila"><p class="silabo-titulo">Módulo 3 · Proceso de ejecución del Programa OJT</p><span class="silabo-cap">Cap. 5–6 MEPT</span></div>
-<p class="silabo-desc">Cómo se ejecuta el entrenamiento paso a paso y cómo se evalúa el programa.</p>
+<div class="silabo-titulo-fila"><p class="silabo-titulo">Módulo 3 · Proceso de ejecución del Programa OJT</p><span class="silabo-cap">Cap. 5 y Anexos 1–2 MEPT</span></div>
+<p class="silabo-desc">Cómo se ejecuta el entrenamiento paso a paso.</p>
 </div>
 </li>
 
@@ -354,7 +360,7 @@ Tu compromiso y participación activa son clave para el éxito de este programa.
 
 <div class="metodo-dato">
 <span class="metodo-dato-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
-<div><span class="metodo-dato-etiqueta">Duración</span><strong>6 h</strong> <span class="metodo-dato-texto">· 3 módulos</span></div>
+<div><span class="metodo-dato-etiqueta">Duración</span><strong>6 horas</strong> <span class="metodo-dato-texto">· 3 módulos</span></div>
 </div>
 
 <div class="metodo-dato">
@@ -418,7 +424,7 @@ Tu compromiso y participación activa son clave para el éxito de este programa.
 
 <li>
 <span class="reglas-icono reglas-oro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V8h4M8.5 12.5h7M8.5 15.5h7"/></svg></span>
-<div><strong>Ten a la mano el MEPT</strong><span>Consulta el MEPT vigente (M-DCIA-CPEPT-01-R06) para profundizar en los numerales referidos a lo largo del curso.</span></div>
+<div><strong>Ten a la mano el MEPT</strong><span>Consulta el MEPT vigente (<span class="sin-corte">M-DCIA-CPEPT-01-R06</span>) para profundizar en los numerales referidos a lo largo del curso.</span></div>
 </li>
 
 <li>
