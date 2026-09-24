@@ -32,6 +32,13 @@
 .reglas-icono.reglas-oro{background:var(--oro,#b8893a)}
 .reglas-grid strong{display:block;color:#13294b}
 .reglas-grid li span:not(.reglas-icono){font-size:14px;color:var(--texto-suave,#6b7280)}
+.reglas-grid li.reglas-dudas{grid-column:1/-1}
+.reglas-contactos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:12px}
+.reglas-contacto{background:#fff;border:1px solid #e3e3e0;border-left:3px solid var(--oro,#b8893a);padding:12px 14px}
+.reglas-grid li span.reglas-contacto-rol{display:block;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--oro,#b8893a)}
+.reglas-contacto-nombre{margin:2px 0 4px;font-weight:600;color:#13294b;font-size:14.5px}
+.reglas-contacto a{font-size:14px;color:#13294b;text-decoration:underline;text-underline-offset:2px;word-break:break-all}
+.reglas-contacto-ext{margin:4px 0 0;font-size:13.5px;color:var(--texto-suave,#6b7280)}
 /* ===== Menú de 7 pasos: ocupa todo el ancho, sin desplazamiento ===== */
 .ruta-embarque{display:flex;align-items:flex-start;justify-content:space-between;width:100%;max-width:100%;overflow:visible;gap:0;padding:4px 0 2px}
 .ruta-embarque .ruta-punto{flex:0 0 auto;width:92px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0}
@@ -352,7 +359,7 @@ Tu compromiso y participación activa son clave para el éxito de este programa.
 
 <div class="metodo-dato">
 <span class="metodo-dato-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5v3M16 3.5v3M4.5 9h15"/><rect x="4.5" y="5.5" width="15" height="15" rx="2"/></svg></span>
-<div><span class="metodo-dato-etiqueta">Horario</span><strong>Libre</strong><br><span class="metodo-dato-texto">Dentro del periodo del 28/09/2026 al 06/10/2026</span></div>
+<div><span class="metodo-dato-etiqueta">Horario</span><strong>Abierto</strong><br><span class="metodo-dato-texto">Dentro del periodo del 28/09/2026 al 06/10/2026</span></div>
 </div>
 
 </div>
@@ -419,9 +426,13 @@ Tu compromiso y participación activa son clave para el éxito de este programa.
 <div><strong>Responde antes de ver la respuesta</strong><span>Pon a prueba tu criterio antes de revisar la retroalimentación.</span></div>
 </li>
 
-<li>
+<li class="reglas-dudas">
 <span class="reglas-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
-<div><strong>Envía tus dudas</strong><span>Escríbelas al contacto del curso. También puedes dirigirte a tu instructor o a la Coordinación del Programa (CPEPT).</span></div>
+<div style="flex:1;min-width:0"><strong>Envía tus dudas</strong><span>Escríbelas a cualquiera de los siguientes contactos del curso:</span>
+<div class="reglas-contactos">
+<div class="reglas-contacto"><span class="reglas-contacto-rol">Instructor del curso</span><p class="reglas-contacto-nombre">Rodolfo Gerardo Morales Dias</p><a href="mailto:rodolfo.morales@afac.gob.mx">rodolfo.morales@afac.gob.mx</a><p class="reglas-contacto-ext">Ext. 18662 y 18674</p></div>
+<div class="reglas-contacto"><span class="reglas-contacto-rol">Coordinador del curso</span><p class="reglas-contacto-nombre">José Manuel Figueroa Hernández</p><a href="mailto:jose.figueroa@afac.gob.mx">jose.figueroa@afac.gob.mx</a><p class="reglas-contacto-ext">Ext. 18661</p></div>
+</div></div>
 </li>
 
 </ul>
