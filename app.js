@@ -667,6 +667,8 @@ function abrirModulo(numero) {
     `;
 
     barajarDinamicaEmparejar();
+    barajarIncumplimientos();
+    barajarVerdaderoFalso();
     contenido.scrollIntoView({ behavior: "smooth" });
 }
 
@@ -968,6 +970,34 @@ function intentarEmparejarDinamica() {
 /* ============================================================
    CLASIFICACIÓN POR NIVEL Y ESPECIALIDAD (Módulo 2)
    ============================================================ */
+
+function barajarVerdaderoFalso() {
+    const contenedor = document.querySelector(".vf-lista");
+    if (!contenedor) return;
+
+    const filas = Array.from(contenedor.querySelectorAll(".vf-fila"));
+    for (let i = filas.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [filas[i], filas[j]] = [filas[j], filas[i]];
+    }
+    filas.forEach((fila, i) => {
+        contenedor.appendChild(fila);
+        const num = fila.querySelector(".vf-num");
+        if (num) num.textContent = i + 1;
+    });
+}
+
+function barajarIncumplimientos() {
+    const contenedor = document.querySelector(".incumplimiento-lista");
+    if (!contenedor) return;
+
+    const opciones = Array.from(contenedor.querySelectorAll(".incumplimiento-opcion"));
+    for (let i = opciones.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [opciones[i], opciones[j]] = [opciones[j], opciones[i]];
+    }
+    opciones.forEach(op => contenedor.appendChild(op));
+}
 
 function verificarIncumplimientos() {
     const opciones = document.querySelectorAll(".incumplimiento-opcion input[type='checkbox']");
