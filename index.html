@@ -32,13 +32,13 @@
 .reglas-icono.reglas-oro{background:var(--oro,#b8893a)}
 .reglas-grid strong{display:block;color:#13294b}
 .reglas-grid li span:not(.reglas-icono){font-size:14px;color:var(--texto-suave,#6b7280)}
-/* ===== Menú de 7 pasos: más aire entre puntos ===== */
-.ruta-embarque{display:flex;align-items:flex-start;justify-content:center;gap:0;overflow-x:auto;padding:4px 8px 2px}
-.ruta-embarque .ruta-punto{flex:0 0 92px;width:92px;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0}
+/* ===== Menú de 7 pasos: ocupa todo el ancho, sin desplazamiento ===== */
+.ruta-embarque{display:flex;align-items:flex-start;justify-content:space-between;width:100%;max-width:100%;overflow:visible;gap:0;padding:4px 0 2px}
+.ruta-embarque .ruta-punto{flex:0 0 auto;width:92px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0}
 .ruta-embarque .ruta-punto-icono{width:44px;height:44px;flex:0 0 44px}
 .ruta-embarque .ruta-punto-etiqueta{display:block;width:100%;white-space:normal;text-align:center;line-height:1.25;min-height:2.5em}
-.ruta-embarque .ruta-punto-linea{flex:1 1 20px;min-width:14px;max-width:44px;margin:21px 0 0;align-self:flex-start}
-@media (max-width:760px){.ruta-embarque{justify-content:flex-start}.ruta-embarque .ruta-punto{flex-basis:80px;width:80px}}
+.ruta-embarque .ruta-punto-linea{flex:1 1 auto;min-width:8px;max-width:none;margin:21px -14px 0;align-self:flex-start}
+@media (max-width:760px){.ruta-embarque .ruta-punto{width:64px}.ruta-embarque .ruta-punto-etiqueta{font-size:10.5px}.ruta-embarque .ruta-punto-icono{width:36px;height:36px;flex-basis:36px}.ruta-embarque .ruta-punto-linea{margin:17px -8px 0}}
 </style>
 </head>
 <body>
