@@ -980,11 +980,7 @@ function barajarVerdaderoFalso() {
         const j = Math.floor(Math.random() * (i + 1));
         [filas[i], filas[j]] = [filas[j], filas[i]];
     }
-    filas.forEach((fila, i) => {
-        contenedor.appendChild(fila);
-        const num = fila.querySelector(".vf-num");
-        if (num) num.textContent = i + 1;
-    });
+    filas.forEach(fila => contenedor.appendChild(fila));
 }
 
 function barajarIncumplimientos() {
