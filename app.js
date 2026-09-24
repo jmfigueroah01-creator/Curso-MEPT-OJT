@@ -925,6 +925,57 @@ function clickFuncion(boton) {
     intentarEmparejarDinamica();
 }
 
+function verificarOrdenEtapas() {
+    const filas = document.querySelectorAll(".orden-fila");
+    let correctas = 0;
+    let contestadas = 0;
+    const usados = new Set();
+
+    filas.forEach(fila => {
+        const valor = fila.querySelector(".orden-select").value;
+        fila.classList.remove("incumplimiento-ok", "incumplimiento-mal");
+        if (!valor) return;
+        contestadas++;
+        usados.add(valor);
+        if (valor === fila.dataset.correcta) {
+            correctas++;
+            fila.classList.add("incumplimiento-ok");
+        } else {
+            fila.classList.add("incumplimiento-mal");
+        }
+    });
+
+    const total = filas.length;
+    const resultado = document.getElementById("ordenEtapasResultado");
+    if (!resultado) return;
+    resultado.style.display = "block";
+
+    if (contestadas < total) {
+        resultado.className = "clasificacion-resultado aviso";
+        resultado.textContent = `Asigna una posición a las ${total} etapas antes de verificar (llevas ${contestadas}).`;
+        filas.forEach(f => f.classList.remove("incumplimiento-ok", "incumplimiento-mal"));
+        return;
+    }
+    if (usados.size < total) {
+        resultado.className = "clasificacion-resultado aviso";
+        resultado.textContent = "Cada número del 1 al 6 debe usarse una sola vez.";
+        filas.forEach(f => f.classList.remove("incumplimiento-ok", "incumplimiento-mal"));
+        return;
+    }
+
+    const acerto = correctas === total;
+    resultado.className = "clasificacion-resultado " + (acerto ? "correcto" : "incorrecto");
+    resultado.textContent = acerto
+        ? "¡Correcto! Ordenaste las seis etapas del proceso."
+        : `Ubicaste ${correctas} de ${total} etapas en su posición. Revisa las marcadas en rojo e inténtalo de nuevo.`;
+
+    if (acerto) {
+        const retro = document.getElementById("retroalimentacionOrden");
+        if (retro) retro.style.display = "block";
+        habilitarBotonCompletar(moduloEnPantalla);
+    }
+}
+
 function habilitarBotonCompletar(numero) {
     const btn = document.getElementById(`btnCompletarModulo${numero}`);
     if (!btn) return;
