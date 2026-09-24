@@ -854,7 +854,7 @@ function reiniciarCurso() {
    ============================================================ */
 
 let pasoActual = 1;
-const TOTAL_PASOS = 6;
+const TOTAL_PASOS = 7;
 
 function irPaso(n) {
     pasoActual = n;
@@ -872,7 +872,7 @@ function irPaso(n) {
         linea.classList.toggle("completado", idx < n);
     });
 
-    const etiquetas = ["Bienvenida", "Objetivos", "Contenido", "Recursos", "Puntos clave", "Evaluación"];
+    const etiquetas = ["Bienvenida", "Contenido temático", "Objetivo general", "Método de trabajo", "Reglas", "Recursos", "Evaluación"];
     const contador = document.getElementById("rutaContador");
     if (contador) contador.textContent = `Paso ${n} de ${TOTAL_PASOS} · ${etiquetas[n - 1]}`;
 

@@ -8,6 +8,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Método de trabajo y Reglas (bienvenida) ===== */
+.metodo-datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.metodo-dato{display:flex;gap:14px;align-items:center;background:#13294b;color:#fff;border-radius:14px;padding:18px 20px}
+.metodo-dato-icono{flex:0 0 38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+.metodo-dato-icono svg{width:18px;height:18px}
+.metodo-dato-etiqueta{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#ecd9a8}
+.metodo-dato strong{font-size:16px}
+.metodo-dato-texto{font-size:13.5px;color:#d6dbe4}
+.metodo-flujo{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;counter-reset:mf}
+.metodo-flujo li{background:#f3f3f1;border-radius:12px;padding:16px 18px;counter-increment:mf}
+.metodo-flujo li::before{content:counter(mf);display:flex;width:28px;height:28px;border-radius:50%;background:var(--oro,#b8893a);color:#fff;font-weight:600;font-size:13px;align-items:center;justify-content:center;margin-bottom:10px}
+.metodo-flujo strong{display:block;color:#13294b;margin-bottom:4px}
+.metodo-flujo li>span{font-size:14px;color:var(--texto-suave,#6b7280)}
+.metodo-modulos{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.metodo-modulos span{font-size:12px;font-weight:600;background:#13294b;color:#fff;border-radius:6px;padding:2px 8px}
+.metodo-modulos em{font-style:normal;font-weight:600;color:var(--oro,#b8893a)}
+.reglas-grid{list-style:none;padding:0;margin:0 0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.reglas-grid li{display:flex;gap:14px;align-items:flex-start;background:#f3f3f1;border-radius:12px;padding:16px 18px}
+.reglas-icono{flex:0 0 34px;height:34px;border-radius:50%;background:#13294b;color:#fff;display:flex;align-items:center;justify-content:center}
+.reglas-icono svg{width:17px;height:17px}
+.reglas-icono.reglas-oro{background:var(--oro,#b8893a)}
+.reglas-grid strong{display:block;color:#13294b}
+.reglas-grid li span:not(.reglas-icono){font-size:14px;color:var(--texto-suave,#6b7280)}
+</style>
 </head>
 <body>
 
@@ -154,42 +179,49 @@ Cerrar sesión
 
 <span class="ruta-punto-linea" data-linea="1"></span>
 
-<button type="button" class="ruta-punto" data-paso="2" onclick="mostrarPaso(2)" aria-label="Paso 2: Objetivos">
-<span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V3"/><path d="M6 4h11l-2.6 3.6L17 11H6"/></svg></span>
-<span class="ruta-punto-etiqueta">Objetivos</span>
+<button type="button" class="ruta-punto" data-paso="2" onclick="mostrarPaso(2)" aria-label="Paso 2: Contenido temático">
+<span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2.2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>
+<span class="ruta-punto-etiqueta">Contenido temático</span>
 </button>
 
 <span class="ruta-punto-linea" data-linea="2"></span>
 
-<button type="button" class="ruta-punto" data-paso="3" onclick="mostrarPaso(3)" aria-label="Paso 3: Contenido">
-<span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2.2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>
-<span class="ruta-punto-etiqueta">Contenido</span>
+<button type="button" class="ruta-punto" data-paso="3" onclick="mostrarPaso(3)" aria-label="Paso 3: Objetivo general">
+<span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V3"/><path d="M6 4h11l-2.6 3.6L17 11H6"/></svg></span>
+<span class="ruta-punto-etiqueta">Objetivo general</span>
 </button>
 
 <span class="ruta-punto-linea" data-linea="3"></span>
 
-<button type="button" class="ruta-punto" data-paso="4" onclick="mostrarPaso(4)" aria-label="Paso 4: Recursos">
-<span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5a2 2 0 0 1 2-2h3.4l1.8 2H18a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6.5Z"/></svg></span>
-<span class="ruta-punto-etiqueta">Recursos</span>
+<button type="button" class="ruta-punto" data-paso="4" onclick="mostrarPaso(4)" aria-label="Paso 4: Método de trabajo">
+<span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+<span class="ruta-punto-etiqueta">Método de trabajo</span>
 </button>
 
 <span class="ruta-punto-linea" data-linea="4"></span>
 
-<button type="button" class="ruta-punto" data-paso="5" onclick="mostrarPaso(5)" aria-label="Paso 5: Puntos clave">
-<span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.2h11a.5.5 0 0 1 .5.5V20l-6-3-6 3V3.7a.5.5 0 0 1 .5-.5Z"/></svg></span>
-<span class="ruta-punto-etiqueta">Puntos clave</span>
+<button type="button" class="ruta-punto" data-paso="5" onclick="mostrarPaso(5)" aria-label="Paso 5: Reglas">
+<span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5.5c0 4.3 3 7.6 7 9.5 4-1.9 7-5.2 7-9.5V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+<span class="ruta-punto-etiqueta">Reglas</span>
 </button>
 
 <span class="ruta-punto-linea" data-linea="5"></span>
 
-<button type="button" class="ruta-punto" data-paso="6" onclick="mostrarPaso(6)" aria-label="Paso 6: Evaluación">
+<button type="button" class="ruta-punto" data-paso="6" onclick="mostrarPaso(6)" aria-label="Paso 6: Recursos">
+<span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5a2 2 0 0 1 2-2h3.4l1.8 2H18a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6.5Z"/></svg></span>
+<span class="ruta-punto-etiqueta">Recursos</span>
+</button>
+
+<span class="ruta-punto-linea" data-linea="6"></span>
+
+<button type="button" class="ruta-punto" data-paso="7" onclick="mostrarPaso(7)" aria-label="Paso 7: Evaluación">
 <span class="ruta-punto-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3.5h6a1 1 0 0 1 1 1v1H8v-1a1 1 0 0 1 1-1Z"/><path d="M8.5 13 11 15.5 15.5 10.5"/></svg></span>
 <span class="ruta-punto-etiqueta">Evaluación</span>
 </button>
 
 </nav>
 
-<p class="ruta-embarque-contador" id="rutaContador">Paso 1 de 6 · Bienvenida</p>
+<p class="ruta-embarque-contador" id="rutaContador">Paso 1 de 7 · Bienvenida</p>
 
 <div class="paso-tour activo" id="paso1">
 
@@ -235,38 +267,7 @@ Tu compromiso y participación activa son clave para el éxito de este programa.
 
 <div class="paso-tour" id="paso2">
 
-<h3>Objetivos del curso</h3>
-
-<p class="paso1-lead">Objetivo general</p>
-
-<p>Dado un <strong>caso práctico</strong>, distinguir la aplicación del Programa de Entrenamiento en el Puesto de Trabajo conforme al <strong>MEPT R06</strong>.</p>
-
-<p class="paso1-lead" style="margin-top:20px;">Objetivos específicos</p>
-
-<ul class="tarjetas-objetivo">
-
-<li>
-<span class="tarjetas-objetivo-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><circle cx="6" cy="19" r="2.2"/><circle cx="18" cy="19" r="2.2"/><path d="M12 7.2V12M12 12 6 16.8M12 12l6 4.8"/></svg></span>
-<span>Relacionar los integrantes de la <strong>estructura organizacional</strong> del Programa OJT con sus funciones y responsabilidades.</span>
-</li>
-
-<li>
-<span class="tarjetas-objetivo-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4v-4H4v4Zm6 0h4v-9h-4v9Zm6 0h4V7h-4v13Z"/></svg></span>
-<span>Distinguir los <strong>niveles de entrenamiento OJT</strong> del Inspector Verificador Aeronáutico.</span>
-</li>
-
-<li>
-<span class="tarjetas-objetivo-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V8h4"/><path d="M8.5 12.5h7M8.5 15.5h7M8.5 18h4"/></svg></span>
-<span>Ordenar las <strong>seis etapas del proceso de ejecución</strong> del Programa OJT.</span>
-</li>
-
-</ul>
-
-</div>
-
-<div class="paso-tour" id="paso3">
-
-<h3>Contenido del curso</h3>
+<h3>Contenido temático</h3>
 
 <ul class="silabo-tarjetas">
 
@@ -298,7 +299,145 @@ Tu compromiso y participación activa son clave para el éxito de este programa.
 
 </div>
 
+<div class="paso-tour" id="paso3">
+
+<h3>Objetivos del curso</h3>
+
+<p class="paso1-lead">Objetivo general</p>
+
+<p>Dado un <strong>caso práctico</strong>, distinguir la aplicación del Programa de Entrenamiento en el Puesto de Trabajo conforme al <strong>MEPT R06</strong>.</p>
+
+<p class="paso1-lead" style="margin-top:20px;">Objetivos específicos</p>
+
+<ul class="tarjetas-objetivo">
+
+<li>
+<span class="tarjetas-objetivo-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><circle cx="6" cy="19" r="2.2"/><circle cx="18" cy="19" r="2.2"/><path d="M12 7.2V12M12 12 6 16.8M12 12l6 4.8"/></svg></span>
+<span>Relacionar los integrantes de la <strong>estructura organizacional</strong> del Programa OJT con sus funciones y responsabilidades.</span>
+</li>
+
+<li>
+<span class="tarjetas-objetivo-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4v-4H4v4Zm6 0h4v-9h-4v9Zm6 0h4V7h-4v13Z"/></svg></span>
+<span>Distinguir los <strong>niveles de entrenamiento OJT</strong> del Inspector Verificador Aeronáutico.</span>
+</li>
+
+<li>
+<span class="tarjetas-objetivo-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V8h4"/><path d="M8.5 12.5h7M8.5 15.5h7M8.5 18h4"/></svg></span>
+<span>Ordenar las <strong>seis etapas del proceso de ejecución</strong> del Programa OJT.</span>
+</li>
+
+</ul>
+
+</div>
+
 <div class="paso-tour" id="paso4">
+
+<h3>Método de trabajo</h3>
+
+<p class="subtitulo-hero">Así vas a trabajar durante el curso.</p>
+
+<div class="metodo-datos">
+
+<div class="metodo-dato">
+<span class="metodo-dato-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+<div><span class="metodo-dato-etiqueta">Duración</span><strong>6 h</strong> <span class="metodo-dato-texto">· 3 módulos</span></div>
+</div>
+
+<div class="metodo-dato">
+<span class="metodo-dato-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5v3M16 3.5v3M4.5 9h15"/><rect x="4.5" y="5.5" width="15" height="15" rx="2"/></svg></span>
+<div><span class="metodo-dato-etiqueta">Horario</span><strong>Libre</strong><br><span class="metodo-dato-texto">Dentro del periodo del 28/09/2026 al 06/10/2026</span></div>
+</div>
+
+</div>
+
+<div class="modalidad-tarjetas" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:14px;">
+
+<div class="modalidad-tarjeta modalidad-exito">
+<span class="modalidad-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 7"/></svg></span>
+<div><strong>Tú decides el ritmo.</strong><p>Avanza conforme a tu disponibilidad de tiempo, dentro del plazo establecido para tu proceso de capacitación.</p></div>
+</div>
+
+<div class="modalidad-tarjeta modalidad-aviso">
+<span class="modalidad-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4.5M12 17h.01"/><path d="M10.3 3.9 2.7 18.1A1.8 1.8 0 0 0 4.3 20.7h15.4a1.8 1.8 0 0 0 1.6-2.6L13.7 3.9a1.8 1.8 0 0 0-3.4 0Z"/></svg></span>
+<div><strong>No te exime de tu responsabilidad.</strong><p>Debes concluir el curso en tiempo y forma, y acreditar la evaluación o actividad de cierre correspondiente dentro de la fecha establecida.</p></div>
+</div>
+
+</div>
+
+<p class="paso1-lead" style="margin-top:24px;">Ruta de estudio</p>
+
+<ol class="metodo-flujo">
+
+<li><strong>Estudia en orden</strong><span>Cada módulo constituye la base del siguiente.</span>
+<div class="metodo-modulos"><span>M1</span><em>→</em><span>M2</span><em>→</em><span>M3</span></div></li>
+
+<li><strong>Resuelve las actividades</strong><span>Cada módulo incluye una o dos actividades interactivas que desbloquean el siguiente.</span></li>
+
+<li><strong>Cierra el curso</strong><span>Con la práctica de llenado y la evaluación final.</span></li>
+
+</ol>
+
+</div>
+
+<div class="paso-tour" id="paso5">
+
+<h3>Reglas</h3>
+
+<p class="subtitulo-hero">Para aprovechar al máximo tu capacitación.</p>
+
+<ul class="reglas-grid">
+
+<li>
+<span class="reglas-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M10 20v-5h4v5"/></svg></span>
+<div><strong>Espacio sin interrupciones</strong><span>Estudia en un lugar tranquilo que te permita concentrarte.</span></div>
+</li>
+
+<li>
+<span class="reglas-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.8 16a5 5 0 0 1 6.4 0"/><circle cx="12" cy="19.2" r=".8"/></svg></span>
+<div><strong>Internet estable</strong><span>Asegura una buena conexión para no perder tu avance.</span></div>
+</li>
+
+<li>
+<span class="reglas-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l2.5 2.5L16 9"/><rect x="4" y="4" width="16" height="16" rx="2.5"/></svg></span>
+<div><strong>No omitas actividades</strong><span>Todas forman parte de tu proceso de aprendizaje.</span></div>
+</li>
+
+<li>
+<span class="reglas-icono reglas-oro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V8h4M8.5 12.5h7M8.5 15.5h7"/></svg></span>
+<div><strong>Ten a la mano el MEPT</strong><span>Consulta el MEPT vigente (M-DCIA-CPEPT-01-R06) para profundizar en los numerales referidos a lo largo del curso.</span></div>
+</li>
+
+<li>
+<span class="reglas-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8L4 20Z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 16h.01"/></svg></span>
+<div><strong>Responde antes de ver la respuesta</strong><span>Pon a prueba tu criterio antes de revisar la retroalimentación.</span></div>
+</li>
+
+<li>
+<span class="reglas-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
+<div><strong>Envía tus dudas</strong><span>Escríbelas al contacto del curso. También puedes dirigirte a tu instructor o a la Coordinación del Programa (CPEPT).</span></div>
+</li>
+
+</ul>
+
+<div class="cierre-hero-caja">
+
+<p class="cierre-hero">
+
+La AFAC reconoce en el Programa OJT una responsabilidad
+
+institucional, orientada al fortalecimiento del
+
+criterio técnico del personal y al aseguramiento de la
+
+seguridad operacional del Estado Mexicano.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="paso-tour" id="paso6">
 
 <h3>Recursos de apoyo</h3>
 
@@ -340,62 +479,7 @@ Tu compromiso y participación activa son clave para el éxito de este programa.
 
 </div>
 
-<div class="paso-tour" id="paso5">
-
-<h3>Puntos clave</h3>
-
-<p class="subtitulo-hero">Tú avanzas a tu ritmo — pero el compromiso con el resultado sigue siendo tuyo.</p>
-
-<div class="modalidad-tarjetas">
-
-<div class="modalidad-tarjeta modalidad-exito">
-<span class="modalidad-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 7"/></svg></span>
-<div><strong>Tú decides el ritmo.</strong><p>Avanza conforme a tu disponibilidad de tiempo, dentro del plazo establecido para tu proceso de capacitación.</p></div>
-</div>
-
-<div class="modalidad-tarjeta modalidad-aviso">
-<span class="modalidad-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4.5M12 17h.01"/><path d="M10.3 3.9 2.7 18.1A1.8 1.8 0 0 0 4.3 20.7h15.4a1.8 1.8 0 0 0 1.6-2.6L13.7 3.9a1.8 1.8 0 0 0-3.4 0Z"/></svg></span>
-<div><strong>No te exime de tu responsabilidad.</strong><p>Debes concluir el curso en tiempo y forma, y acreditar la evaluación o actividad de cierre correspondiente.</p></div>
-</div>
-
-<div class="modalidad-tarjeta modalidad-info">
-<span class="modalidad-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.8h.01"/></svg></span>
-<div><strong>¿Dudas?</strong><p>Dirígete a tu instructor del curso o a la Coordinación del Programa (CPEPT).</p></div>
-</div>
-
-</div>
-
-<p class="paso1-lead" style="margin-top:24px;">Recomendaciones</p>
-
-<ul class="lista-objetivo">
-
-<li>Revisar los módulos en el orden establecido, dado que cada uno constituye la base del siguiente.</li>
-
-<li>Consultar el MEPT vigente (Revisión R06) para profundizar en los numerales referidos a lo largo del curso.</li>
-
-<li>Concluir el curso dentro de la fecha establecida.</li>
-
-</ul>
-
-<div class="cierre-hero-caja">
-
-<p class="cierre-hero">
-
-La AFAC reconoce en el Programa OJT una responsabilidad
-
-institucional, orientada al fortalecimiento del
-
-criterio técnico del personal y al aseguramiento de la
-
-seguridad operacional del Estado Mexicano.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="paso-tour" id="paso6">
+<div class="paso-tour" id="paso7">
 
 <h3>Evaluación</h3>
 
@@ -405,7 +489,7 @@ seguridad operacional del Estado Mexicano.
 
 <li>
 <span class="lista-icono-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.5v3M15 3.5v3M5 8h14M5.5 6h13a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z"/><path d="m9.5 13 2 2 3-3.5"/></svg></span>
-<span><strong>Actividad del módulo:</strong> cada módulo incluye una actividad interactiva que debes completar correctamente para desbloquear el siguiente módulo.</span>
+<span><strong>Actividad del módulo:</strong> cada módulo incluye una o dos actividades interactivas que debes completar correctamente para desbloquear el siguiente módulo.</span>
 </li>
 
 <li>
